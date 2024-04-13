@@ -1,0 +1,103 @@
+[gd_scene load_steps=17 format=3 uid="uid://drs6nctb25v1v"]
+
+[ext_resource type="Script" path="res://healing_touch.gd" id="1_220vj"]
+[ext_resource type="Texture2D" uid="uid://jojgdc7gudg2" path="res://assets/spells/Water_Geyser/001.png" id="1_3773e"]
+[ext_resource type="Texture2D" uid="uid://c5kw2exas0x6m" path="res://assets/spells/Water_Geyser/002.png" id="2_pdykr"]
+[ext_resource type="Texture2D" uid="uid://bhbxbdijlowbv" path="res://assets/spells/Water_Geyser/003.png" id="3_7qchy"]
+[ext_resource type="Texture2D" uid="uid://dw1t8rfqg7uj1" path="res://assets/spells/Water_Geyser/004.png" id="4_uoe28"]
+[ext_resource type="Texture2D" uid="uid://bpi0sny0ub4dt" path="res://assets/spells/Water_Geyser/005.png" id="5_o0pqv"]
+[ext_resource type="Texture2D" uid="uid://b218x6hg0m3pq" path="res://assets/spells/Water_Geyser/006.png" id="6_kcm3m"]
+[ext_resource type="Texture2D" uid="uid://b7bu2ny7qob02" path="res://assets/spells/Water_Geyser/007.png" id="7_bus8s"]
+[ext_resource type="Texture2D" uid="uid://dpkajg0ml5jo5" path="res://assets/spells/Water_Geyser/008.png" id="8_8jvcc"]
+[ext_resource type="Texture2D" uid="uid://b1867sgfya835" path="res://assets/spells/Water_Geyser/009.png" id="9_jd2re"]
+[ext_resource type="Texture2D" uid="uid://cpn54j785wpti" path="res://assets/spells/Water_Geyser/010.png" id="10_gs8ss"]
+[ext_resource type="Texture2D" uid="uid://cmedpr3f03m5p" path="res://assets/spells/Water_Geyser/011.png" id="11_2cike"]
+[ext_resource type="Texture2D" uid="uid://dgtf7sdrlumot" path="res://assets/spells/Water_Geyser/012.png" id="12_8llau"]
+[ext_resource type="Texture2D" uid="uid://3choxe7wjyyn" path="res://assets/spells/Water_Geyser/013.png" id="13_tof6d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyakk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3773e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pdykr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7qchy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pdykr")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3773e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pdykr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7qchy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uoe28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o0pqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_kcm3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bus8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8jvcc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jd2re")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gs8ss")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2cike")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_8llau")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_tof6d")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42v6v"]
+radius = 6.0
+
+[node name="HealingTouch" type="Area2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_220vj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(32, 0)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_nyakk")
+animation = &"fly"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0)
+shape = SubResource("CircleShape2D_42v6v")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

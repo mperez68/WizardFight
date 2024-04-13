@@ -1,0 +1,274 @@
+[gd_scene load_steps=22 format=3 uid="uid://ietisnuvh0ck"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_3sh2i"]
+[ext_resource type="Texture2D" uid="uid://shw4sb7vak0r" path="res://assets/char_a_p1_0bas_humn_v01.png" id="3_wkpkb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_r2bco"]
+radius = 10.9954
+height = 47.9635
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vbljb"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucihu"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ynbo"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gh55q"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uixdk"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en1es"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x13n4"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xircb"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlv12"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70af5"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xhr4"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyojy"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7kmr"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(64, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veoj5"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(128, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7locw"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(192, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx2hm"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(256, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qse2s"]
+atlas = ExtResource("3_wkpkb")
+region = Rect2(320, 384, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wpasm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vbljb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucihu")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4ynbo")
+}],
+"loop": false,
+"name": &"cast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gh55q")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uixdk")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en1es")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x13n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xircb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlv12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70af5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xhr4")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyojy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7kmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veoj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7locw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx2hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qse2s")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_3sh2i")
+
+[node name="Info" type="Control" parent="."]
+z_index = 6
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -50.0
+offset_top = -120.0
+offset_right = -50.0
+offset_bottom = -120.0
+
+[node name="HPBackground" type="ProgressBar" parent="Info"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_top = -25.0
+offset_right = 100.0
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="HPBar" type="ProgressBar" parent="Info"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_top = -25.0
+offset_right = 100.0
+max_value = 5.0
+step = 1.0
+value = 4.0
+show_percentage = false
+
+[node name="HPTextLevel" type="Label" parent="Info"]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 50.0
+text = "4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPTextSlash" type="Label" parent="Info"]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 100.0
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPTextMax" type="Label" parent="Info"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -25.0
+offset_right = 100.0
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaBackground" type="ProgressBar" parent="Info"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="ManaBar" type="ProgressBar" parent="Info"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+max_value = 5.0
+step = 1.0
+value = 4.0
+show_percentage = false
+
+[node name="ManaTextLevel" type="Label" parent="Info"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 25.0
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaTextSlash" type="Label" parent="Info"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaTextMax" type="Label" parent="Info"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 100.0
+offset_bottom = 25.0
+text = "5
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+rotation = -1.5663
+shape = SubResource("CapsuleShape2D_r2bco")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.419608, 0.603922, 1, 1)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -32)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_wpasm")
+animation = &"stand"

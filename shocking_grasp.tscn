@@ -1,0 +1,74 @@
+[gd_scene load_steps=13 format=3 uid="uid://ddh8sx7atuw2b"]
+
+[ext_resource type="Script" path="res://shocking_grasp.gd" id="1_h08iq"]
+[ext_resource type="Texture2D" uid="uid://cb2rnxitdxyli" path="res://assets/spells/Tornado/001.png" id="2_w0hg6"]
+[ext_resource type="Texture2D" uid="uid://dgqg14mf6mmdw" path="res://assets/spells/Tornado/002.png" id="3_cgtl2"]
+[ext_resource type="Texture2D" uid="uid://bc0er2j48okql" path="res://assets/spells/Tornado/003.png" id="4_jlpoj"]
+[ext_resource type="Texture2D" uid="uid://itgwq5g1tut5" path="res://assets/spells/Tornado/004.png" id="5_sgh8w"]
+[ext_resource type="Texture2D" uid="uid://cgqyai61i4ypk" path="res://assets/spells/Tornado/005.png" id="6_258we"]
+[ext_resource type="Texture2D" uid="uid://cvx7xrvu0flnb" path="res://assets/spells/Tornado/006.png" id="7_gmjly"]
+[ext_resource type="Texture2D" uid="uid://hdakkl8mjhby" path="res://assets/spells/Tornado/007.png" id="8_8ohuj"]
+[ext_resource type="Texture2D" uid="uid://d1j522qqdda2c" path="res://assets/spells/Tornado/008.png" id="9_0wglj"]
+[ext_resource type="Texture2D" uid="uid://sk67ajfxulql" path="res://assets/spells/Tornado/009.png" id="10_4la31"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gk2c3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w0hg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cgtl2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jlpoj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sgh8w")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_258we")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gmjly")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8ohuj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0wglj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4la31")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42v6v"]
+radius = 6.0
+
+[node name="ShockingGrasp" type="Area2D"]
+visible = false
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_h08iq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_gk2c3")
+animation = &"fly"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0)
+shape = SubResource("CircleShape2D_42v6v")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
