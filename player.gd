@@ -115,7 +115,7 @@ func select_shoot(click_position):
 	if attacks <= 0:
 		return
 	
-	if tilemap.is_visible_target(z_index, click_position, z_index, global_position, spells[spell_pointer].range) and is_selecting_shoot:
+	if ((grid_loc == target_grid_loc and spells[spell_pointer].self_cast) or tilemap.is_visible_target(z_index, click_position, z_index, global_position, spells[spell_pointer].range)) and is_selecting_shoot:
 		is_selecting_move = false
 		is_selecting_shoot = false
 		
