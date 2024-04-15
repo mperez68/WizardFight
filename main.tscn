@@ -34,9 +34,23 @@ layer_1/tile_data = PackedInt32Array(786440, 196608, 7, 262152, 196608, 7, 39322
 [node name="Player1" parent="." instance=ExtResource("2_wav2n")]
 position = Vector2(1012, 1528)
 motion_mode = 1
+MAX_SPEED = null
+MAX_ATTACKS = null
+MAX_ITEM_USES = null
+MAX_HP = null
+MAX_MANA = null
+HP_REGEN = null
+MANA_REGEN = null
 
 [node name="Player2" parent="." instance=ExtResource("2_wav2n")]
 position = Vector2(872, 1591)
+MAX_SPEED = null
+MAX_ATTACKS = null
+MAX_ITEM_USES = null
+MAX_HP = null
+MAX_MANA = null
+HP_REGEN = null
+MANA_REGEN = null
 
 [node name="Mob" parent="." instance=ExtResource("2_fkq6j")]
 position = Vector2(-783, 658)
