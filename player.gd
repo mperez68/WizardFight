@@ -16,9 +16,7 @@ func _ready():
 	MANA_REGEN = 1
 	
 	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIRE_BLAST))
-	spells.push_back(Spell.Spell.new(Spell.SpellNames.SHOCKING_GRASP))
-	spells.push_back(Spell.Spell.new(Spell.SpellNames.HEALING_TOUCH))
-	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIREBALL))
+	spells.push_back(Spell.Spell.new(Spell.SpellNames.TESTICULAR_TORSION))
 	
 	items.push_back(Item.Item.new(Item.ItemNames.HEALTH_POTION))
 	items.push_back(Item.Item.new(Item.ItemNames.MANA_POTION))

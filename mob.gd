@@ -1,17 +1,10 @@
 extends TacticsCharacter
-	
-var ADJ_VECTORS: Array[Vector2]
 
 func _ready():
 	super()
 	
 	if randf() < 0.7:
 		spells = [Spell.Spell.new(Spell.SpellNames.FIRE_BLAST)]
-	
-	var vec_x = tilemap.tile_set.tile_size.x / 2
-	var vec_y = tilemap.tile_set.tile_size.y / 2
-	ADJ_VECTORS = [Vector2i(vec_x, vec_y), Vector2i(-vec_x, vec_y),
-	Vector2i(vec_x, -vec_y), Vector2i(-vec_x, -vec_y)]
 
 func find_target():
 	print("find_target():", name)
@@ -71,10 +64,6 @@ func turn_process():
 	
 	while active_missiles > 0:
 		await get_tree().create_timer(2).timeout
-	
-	# spin lock until spells land
-	#while !current_path.is_empty():
-		#await get_tree().create_timer(2).timeout
 	
 	# Move away if no attacks
 	#if target and speed > 0:

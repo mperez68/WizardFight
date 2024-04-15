@@ -40,6 +40,8 @@ func _on_animation_finished():
 	if anim and anim.animation == "hit":
 		hit.emit()
 		target.add_hp(-spell.damage)
+		if spell.status:
+			target.effects.push_front(spell.status)
 		
 		queue_free()
 

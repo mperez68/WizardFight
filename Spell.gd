@@ -1,4 +1,6 @@
-enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, SHOCKING_GRASP, HEALING_TOUCH, FIREBALL }
+const Effect = preload("res://StatusEffect.gd")
+
+enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, SHOCKING_GRASP, HEALING_TOUCH, FIREBALL, TESTICULAR_TORSION }
 
 class Spell:
 
@@ -10,8 +12,7 @@ class Spell:
 	var crit_chance
 	var radius
 	var spell_node
-	
-	# todo add sprite/animation
+	var status: Effect.StatusEffect
 	
 	func _init(spell: SpellNames):
 		match spell:
@@ -25,10 +26,12 @@ class Spell:
 				populate("Healing Touch", preload("res://healing_touch.tscn"), 2, -2, 1, 1, 0.3)
 			SpellNames.FIREBALL:
 				populate("Fireball", preload("res://fireball.tscn"), 3, 1, 8, 0.9, 0, 3)
+			SpellNames.TESTICULAR_TORSION:
+				populate("Testicular Torsion", preload("res://testicular_torsion.tscn"), 3, 1, 6, 1, 0, 0, Effect.EffectNames.SLOW)
 			_:
 				populate("Magic Missile", preload("res://magic_missile.tscn"), 1, 1, 6, 1, 0)	#default to magic missile todo change to rock
 	
-	func populate(new_name, new_node, new_cost, new_damage, new_range, new_hit_chance, new_crit_chance, new_radius = 0):
+	func populate(new_name, new_node, new_cost, new_damage, new_range, new_hit_chance, new_crit_chance, new_radius = 0, new_effect = null ):
 		name = new_name
 		spell_node = new_node
 		cost = new_cost
@@ -37,3 +40,5 @@ class Spell:
 		hit_chance = new_hit_chance
 		crit_chance = new_crit_chance
 		radius = new_radius
+		if new_effect:
+			status = Effect.StatusEffect.new(new_effect)

@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://dphnxnwejk825"]
+
+[ext_resource type="Script" path="res://testicular_torsion.gd" id="1_hwqom"]
+[ext_resource type="Texture2D" uid="uid://bl6lhifdjvsqj" path="res://assets/spells/Explosion/001.png" id="1_pj4sc"]
+[ext_resource type="Texture2D" uid="uid://cutffk4w02ko5" path="res://assets/spells/Explosion/002.png" id="2_poob7"]
+[ext_resource type="Texture2D" uid="uid://fpc7f67gikau" path="res://assets/spells/Explosion/003.png" id="3_0xubo"]
+[ext_resource type="Texture2D" uid="uid://caqnnmvejydxh" path="res://assets/spells/Explosion/004.png" id="4_2st1q"]
+[ext_resource type="Texture2D" uid="uid://diioq34u6mkpx" path="res://assets/spells/Explosion/005.png" id="5_uikr1"]
+[ext_resource type="Texture2D" uid="uid://hj1d71l3kw75" path="res://assets/spells/Explosion/006.png" id="6_pwq1p"]
+[ext_resource type="Texture2D" uid="uid://yll0p4f63dfk" path="res://assets/spells/Explosion/007.png" id="7_h1r3r"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ilx50"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pj4sc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_poob7")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pj4sc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_poob7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0xubo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2st1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uikr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pwq1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h1r3r")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42v6v"]
+radius = 6.0
+
+[node name="TesticularTorsion" type="Area2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_hwqom")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_ilx50")
+animation = &"fly"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0)
+shape = SubResource("CircleShape2D_42v6v")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

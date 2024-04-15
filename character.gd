@@ -5,7 +5,8 @@ class_name TacticsCharacter
 const ANIM_SPEED = 4
 const Spell = preload("res://Spell.gd")
 const Item = preload("res://item.gd")
-#const magic_missile_scene = preload("res://magic_missile.tscn")
+const Effect = preload("res://StatusEffect.gd")
+var ADJ_VECTORS: Array[Vector2]
 
 @onready var tilemap = $"../TileMap"
 @onready var anim = $AnimatedSprite2D
@@ -33,6 +34,7 @@ var spells: Array[Spell.Spell]
 var spell_pointer = 0
 var items: Array[Item.Item]
 var item_pointer = 0
+var effects: Array[Effect.StatusEffect]
 
 var is_active = false
 var is_dead = false
@@ -40,6 +42,11 @@ var active_missiles = 0
 
 # Overrides
 func _ready():
+	var vec_x = tilemap.tile_set.tile_size.x / 2
+	var vec_y = tilemap.tile_set.tile_size.y / 2
+	ADJ_VECTORS = [Vector2i(vec_x, vec_y), Vector2i(-vec_x, vec_y),
+	Vector2i(vec_x, -vec_y), Vector2i(-vec_x, -vec_y)]
+	
 	hp = MAX_HP
 	mana = MAX_MANA
 	
@@ -237,6 +244,7 @@ func start_turn():
 	if is_dead:
 		return
 	
+	# Reset resources
 	speed = MAX_SPEED
 	attacks = MAX_ATTACKS
 	item_uses = MAX_ITEM_USES
@@ -244,11 +252,22 @@ func start_turn():
 	add_hp(HP_REGEN)
 	add_mana(MANA_REGEN)
 	
+	# Effect modifiers
+	for i in effects.size():
+		effects[i].on_start.call(self)
+	
 	tilemap.astar[z_index].set_point_solid(get_grid_position(), false)
 
 func end_turn():
 	if is_dead:
 		return
+	
+	# Effect modifiers
+	for i in effects.size():
+		var j = effects.size() - 1 - i
+		effects[j].on_end.call(self)
+		if effects[j].turns_remaining <= 0:
+			effects.remove_at(j)
 	
 	set_active(false)
 	tilemap.astar[z_index].set_point_solid(get_grid_position())
