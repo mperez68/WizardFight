@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccnd06f2g635t"]
+[gd_scene load_steps=15 format=3 uid="uid://ccnd06f2g635t"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_fs8yo"]
 [ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="2_wav2n"]
@@ -7,6 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="5_jse6e"]
 [ext_resource type="PackedScene" uid="uid://cr3jfrupjwqnl" path="res://units/cleric.tscn" id="6_3v3a7"]
 [ext_resource type="PackedScene" uid="uid://dc024yahh3u6" path="res://units/orc.tscn" id="7_si73m"]
+[ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="8_bywpw"]
+[ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="9_5yd1v"]
+[ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="10_i8exu"]
+[ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="11_2iski"]
+[ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="12_6tjh0"]
+[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="13_dd41g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
 font_size = 128
@@ -26,7 +32,7 @@ motion_scale = Vector2(1.1, 1.1)
 motion_mirroring = Vector2(3840, 2400)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2(16, -34)
+position = Vector2(103, -45)
 texture = ExtResource("3_rr6pe")
 
 [node name="TileMap" parent="." instance=ExtResource("3_2ifxl")]
@@ -64,6 +70,8 @@ offset_left = 775.0
 offset_top = 25.0
 offset_right = 825.0
 offset_bottom = 50.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 text = "Turn"
 horizontal_alignment = 1
 
@@ -73,36 +81,80 @@ offset_top = 50.0
 offset_right = 850.0
 offset_bottom = 100.0
 theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonPassTurn" type="Button" parent="HUD"]
+[node name="ButtonPassTurn" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 1400.0
 offset_top = 600.0
 offset_right = 1575.0
 offset_bottom = 775.0
-text = "Pass
-Turn"
-clip_text = true
-icon_alignment = 1
+texture_normal = ExtResource("13_dd41g")
+stretch_mode = 0
 
-[node name="ButtonMove" type="Button" parent="HUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonPassTurn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ButtonPassTurn/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Pass Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonMove" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 25.0
 offset_top = 675.0
 offset_right = 125.0
 offset_bottom = 775.0
-text = "Move
-"
-clip_text = true
-icon_alignment = 1
+texture_normal = ExtResource("13_dd41g")
+stretch_mode = 0
 
-[node name="ButtonSpell1" type="Button" parent="HUD"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonMove"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ButtonMove/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell1" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 150.0
 offset_top = 675.0
 offset_right = 250.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("8_bywpw")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell1"]
 layout_mode = 1
@@ -111,23 +163,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="HUD/ButtonSpell1/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Spell 1 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell2" type="Button" parent="HUD"]
+[node name="ButtonSpell2" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 275.0
 offset_top = 675.0
 offset_right = 375.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("9_5yd1v")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell2"]
 layout_mode = 1
@@ -136,23 +193,28 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 alignment = 1
 
 [node name="Label" type="Label" parent="HUD/ButtonSpell2/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Spell 2 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 2"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell3" type="Button" parent="HUD"]
+[node name="ButtonSpell3" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 400.0
 offset_top = 675.0
 offset_right = 500.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("10_i8exu")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell3"]
 layout_mode = 1
@@ -167,17 +229,21 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Spell 3 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell4" type="Button" parent="HUD"]
+[node name="ButtonSpell4" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 525.0
 offset_top = 675.0
 offset_right = 625.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("11_2iski")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell4"]
 layout_mode = 1
@@ -192,18 +258,22 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
 text = "Spell 4
- extending text"
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell5" type="Button" parent="HUD"]
+[node name="ButtonSpell5" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 650.0
 offset_top = 675.0
 offset_right = 750.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("12_6tjh0")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell5"]
 layout_mode = 1
@@ -218,17 +288,21 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Spell 5 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem1" type="Button" parent="HUD"]
+[node name="ButtonItem1" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 1275.0
 offset_top = 675.0
 offset_right = 1375.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("13_dd41g")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem1"]
 layout_mode = 1
@@ -243,17 +317,21 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Item 1 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 1"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem2" type="Button" parent="HUD"]
+[node name="ButtonItem2" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 1150.0
 offset_top = 675.0
 offset_right = 1250.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("13_dd41g")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem2"]
 layout_mode = 1
@@ -268,17 +346,21 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Item 2 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 2"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem3" type="Button" parent="HUD"]
+[node name="ButtonItem3" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 1025.0
 offset_top = 675.0
 offset_right = 1125.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("13_dd41g")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem3"]
 layout_mode = 1
@@ -293,17 +375,21 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Item 3 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem4" type="Button" parent="HUD"]
+[node name="ButtonItem4" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 900.0
 offset_top = 675.0
 offset_right = 1000.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("13_dd41g")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem4"]
 layout_mode = 1
@@ -318,17 +404,21 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Item 4 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 4"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem5" type="Button" parent="HUD"]
+[node name="ButtonItem5" type="TextureButton" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
 offset_left = 775.0
 offset_top = 675.0
 offset_right = 875.0
 offset_bottom = 775.0
-clip_text = true
+texture_normal = ExtResource("13_dd41g")
+stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem5"]
 layout_mode = 1
@@ -343,7 +433,9 @@ alignment = 1
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
-text = "Item 5 extending text"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 5"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2

@@ -3,6 +3,7 @@ enum ItemNames{ HEALTH_POTION, MANA_POTION, FIRE_BOMB }
 class Item:
 
 	var name
+	var icon
 	var cost
 	var quantity
 	var damage
@@ -13,6 +14,7 @@ class Item:
 	# todo add sprite/animation
 	
 	func _init(item: ItemNames):
+		icon = preload("res://assets/item.png")
 		tooltip = "this is an item tooltip!"
 		if item == ItemNames.HEALTH_POTION:
 			populate("Health Potions", 0, 2, -2, 0)

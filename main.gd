@@ -60,7 +60,7 @@ func update_characters():
 
 func set_hud(state = true, filter = "Button"):
 	# Set filters enable/disable status
-	var buttons = find_children("*", "Button")
+	var buttons = find_children("*", "TextureButton")
 	for i in buttons.size():
 		if buttons[i].name.contains(filter):
 			buttons[i].disabled = !state
@@ -96,6 +96,7 @@ func populate_spells(spells: Array[Spell.Spell]):
 		if i < spells.size():
 			spell_buttons[i].visible = true
 			spell_buttons[i].find_child("*").find_child("*").text = spells[i].name
+			spell_buttons[i].texture_normal = spells[i].icon
 		else:
 			spell_buttons[i].visible = false
 
@@ -106,12 +107,13 @@ func populate_items(items: Array[Item.Item]):
 		if i < items.size():
 			item_buttons[i].visible = true
 			item_buttons[i].find_child("*").find_child("*").text = str(items[i].quantity, " ", items[i].name)
+			item_buttons[i].texture_normal = items[i].icon
 		else:
 			item_buttons[i].visible = false
 
 func get_buttons(filter: String):
-	var buttons = find_children("*", "Button")
-	var filter_buttons: Array[Button]
+	var buttons = find_children("*", "TextureButton")
+	var filter_buttons: Array[TextureButton]
 	for i in buttons.size():
 		if buttons[i].name.contains(filter):
 			filter_buttons.push_back(buttons[i])
