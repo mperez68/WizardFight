@@ -44,8 +44,8 @@ var active_missiles = 0
 func _ready():
 	var vec_x = tilemap.tile_set.tile_size.x / 2
 	var vec_y = tilemap.tile_set.tile_size.y / 2
-	ADJ_VECTORS = [Vector2i(vec_x, vec_y), Vector2i(-vec_x, vec_y),
-	Vector2i(vec_x, -vec_y), Vector2i(-vec_x, -vec_y)]
+	ADJ_VECTORS = [Vector2(vec_x, vec_y), Vector2(-vec_x, vec_y),
+	Vector2(vec_x, -vec_y), Vector2(-vec_x, -vec_y)]
 	
 	hp = MAX_HP
 	mana = MAX_MANA

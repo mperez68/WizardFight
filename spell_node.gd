@@ -38,10 +38,14 @@ func start(target_body: CharacterBody2D, origin: Vector2, origin_height = 64):
 
 func _on_animation_finished():
 	if anim and anim.animation == "hit":
-		hit.emit()
-		target.add_hp(-spell.damage)
-		if spell.status:
-			target.effects.push_front(spell.status)
+		if randf() < spell.hit_chance:
+			if randf() < spell.crit_chance:
+				spell.damage *= 2
 		
+			target.add_hp(-spell.damage)
+			if spell.status:
+				target.effects.push_front(spell.status)
+		
+		hit.emit()
 		queue_free()
 
