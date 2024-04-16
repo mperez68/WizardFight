@@ -348,6 +348,30 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
+[node name="ToolTip" type="ColorRect" parent="HUD"]
+offset_left = 25.0
+offset_top = 450.0
+offset_right = 325.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 0.403922)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ToolTip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="HUD/ToolTip/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+autowrap_mode = 2
+
 [node name="CenterText" type="Label" parent="HUD"]
 visible = false
 anchors_preset = 8
@@ -368,13 +392,33 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="HUD/ButtonPassTurn" to="." method="_on_pass_turn_pressed"]
 [connection signal="pressed" from="HUD/ButtonMove" to="." method="_on_move_pressed"]
+[connection signal="mouse_entered" from="HUD/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]
+[connection signal="mouse_exited" from="HUD/ButtonSpell1" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonSpell1" to="." method="_on_spell_pressed" binds= [0]]
+[connection signal="mouse_entered" from="HUD/ButtonSpell2" to="." method="_on_button_mouse_entered" binds= [1, "spell"]]
+[connection signal="mouse_exited" from="HUD/ButtonSpell2" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonSpell2" to="." method="_on_spell_pressed" binds= [1]]
+[connection signal="mouse_entered" from="HUD/ButtonSpell3" to="." method="_on_button_mouse_entered" binds= [2, "spell"]]
+[connection signal="mouse_exited" from="HUD/ButtonSpell3" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonSpell3" to="." method="_on_spell_pressed" binds= [2]]
+[connection signal="mouse_entered" from="HUD/ButtonSpell4" to="." method="_on_button_mouse_entered" binds= [3, "spell"]]
+[connection signal="mouse_exited" from="HUD/ButtonSpell4" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonSpell4" to="." method="_on_spell_pressed" binds= [3]]
+[connection signal="mouse_entered" from="HUD/ButtonSpell5" to="." method="_on_button_mouse_entered" binds= [4, "spell"]]
+[connection signal="mouse_exited" from="HUD/ButtonSpell5" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonSpell5" to="." method="_on_spell_pressed" binds= [4]]
+[connection signal="mouse_entered" from="HUD/ButtonItem1" to="." method="_on_button_mouse_entered" binds= [0, "item"]]
+[connection signal="mouse_exited" from="HUD/ButtonItem1" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonItem1" to="." method="_on_item_pressed" binds= [0]]
+[connection signal="mouse_entered" from="HUD/ButtonItem2" to="." method="_on_button_mouse_entered" binds= [1, "item"]]
+[connection signal="mouse_exited" from="HUD/ButtonItem2" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonItem2" to="." method="_on_item_pressed" binds= [1]]
+[connection signal="mouse_entered" from="HUD/ButtonItem3" to="." method="_on_button_mouse_entered" binds= [2, "item"]]
+[connection signal="mouse_exited" from="HUD/ButtonItem3" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonItem3" to="." method="_on_item_pressed" binds= [2]]
+[connection signal="mouse_entered" from="HUD/ButtonItem4" to="." method="_on_button_mouse_entered" binds= [3, "item"]]
+[connection signal="mouse_exited" from="HUD/ButtonItem4" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonItem4" to="." method="_on_item_pressed" binds= [3]]
+[connection signal="mouse_entered" from="HUD/ButtonItem5" to="." method="_on_button_mouse_entered" binds= [4, "item"]]
+[connection signal="mouse_exited" from="HUD/ButtonItem5" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonItem5" to="." method="_on_item_pressed" binds= [4]]

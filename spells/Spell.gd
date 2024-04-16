@@ -14,21 +14,29 @@ class Spell:
 	var self_cast
 	var radius
 	var status: Effect.StatusEffect
+	var tooltip: String
 	
 	func _init(spell: SpellNames):
+		tooltip = "this is a tooltip!"
 		match spell:
 			SpellNames.MAGIC_MISSILE:
 				populate("Magic Missile", preload("res://spells/magic_missile.tscn"), 1, 1, 6, 1, 0)
+				tooltip = "Always hits. Never impresses."
 			SpellNames.FIRE_BLAST:
 				populate("Fire Blast", preload("res://spells/fire_blast.tscn"), 2, 2, 8, 0.7, 0.1)
+				tooltip = "Scholars often argue about where the flame comes from but I wouldn't be worried about that right now. Long range, decent damage."
 			SpellNames.SHOCKING_GRASP:
 				populate("Shocking Grasp", preload("res://spells/shocking_grasp.tscn"), 3, 3, 1, 0.8, 0.3)
+				tooltip = "Bzzt."
 			SpellNames.HEALING_TOUCH:
 				populate("Healing Touch", preload("res://spells/healing_touch.tscn"), 2, -2, 1, 1, 0.4, true)
+				tooltip = "Unhurts the target, which is less exciting but [i]can[/i] be useful."
 			SpellNames.FIREBALL:
 				populate("Fireball", preload("res://spells/fireball.tscn"), 3, 1, 8, 0.7, 0.1, 3)
+				tooltip = "You had a personality until you put this spell in your tome. Go ahead, free-thinker."
 			SpellNames.TESTICULAR_TORSION:
 				populate("Testicular Torsion", preload("res://spells/testicular_torsion.tscn"), 3, 1, 4, 0.8, 0.2, 0, false, Effect.EffectNames.SLOW)
+				tooltip = "Jesus fucking Christ, you monster. Slows target for two turns."
 			_:
 				populate("Magic Missile", preload("res://spells/magic_missile.tscn"), 1, 1, 6, 1, 0)	#default to magic missile todo change to rock
 	

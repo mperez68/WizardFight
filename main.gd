@@ -141,4 +141,15 @@ func _input(event):
 			result = max($Camera2D.zoom.x - 0.1, 0.5)
 		$Camera2D.zoom = Vector2(result, result)
 
+func _on_button_mouse_entered(num, type):
+	$HUD/ToolTip/VBoxContainer/Label.clear()
+	if (type == "spell"):
+		var spell = characters[turn_pointer].spells[num]
+		$HUD/ToolTip/VBoxContainer/Label.append_text("[b]%s: [/b]\n%s mana, %s damage, %s crit\n%s" % [spell.name, str(spell.cost), str(spell.damage), str(spell.crit_chance), spell.tooltip])
+	
+	if (type == "item"):
+		var item = characters[turn_pointer].items[num]
+		$HUD/ToolTip/VBoxContainer/Label.append_text("[b]%s: [/b]\n%s" % [item.name, item.tooltip])
 
+func _on_button_mouse_exited():
+	$HUD/ToolTip/VBoxContainer/Label.clear()
