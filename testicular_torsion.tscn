@@ -11,13 +11,7 @@
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ilx50"]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_pj4sc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_poob7")
-}],
+"frames": [],
 "loop": true,
 "name": &"fly",
 "speed": 5.0
