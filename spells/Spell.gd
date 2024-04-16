@@ -1,4 +1,4 @@
-const Effect = preload("res://StatusEffect.gd")
+const Effect = preload("res://status/StatusEffect.gd")
 
 enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, SHOCKING_GRASP, HEALING_TOUCH, FIREBALL, TESTICULAR_TORSION }
 
@@ -18,19 +18,19 @@ class Spell:
 	func _init(spell: SpellNames):
 		match spell:
 			SpellNames.MAGIC_MISSILE:
-				populate("Magic Missile", preload("res://magic_missile.tscn"), 1, 1, 6, 1, 0)
+				populate("Magic Missile", preload("res://spells/magic_missile.tscn"), 1, 1, 6, 1, 0)
 			SpellNames.FIRE_BLAST:
-				populate("Fire Blast", preload("res://fire_blast.tscn"), 2, 2, 8, 0.7, 0.1)
+				populate("Fire Blast", preload("res://spells/fire_blast.tscn"), 2, 2, 8, 0.7, 0.1)
 			SpellNames.SHOCKING_GRASP:
-				populate("Shocking Grasp", preload("res://shocking_grasp.tscn"), 3, 3, 1, 0.8, 0.3)
+				populate("Shocking Grasp", preload("res://spells/shocking_grasp.tscn"), 3, 3, 1, 0.8, 0.3)
 			SpellNames.HEALING_TOUCH:
-				populate("Healing Touch", preload("res://healing_touch.tscn"), 2, -2, 1, 1, 0.4, true)
+				populate("Healing Touch", preload("res://spells/healing_touch.tscn"), 2, -2, 1, 1, 0.4, true)
 			SpellNames.FIREBALL:
-				populate("Fireball", preload("res://fireball.tscn"), 3, 1, 8, 0.7, 0.1, 3)
+				populate("Fireball", preload("res://spells/fireball.tscn"), 3, 1, 8, 0.7, 0.1, 3)
 			SpellNames.TESTICULAR_TORSION:
-				populate("Testicular Torsion", preload("res://testicular_torsion.tscn"), 3, 1, 4, 0.8, 0.2, 0, false, Effect.EffectNames.SLOW)
+				populate("Testicular Torsion", preload("res://spells/testicular_torsion.tscn"), 3, 1, 4, 0.8, 0.2, 0, false, Effect.EffectNames.SLOW)
 			_:
-				populate("Magic Missile", preload("res://magic_missile.tscn"), 1, 1, 6, 1, 0)	#default to magic missile todo change to rock
+				populate("Magic Missile", preload("res://spells/magic_missile.tscn"), 1, 1, 6, 1, 0)	#default to magic missile todo change to rock
 	
 	func populate(new_name, new_node, new_cost, new_damage, new_range, new_hit_chance, new_crit_chance, new_radius = 0, new_self_cast = false, new_effect = null ):
 		name = new_name

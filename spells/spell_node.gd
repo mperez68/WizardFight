@@ -4,7 +4,7 @@ class_name SpellNode
 
 signal hit
 
-const Spell = preload("res://Spell.gd")
+const Spell = preload("res://spells/Spell.gd")
 const ANIM_SPEED = 30
 
 var anim: AnimatedSprite2D

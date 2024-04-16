@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dphnxnwejk825"]
 
-[ext_resource type="Script" path="res://testicular_torsion.gd" id="1_hwqom"]
+[ext_resource type="Script" path="res://spells/testicular_torsion.gd" id="1_hwqom"]
 [ext_resource type="Texture2D" uid="uid://bl6lhifdjvsqj" path="res://assets/spells/Explosion/001.png" id="1_pj4sc"]
 [ext_resource type="Texture2D" uid="uid://cutffk4w02ko5" path="res://assets/spells/Explosion/002.png" id="2_poob7"]
 [ext_resource type="Texture2D" uid="uid://fpc7f67gikau" path="res://assets/spells/Explosion/003.png" id="3_0xubo"]

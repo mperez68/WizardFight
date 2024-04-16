@@ -1,0 +1,276 @@
+[gd_scene load_steps=22 format=3 uid="uid://b0p1dexvoe7et"]
+
+[ext_resource type="Texture2D" uid="uid://shw4sb7vak0r" path="res://assets/char_a_p1_0bas_humn_v01.png" id="1_becmg"]
+[ext_resource type="Script" path="res://units/acolyte.gd" id="1_rtpa1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evbtd"]
+size = Vector2(47, 88.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uxrq"]
+atlas = ExtResource("1_becmg")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqp5s"]
+atlas = ExtResource("1_becmg")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrvym"]
+atlas = ExtResource("1_becmg")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3sdh"]
+atlas = ExtResource("1_becmg")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uixdk"]
+atlas = ExtResource("1_becmg")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en1es"]
+atlas = ExtResource("1_becmg")
+region = Rect2(0, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x13n4"]
+atlas = ExtResource("1_becmg")
+region = Rect2(64, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xircb"]
+atlas = ExtResource("1_becmg")
+region = Rect2(128, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlv12"]
+atlas = ExtResource("1_becmg")
+region = Rect2(192, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70af5"]
+atlas = ExtResource("1_becmg")
+region = Rect2(256, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xhr4"]
+atlas = ExtResource("1_becmg")
+region = Rect2(320, 448, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyojy"]
+atlas = ExtResource("1_becmg")
+region = Rect2(0, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7kmr"]
+atlas = ExtResource("1_becmg")
+region = Rect2(64, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_veoj5"]
+atlas = ExtResource("1_becmg")
+region = Rect2(128, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7locw"]
+atlas = ExtResource("1_becmg")
+region = Rect2(192, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mx2hm"]
+atlas = ExtResource("1_becmg")
+region = Rect2(256, 384, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qse2s"]
+atlas = ExtResource("1_becmg")
+region = Rect2(320, 384, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oo7nr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1uxrq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqp5s")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jrvym")
+}],
+"loop": false,
+"name": &"cast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3sdh")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uixdk")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en1es")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x13n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xircb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlv12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70af5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xhr4")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyojy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7kmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_veoj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7locw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mx2hm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qse2s")
+}],
+"loop": true,
+"name": &"walk_right",
+"speed": 5.0
+}]
+
+[node name="Acolyte" type="CharacterBody2D"]
+script = ExtResource("1_rtpa1")
+
+[node name="Info" type="Control" parent="."]
+z_index = 6
+y_sort_enabled = true
+layout_mode = 3
+anchors_preset = 0
+offset_left = -50.0
+offset_top = -120.0
+offset_right = -50.0
+offset_bottom = -120.0
+mouse_filter = 2
+
+[node name="HPBackground" type="ProgressBar" parent="Info"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_top = -25.0
+offset_right = 100.0
+mouse_filter = 2
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="HPBar" type="ProgressBar" parent="Info"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 0
+offset_top = -25.0
+offset_right = 100.0
+mouse_filter = 2
+max_value = 3.0
+step = 1.0
+value = 2.0
+show_percentage = false
+
+[node name="HPTextLevel" type="Label" parent="Info"]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 50.0
+text = "2
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPTextSlash" type="Label" parent="Info"]
+layout_mode = 0
+offset_top = -25.0
+offset_right = 100.0
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HPTextMax" type="Label" parent="Info"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = -25.0
+offset_right = 100.0
+text = "3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaBackground" type="ProgressBar" parent="Info"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+mouse_filter = 2
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="ManaBar" type="ProgressBar" parent="Info"]
+modulate = Color(0, 0, 1, 1)
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+mouse_filter = 2
+max_value = 2.0
+step = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="ManaTextLevel" type="Label" parent="Info"]
+layout_mode = 0
+offset_right = 50.0
+offset_bottom = 25.0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaTextSlash" type="Label" parent="Info"]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 25.0
+text = "/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManaTextMax" type="Label" parent="Info"]
+layout_mode = 0
+offset_left = 50.0
+offset_right = 100.0
+offset_bottom = 25.0
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, -39.75)
+shape = SubResource("RectangleShape2D_evbtd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.756863, 0.67451, 1, 1)
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -32)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_oo7nr")
+animation = &"stand"

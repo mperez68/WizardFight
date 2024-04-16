@@ -5,8 +5,8 @@ var characters = []
 var pending_removal_pointers = []
 var turn_pointer = -1
 
-const Spell = preload("res://Spell.gd")
-const Item = preload("res://item.gd")
+const Spell = preload("res://spells/Spell.gd")
+const Item = preload("res://items/item.gd")
 
 @onready var tilemap = $TileMap
 @onready var camera = $Camera2D

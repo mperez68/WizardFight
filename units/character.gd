@@ -3,9 +3,9 @@ extends CharacterBody2D
 class_name TacticsCharacter
 
 const ANIM_SPEED = 4
-const Spell = preload("res://Spell.gd")
-const Item = preload("res://item.gd")
-const Effect = preload("res://StatusEffect.gd")
+const Spell = preload("res://spells/Spell.gd")
+const Item = preload("res://items/item.gd")
+const Effect = preload("res://status/StatusEffect.gd")
 var ADJ_VECTORS: Array[Vector2]
 
 @onready var tilemap = $"../TileMap"

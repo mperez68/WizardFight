@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cdl80bgb1fmhi"]
 
-[ext_resource type="Script" path="res://mob.gd" id="1_bh7fl"]
+[ext_resource type="Script" path="res://units/npc.gd" id="1_bh7fl"]
 [ext_resource type="Texture2D" uid="uid://shw4sb7vak0r" path="res://assets/char_a_p1_0bas_humn_v01.png" id="1_eydmq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_at8lk"]
@@ -153,7 +153,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Mob" type="CharacterBody2D"]
+[node name="NPC" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_bh7fl")
 
@@ -268,7 +268,7 @@ position = Vector2(1.5, -39.75)
 shape = SubResource("RectangleShape2D_at8lk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 0.615686, 0.556863, 1)
+modulate = Color(0, 0, 0, 1)
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -32)

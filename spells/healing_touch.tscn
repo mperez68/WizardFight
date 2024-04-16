@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://drs6nctb25v1v"]
 
-[ext_resource type="Script" path="res://healing_touch.gd" id="1_220vj"]
+[ext_resource type="Script" path="res://spells/healing_touch.gd" id="1_220vj"]
 [ext_resource type="Texture2D" uid="uid://jojgdc7gudg2" path="res://assets/spells/Water_Geyser/001.png" id="1_3773e"]
 [ext_resource type="Texture2D" uid="uid://c5kw2exas0x6m" path="res://assets/spells/Water_Geyser/002.png" id="2_pdykr"]
 [ext_resource type="Texture2D" uid="uid://bhbxbdijlowbv" path="res://assets/spells/Water_Geyser/003.png" id="3_7qchy"]

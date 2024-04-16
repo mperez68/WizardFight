@@ -1,10 +1,6 @@
 extends TacticsCharacter
 
-func _ready():
-	super()
-	
-	if randf() < 0.7:
-		spells = [Spell.Spell.new(Spell.SpellNames.FIRE_BLAST)]
+class_name NPC
 
 func find_target():
 	print("find_target():", name)
@@ -73,7 +69,6 @@ func turn_process():
 	main.inc_turn()
 
 func start_turn():
-	
 	super()
 	
 	if is_dead:
