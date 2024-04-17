@@ -13,6 +13,7 @@ const PAN_SPEED = 1024
 
 @onready var tilemap = $TileMap
 @onready var camera = $Camera2D
+@onready var tooltip = $HUD/ToolTip/VBoxContainer/Label
 
 func _process(delta):
 		
@@ -172,14 +173,18 @@ func _input(event):
 		camera.zoom = Vector2(result, result)
 
 func _on_button_mouse_entered(num, type):
-	$HUD/ToolTip/VBoxContainer/Label.clear()
+	tooltip.clear()
 	if (type == "spell"):
 		var spell = characters[turn_pointer].spells[num]
-		$HUD/ToolTip/VBoxContainer/Label.append_text("[b]%s: [/b]\n%s mana, %s damage, %s crit\n%s" % [spell.name, str(spell.cost), str(spell.damage), str(spell.crit_chance), spell.tooltip])
+		tooltip.append_text("[b]%s: [/b]\n%s mana, %s damage, %s crit\n%s" % [spell.name, str(spell.cost), str(spell.damage), str(spell.crit_chance), spell.tooltip])
+		if characters[turn_pointer].name.contains("Player"):
+			tilemap.draw_range(characters[turn_pointer].z_index, characters[turn_pointer].global_position, spell.range, false)
 	
 	if (type == "item"):
 		var item = characters[turn_pointer].items[num]
-		$HUD/ToolTip/VBoxContainer/Label.append_text("[b]%s: [/b]\n%s" % [item.name, item.tooltip])
+		tooltip.append_text("[b]%s: [/b]\n%s" % [item.name, item.tooltip])
 
 func _on_button_mouse_exited():
-	$HUD/ToolTip/VBoxContainer/Label.clear()
+	tooltip.clear()
+	if characters[turn_pointer].name.contains("Player"):
+		characters[turn_pointer].set_highlight()

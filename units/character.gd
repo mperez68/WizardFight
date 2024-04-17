@@ -250,7 +250,9 @@ func start_turn():
 	if is_dead:
 		return
 	
+	focus = global_position
 	main.camera.position = focus
+	main.camera.zoom = Vector2(1, 1)
 	# Reset resources
 	speed = MAX_SPEED
 	attacks = MAX_ATTACKS

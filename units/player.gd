@@ -26,19 +26,28 @@ func _ready():
 
 # Viewport Updates
 func _physics_process(_delta):
+	var path_size = current_path.size()
+	
 	super(_delta)
 	
 	# update path when location is reached
-	if current_path.is_empty() and is_active:
-		main.set_hud(true)
-		if select_mode == Select.NONE:
-			tilemap.draw_weighted_range(z_index, global_position, speed, false)
-		if speed <= 0:
-			main.set_hud(false, "Move")
-		if attacks <= 0:
-			main.set_hud(false, "Spell")
-		if item_uses <= 0:
-			main.set_hud(false, "Item")
+	if path_size and current_path.is_empty() and is_active:
+		set_highlight()
+		reset_hud()
+
+func _on_hit():
+	super()
+	if active_missiles == 0:
+		reset_hud()
+
+func reset_hud():
+	main.set_hud(true)
+	if speed <= 0:
+		main.set_hud(false, "Move")
+	if attacks <= 0:
+		main.set_hud(false, "Spell")
+	if item_uses <= 0:
+		main.set_hud(false, "Item")
 
 # IO Events
 func _unhandled_input(event):
@@ -49,7 +58,7 @@ func _unhandled_input(event):
 	# Break current selection
 	if event.is_action_pressed("ui_cancel") and select_mode != Select.NONE:
 		select_mode = Select.NONE
-		tilemap.draw_weighted_range(z_index, global_position, speed, false)
+		set_highlight()
 	
 	# Collect position
 	var click_position = get_global_mouse_position()
@@ -66,10 +75,21 @@ func _unhandled_input(event):
 func set_active(new_state = true):
 	super(new_state)
 	select_mode = Select.NONE
-	if new_state:
-		tilemap.draw_weighted_range(z_index, global_position, speed, false)
-	else:
+	set_highlight(new_state)
+
+func set_highlight(active = true):
+	if !active:
 		tilemap.clear_highlights()
+		return
+	match select_mode:
+		Select.MOVE:
+			tilemap.draw_weighted_range(z_index, global_position, speed, true)
+		Select.SHOOT:
+			tilemap.draw_range(z_index, global_position, spells[spell_pointer].range, true)
+		Select.NONE:
+			tilemap.draw_weighted_range(z_index, global_position, speed, false)
+		_:
+			tilemap.clear_highlights()
 
 # HUD interactions
 func button_shoot(selected_spell: int):
@@ -82,14 +102,14 @@ func button_shoot(selected_spell: int):
 		return
 	
 	select_mode = Select.SHOOT
-	tilemap.draw_range(z_index, global_position, spells[spell_pointer].range, true)
+	set_highlight()
 
 func button_move():
 	if speed <= 0 and !current_path.size() == 0:
 		return
 	
 	select_mode = Select.MOVE
-	tilemap.draw_weighted_range(z_index, global_position, speed, true)
+	set_highlight()
 
 func button_item(selected_item: int):
 	if item_uses <= 0 or !current_path.size() == 0:
@@ -112,8 +132,7 @@ func select_shoot(click_position):
 	
 	if ((grid_loc == target_grid_loc and spells[spell_pointer].self_cast) or tilemap.is_visible_target(z_index, click_position, z_index, global_position, spells[spell_pointer].range)) and select_mode == Select.SHOOT:
 		select_mode = Select.NONE
-		
-		tilemap.clear_highlights()
+		set_highlight(false)
 		main.set_hud(false)
 		
 		# damage any targets at location
@@ -146,3 +165,7 @@ func select_move(click_position):
 			focus = (tilemap.map_to_local(current_path.back()) + global_position) / 2
 			main.camera.position = focus
 			main.set_hud(false)
+
+func start_turn():
+	super()
+	reset_hud()
