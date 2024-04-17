@@ -174,6 +174,10 @@ func select_move(click_position):
 			main.camera.position = focus
 			main.set_hud(false)
 
+func use_item(pointer = item_pointer, target: CharacterBody2D = null):
+	super()
+	reset_hud()
+
 func start_turn():
 	super()
 	reset_hud()

@@ -34,10 +34,12 @@ func _process(delta):
 	
 	camera.position += pan_vector * delta
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	update_characters()
 	inc_turn()
+	var icons = get_tooltip_icons("Spell")
+	for i in icons.size():
+		icons[i].visible = false
 
 func inc_turn():
 	turn_pointer += 1
@@ -136,6 +138,14 @@ func get_buttons(filter: String):
 		if buttons[i].name.contains(filter):
 			filter_buttons.push_back(buttons[i])
 	return filter_buttons
+
+func get_tooltip_icons(filter: String):
+	var icons = find_children("*", "TextureRect")
+	var filter_icons: Array[TextureRect]
+	for i in icons.size():
+		if icons[i].name.contains(filter):
+			filter_icons.push_back(icons[i])
+	return filter_icons
 
 func _on_pass_turn_pressed():
 	inc_turn()

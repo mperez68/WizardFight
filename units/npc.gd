@@ -2,6 +2,9 @@ extends TacticsCharacter
 
 class_name NPC
 
+var tooltip_text = "This is tooltip text!"
+var tooltip_name = "NPC"
+
 func find_target():
 	print("find_target():", name)
 	var best_target
@@ -39,7 +42,7 @@ func approach(target: CharacterBody2D):
 	if current_path.size() > 0:
 		focus = (tilemap.map_to_local(current_path.back()) + global_position) / 2
 
-func evade(target: CharacterBody2D):
+func evade(_target: CharacterBody2D):
 	speed = 0
 	#todo body
 
@@ -77,3 +80,32 @@ func start_turn():
 	
 	await get_tree().create_timer(1).timeout
 	turn_process()
+
+func populate_tooltip():
+	var icons = main.get_tooltip_icons("Spell")
+	# set [in]visible and name buttons
+	for i in icons.size():
+		if i < spells.size():
+			icons[i].visible = true
+			icons[i].texture = spells[i].icon
+		else:
+			icons[i].visible = false
+
+func clear_tooltip():
+	var icons = main.get_tooltip_icons("Spell")
+	for i in icons.size():
+		icons[i].visible = false
+
+func _on_mouse_entered():
+	populate_tooltip()
+	main.tooltip.clear()
+	main.tooltip.append_text("[b]%s[/b]\n" % [tooltip_name])
+	main.tooltip.append_text(tooltip_text)
+	if main.characters[main.turn_pointer].name.contains("Player"):
+		tilemap.draw_weighted_range(z_index, global_position, MAX_SPEED, true)
+
+func _on_mouse_exited():
+	clear_tooltip()
+	main.tooltip.clear()
+	if main.characters[main.turn_pointer].name.contains("Player"):
+		main.characters[main.turn_pointer].set_highlight()

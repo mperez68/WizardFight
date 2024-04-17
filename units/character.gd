@@ -170,7 +170,7 @@ func _on_hit():
 		focus = global_position
 		main.camera.position = focus
 	
-func shoot(target: CharacterBody2D = null, targets: Array[CharacterBody2D] = [], pointer = spell_pointer): # todo add hit chance and crit chance
+func shoot(target: CharacterBody2D = null, targets: Array[CharacterBody2D] = [], pointer = spell_pointer):
 	if !can_cast(pointer):
 		print("Cannot cast! ", mana, " < ", spells[pointer].cost, " :: attacks == ", attacks)
 		return

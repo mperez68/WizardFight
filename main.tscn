@@ -483,6 +483,46 @@ label_settings = SubResource("LabelSettings_nxx1c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TooltipSpell1" type="TextureRect" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
+offset_left = 25.0
+offset_top = 400.0
+offset_right = 75.0
+offset_bottom = 450.0
+texture = ExtResource("8_bywpw")
+
+[node name="TooltipSpell2" type="TextureRect" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
+offset_left = 75.0
+offset_top = 400.0
+offset_right = 125.0
+offset_bottom = 450.0
+texture = ExtResource("9_5yd1v")
+
+[node name="TooltipSpell3" type="TextureRect" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
+offset_left = 125.0
+offset_top = 400.0
+offset_right = 175.0
+offset_bottom = 450.0
+texture = ExtResource("10_i8exu")
+
+[node name="TooltipSpell4" type="TextureRect" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
+offset_left = 175.0
+offset_top = 400.0
+offset_right = 225.0
+offset_bottom = 450.0
+texture = ExtResource("11_2iski")
+
+[node name="TooltipSpell5" type="TextureRect" parent="HUD"]
+self_modulate = Color(1, 1, 1, 0.627451)
+offset_left = 225.0
+offset_top = 400.0
+offset_right = 275.0
+offset_bottom = 450.0
+texture = ExtResource("12_6tjh0")
+
 [connection signal="pressed" from="HUD/ButtonPassTurn" to="." method="_on_pass_turn_pressed"]
 [connection signal="pressed" from="HUD/ButtonMove" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="HUD/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]

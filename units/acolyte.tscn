@@ -154,6 +154,7 @@ animations = [{
 }]
 
 [node name="Acolyte" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("1_rtpa1")
 
 [node name="Info" type="Control" parent="."]
@@ -166,6 +167,7 @@ offset_top = -120.0
 offset_right = -50.0
 offset_bottom = -120.0
 mouse_filter = 2
+mouse_force_pass_scroll_events = false
 
 [node name="HPBackground" type="ProgressBar" parent="Info"]
 modulate = Color(1, 0, 0, 1)
@@ -268,9 +270,13 @@ shape = SubResource("RectangleShape2D_evbtd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.756863, 0.67451, 1, 1)
+show_behind_parent = true
 z_index = 1
 y_sort_enabled = true
 position = Vector2(0, -32)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_oo7nr")
 animation = &"stand"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

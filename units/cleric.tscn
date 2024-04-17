@@ -154,6 +154,7 @@ animations = [{
 }]
 
 [node name="Cleric" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("1_x5i6d")
 
 [node name="Info" type="Control" parent="."]
@@ -274,3 +275,6 @@ position = Vector2(0, -32)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_oo7nr")
 animation = &"stand"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
