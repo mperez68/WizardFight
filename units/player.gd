@@ -144,4 +144,5 @@ func select_move(click_position):
 		# Set camera focus
 		if current_path.size() > 0:
 			focus = (tilemap.map_to_local(current_path.back()) + global_position) / 2
+			main.camera.position = focus
 			main.set_hud(false)

@@ -100,6 +100,10 @@ func _physics_process(delta):
 	if global_position == target_position:
 		var temp = current_path.pop_front()
 		speed -= tilemap.astar[z_index].get_point_weight_scale(temp)
+		if current_path.is_empty():
+			# Set camera focus
+			focus = global_position
+			main.camera.position = focus
 		
 		vert_check(current_path)
 
@@ -164,6 +168,7 @@ func _on_hit():
 	active_missiles -= 1
 	if active_missiles == 0:
 		focus = global_position
+		main.camera.position = focus
 	
 func shoot(target: CharacterBody2D = null, targets: Array[CharacterBody2D] = [], pointer = spell_pointer): # todo add hit chance and crit chance
 	if !can_cast(pointer):
@@ -199,6 +204,7 @@ func shoot(target: CharacterBody2D = null, targets: Array[CharacterBody2D] = [],
 		temp += focus_targets[i].position
 	temp = temp / focus_targets.size()
 	focus = temp
+	main.camera.position = focus
 
 func use_item(pointer = item_pointer, target: CharacterBody2D = null): # todo select target for ranged items
 	if !items[pointer].range:
@@ -244,6 +250,7 @@ func start_turn():
 	if is_dead:
 		return
 	
+	main.camera.position = focus
 	# Reset resources
 	speed = MAX_SPEED
 	attacks = MAX_ATTACKS
@@ -262,6 +269,7 @@ func end_turn():
 	if is_dead:
 		return
 	
+	main.camera.position = focus
 	# Effect modifiers
 	for i in effects.size():
 		var j = effects.size() - 1 - i

@@ -4,22 +4,39 @@ var turn_counter = 1
 var characters = []
 var pending_removal_pointers = []
 var turn_pointer = -1
+var dragging = false
+var pan_vector = Vector2(0, 0)
 
 const Spell = preload("res://spells/Spell.gd")
 const Item = preload("res://items/item.gd")
+const PAN_SPEED = 1024
 
 @onready var tilemap = $TileMap
 @onready var camera = $Camera2D
+
+func _process(delta):
+		
+	# Scroll with keyboard
+	if Input.is_action_pressed("ui_left"):
+		pan_vector.x = -PAN_SPEED
+	elif Input.is_action_pressed("ui_right"):
+		pan_vector.x = PAN_SPEED
+	else:
+		pan_vector.x = 0
+	
+	if Input.is_action_pressed("ui_up"):
+		pan_vector.y = -PAN_SPEED
+	elif Input.is_action_pressed("ui_down"):
+		pan_vector.y = PAN_SPEED
+	else:
+		pan_vector.y = 0
+	
+	camera.position += pan_vector * delta
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_characters()
 	inc_turn()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if characters[turn_pointer] and camera.position != characters[turn_pointer].focus:
-		camera.position = characters[turn_pointer].focus
 
 func inc_turn():
 	turn_pointer += 1
@@ -135,13 +152,24 @@ func _on_item_pressed(selected_item):
 		characters[turn_pointer].button_item(selected_item)
 	
 func _input(event):
+	if !characters[turn_pointer].name.contains("Player"):
+		return
+	
+	# Scroll with mouse
+	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_MIDDLE):
+		camera.position -= (event.relative * 1 / camera.zoom)
+		camera.position_smoothing_enabled = false
+	else:
+		camera.position_smoothing_enabled = true
+	
+	# Zoom
 	if event is InputEventMouseButton and event.is_pressed():
-		var result = $Camera2D.zoom.x
+		var result = camera.zoom.x
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP:
-			result = min($Camera2D.zoom.x + 0.1, 1.5)
+			result = min(camera.zoom.x + 0.1, 1.5)
 		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-			result = max($Camera2D.zoom.x - 0.1, 0.5)
-		$Camera2D.zoom = Vector2(result, result)
+			result = max(camera.zoom.x - 0.1, 0.5)
+		camera.zoom = Vector2(result, result)
 
 func _on_button_mouse_entered(num, type):
 	$HUD/ToolTip/VBoxContainer/Label.clear()
