@@ -179,6 +179,7 @@ func _on_button_mouse_entered(num, type):
 		tooltip.append_text("[b]%s: [/b]\n%s mana, %s damage, %s crit\n%s" % [spell.name, str(spell.cost), str(spell.damage), str(spell.crit_chance), spell.tooltip])
 		if characters[turn_pointer].name.contains("Player"):
 			tilemap.draw_range(characters[turn_pointer].z_index, characters[turn_pointer].global_position, spell.range, false)
+			tilemap.draw_target(characters[turn_pointer].z_index, characters[turn_pointer].global_position, spell.radius, false)
 	
 	if (type == "item"):
 		var item = characters[turn_pointer].items[num]
@@ -188,3 +189,4 @@ func _on_button_mouse_exited():
 	tooltip.clear()
 	if characters[turn_pointer].name.contains("Player"):
 		characters[turn_pointer].set_highlight()
+		tilemap.clear_target()

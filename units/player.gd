@@ -17,6 +17,7 @@ func _ready():
 	MANA_REGEN = 1
 	
 	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIRE_BLAST))
+	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIREBALL))
 	spells.push_back(Spell.Spell.new(Spell.SpellNames.TESTICULAR_TORSION))
 	
 	items.push_back(Item.Item.new(Item.ItemNames.HEALTH_POTION))
@@ -34,6 +35,12 @@ func _physics_process(_delta):
 	if path_size and current_path.is_empty() and is_active:
 		set_highlight()
 		reset_hud()
+
+func _process(delta):
+	if select_mode == Select.SHOOT and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, spells[spell_pointer].range):
+		tilemap.draw_target(z_index, get_global_mouse_position(), spells[spell_pointer].radius, true)
+	elif select_mode == Select.SHOOT:
+		tilemap.clear_target()
 
 func _on_hit():
 	super()
@@ -134,6 +141,7 @@ func select_shoot(click_position):
 		select_mode = Select.NONE
 		set_highlight(false)
 		main.set_hud(false)
+		tilemap.clear_target()
 		
 		# damage any targets at location
 		if spells[spell_pointer].radius:

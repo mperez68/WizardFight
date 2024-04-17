@@ -33,7 +33,7 @@ class Spell:
 				populate("Healing Touch", preload("res://spells/healing_touch.tscn"), preload("res://assets/spells/Water_Geyser/tile008.png"), 2, -2, 1, 1, 0.4, true)
 				tooltip = "Unhurts the target, which is less exciting but [i]can[/i] be useful."
 			SpellNames.FIREBALL:
-				populate("Fireball", preload("res://spells/fireball.tscn"), preload("res://assets/spells/Explosion/tile005.png"), 3, 1, 8, 0.7, 0.1, 3)
+				populate("Fireball", preload("res://spells/fireball.tscn"), preload("res://assets/spells/Explosion/tile005.png"), 3, 1, 8, 0.7, 0.1, 2)
 				tooltip = "You had a personality until you put this spell in your tome. Go ahead, free-thinker."
 			SpellNames.TESTICULAR_TORSION:
 				populate("Testicular Torsion", preload("res://spells/testicular_torsion.tscn"), preload("res://assets/spells/Tornado/tile009.png"), 3, 1, 4, 0.8, 0.2, 0, false, Effect.EffectNames.SLOW)

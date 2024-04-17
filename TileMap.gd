@@ -14,7 +14,9 @@ const ATLAS_WATER = Vector2i(1, 3)
 var map_rect: Array[Rect2i]
 var astar: Array[AStarGrid2D]
 var highlighted_tiles: Array[Set]
+var targeted_tiles: Array[Set]
 
+@onready var target_map = $TargetHighlightTileMap
 @onready var highlight_map = $HighlightTileMap
 @onready var water_map = $WaterTileMap
 
@@ -109,10 +111,31 @@ func draw_range(layer, origin, range, is_highlight):
 					highlight_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
 					$HighlightTileMap/AnimationPlayer.play("lowlight")
 
+func draw_target(layer, origin, radius, is_highlight):
+	clear_target()
+	var rough_range_start = local_to_map(origin) - Vector2i(radius, radius)
+	for i in 2 * radius + 1:
+		for j in 2 * radius + 1:
+			var temp_loc = Vector2i(i, j) + rough_range_start
+			var temp_atlas = get_cell_atlas_coords(layer, temp_loc)
+			if is_visible_target(layer, map_to_local(temp_loc), layer, origin, radius) or temp_loc == local_to_map(origin):
+				targeted_tiles.push_front(Set.new(layer, temp_loc, temp_atlas))
+				if is_highlight:
+					target_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
+					$TargetHighlightTileMap/AnimationPlayer.play("highlight")
+				else:
+					target_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
+					$TargetHighlightTileMap/AnimationPlayer.play("lowlight")
+
 func clear_highlights():
 	for i in highlighted_tiles.size():
 		var temp = highlighted_tiles.pop_front()
 		highlight_map.erase_cell(temp.grid_layer, temp.grid_location)
+
+func clear_target():
+	for i in targeted_tiles.size():
+		var temp = targeted_tiles.pop_front()
+		target_map.erase_cell(temp.grid_layer, temp.grid_location)
 
 func is_stairs(layer, grid_position):
 	if !grid_position:
