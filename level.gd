@@ -71,13 +71,20 @@ func inc_turn():
 		inc_turn()
 
 func state_check():
+	var teams_alive = [false, false]	# 0 is player, >1 is enemies. Will expand later
 	for i in characters.size():
+		if characters[i].name.contains("Player") and !characters[i].is_dead:
+			teams_alive[0] = true
 		if !characters[i].name.contains("Player") and !characters[i].is_dead:
-			return
+			teams_alive[1] = true
 	
-	# Only gets to this point if above loop didn't break
-	set_hud(false)
-	$HUD/EndGameScreen.visible = true
+	if teams_alive[0] and !teams_alive[1]:	# Win State
+		set_hud(false)
+		$HUD/EndGameScreen.visible = true
+	if !teams_alive[0]:	# Lose State
+		set_hud(false)
+		$HUD/EndGameScreen/MainTextRect/Label.text = "YOU LOSE"
+		$HUD/EndGameScreen.visible = true
 
 func update_characters():
 	characters = find_children("*", "CharacterBody2D")

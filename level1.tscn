@@ -538,7 +538,7 @@ label_settings = SubResource("LabelSettings_nxx1c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ReturnButton" type="TextureButton" parent="HUD/EndGameScreen"]
+[node name="Return" type="TextureButton" parent="HUD/EndGameScreen"]
 layout_mode = 0
 offset_left = 750.0
 offset_top = 500.0
@@ -547,7 +547,7 @@ offset_bottom = 550.0
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/EndGameScreen/ReturnButton"]
+[node name="Label" type="Label" parent="HUD/EndGameScreen/Return"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -590,4 +590,4 @@ vertical_alignment = 1
 [connection signal="mouse_entered" from="HUD/ButtonItem5" to="." method="_on_button_mouse_entered" binds= [4, "item"]]
 [connection signal="mouse_exited" from="HUD/ButtonItem5" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonItem5" to="." method="_on_item_pressed" binds= [4]]
-[connection signal="pressed" from="HUD/EndGameScreen/ReturnButton" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HUD/EndGameScreen/Return" to="." method="_on_return_button_pressed"]
