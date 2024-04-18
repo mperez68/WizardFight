@@ -137,86 +137,103 @@ func add_mana(value):
 func set_active(new_state = true):
 	is_active = new_state
 
-func can_cast(pointer = null):
+func can_cast(pointer = null, spell: Spell.Spell = null):
 	var temp_pointer = spell_pointer
 	if !pointer:
 		for i in spells.size():
 			if spells[i].cost <= mana:
 				spell_pointer = i
 				break
-	return attacks > 0 and mana >= spells[temp_pointer].cost
+	var temp_spell
+	if spell:
+		temp_spell = spell
+	else:
+		temp_spell = spells[temp_pointer]
+	return attacks > 0 and mana >= temp_spell.cost
 
-func shoot_radius(origin: Vector2i, layer: int, pointer = spell_pointer): # todo add hit chance and crit chance
-	var spell = spells[pointer]
-	if spell.radius == 0:
-		print("Cannot cast! Spell Radius == ", spell.radius)
-		return
+func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int = z_index):
 	
-	var targets: Array[CharacterBody2D] = []
-	var rough_range_start = origin - Vector2i(spell.radius, spell.radius)
-	for i in 2 * spell.radius + 1:
-		for j in 2 * spell.radius + 1:
+	var targets: Array[TacticsCharacter] = []
+	var rough_range_start = origin - Vector2i(radius, radius)
+	for i in 2 * radius + 1:
+		for j in 2 * radius + 1:
 			var temp_loc = Vector2i(i, j) + rough_range_start
 			# select any targets at location
 			for k in main.characters.size():
 				if main.characters[k].get_grid_position() == temp_loc:
 					targets.push_back(main.characters[k])
 	
-	shoot(null, targets, pointer)
+	return targets
 
 func _on_hit():
 	active_missiles -= 1
-	if active_missiles == 0:
+	if active_missiles <= 0:
 		focus = global_position
 		main.camera.position = focus
 	
-func shoot(target: CharacterBody2D = null, targets: Array[CharacterBody2D] = [], pointer = spell_pointer):
-	if !can_cast(pointer):
-		print("Cannot cast! ", mana, " < ", spells[pointer].cost, " :: attacks == ", attacks)
-		return
+func shoot(spell: Spell.Spell, location: Vector2i, layer = z_index):
+	if !can_cast(spell):
+		print("Cannot cast! ", mana, " < ", spell.cost, " :: attacks == ", attacks)
+		return false
 	
-	if target or targets.size():
+	var targets = get_radius(spell.radius, location, layer)
+	
+	if targets.size():
 		anim.play("cast")
-		add_mana(-spells[pointer].cost)
+		add_mana(-spell.cost)
 		attacks -= 1
-		
-	if target:
-		var missile = spells[pointer].spell_node.instantiate()
-		missile.start(target, global_position)
-		active_missiles += 1
-		missile.hit.connect(_on_hit)
-		add_child(missile)
-		
+	else:
+		_on_hit()
+		return false
+	
+	active_missiles = 0
 	for i in targets.size():
-		var missile = spells[pointer].spell_node.instantiate()
+		var missile = spell.spell_node.instantiate()
 		missile.start(targets[i], global_position)
 		active_missiles += 1
 		missile.hit.connect(_on_hit)
 		add_child(missile)
 	
+	focus_targets(targets)
+	return true
+
+func focus_targets(targets):
 	# change focus
 	var focus_targets = targets
 	focus_targets.push_front(self)
-	if target:
-		focus_targets.push_front(target)
 	var temp = Vector2()
 	for i in focus_targets.size():
 		temp += focus_targets[i].position
-	temp = temp / focus_targets.size()
-	focus = temp
+	focus = temp / focus_targets.size()
 	main.camera.position = focus
 
-func use_item(pointer = item_pointer, target: CharacterBody2D = null): # todo select target for ranged items
+func use_item(pointer = item_pointer, location = get_grid_position(), layer = z_index):
+	var targets: Array[TacticsCharacter] = []
 	if !items[pointer].range:
-		target = self
-	elif !target:
-		print("Can't Use Item! target == ", target, " :: items[pointer].range == ", items[pointer].range)
+		targets.push_front(self)
+	else:
+		targets = get_radius(items[pointer].radius, location, layer)
+	
+	if targets.is_empty():
 		return
 	
-	target.add_hp(-items[pointer].damage)
-	target.add_mana(-items[pointer].cost)
-	# todo add sprite/animation
+	if items[pointer].spell:
+		if shoot(items[pointer].spell, location, layer):
+			# refund resources
+			add_mana(items[item_pointer].spell.cost - items[item_pointer].cost)
+			attacks += 1
+	else:
+		active_missiles = 0
+		for i in targets.size():
+			var missile = items[pointer].item_node.instantiate()
+			missile.start(targets[i], global_position)
+			active_missiles += 1
+			missile.hit.connect(_on_hit)
+			add_child(missile)
+			
+		focus_targets(targets)
 	
+	# Expend item
 	items[pointer].quantity -= 1
 	if items[pointer].quantity <= 0:
 		items.remove_at(pointer)

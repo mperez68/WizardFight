@@ -1,0 +1,87 @@
+[gd_scene load_steps=16 format=3 uid="uid://c4jfsnr682om3"]
+
+[ext_resource type="Script" path="res://items/thrown_item.gd" id="1_lgxlq"]
+[ext_resource type="Texture2D" uid="uid://d4kacvkh26b5" path="res://assets/spells/Fire_Ball/001.png" id="2_0e16w"]
+[ext_resource type="Texture2D" uid="uid://dfw3od1gtgucp" path="res://assets/spells/Fire_Ball/002.png" id="3_l8mav"]
+[ext_resource type="Texture2D" uid="uid://3jsuw57k7jyx" path="res://assets/spells/Fire_Ball/003.png" id="4_mt57b"]
+[ext_resource type="Texture2D" uid="uid://dv5hih6e7i2dd" path="res://assets/spells/Fire_Ball/004.png" id="5_6b141"]
+[ext_resource type="Texture2D" uid="uid://cmx5f4r2knuob" path="res://assets/spells/Fire_Ball/005.png" id="6_q525n"]
+[ext_resource type="Texture2D" uid="uid://bl6lhifdjvsqj" path="res://assets/spells/Explosion/001.png" id="7_n8be1"]
+[ext_resource type="Texture2D" uid="uid://cutffk4w02ko5" path="res://assets/spells/Explosion/002.png" id="8_8222j"]
+[ext_resource type="Texture2D" uid="uid://fpc7f67gikau" path="res://assets/spells/Explosion/003.png" id="9_8w832"]
+[ext_resource type="Texture2D" uid="uid://caqnnmvejydxh" path="res://assets/spells/Explosion/004.png" id="10_l01qc"]
+[ext_resource type="Texture2D" uid="uid://diioq34u6mkpx" path="res://assets/spells/Explosion/005.png" id="11_wp2uw"]
+[ext_resource type="Texture2D" uid="uid://hj1d71l3kw75" path="res://assets/spells/Explosion/006.png" id="12_p4d0q"]
+[ext_resource type="Texture2D" uid="uid://yll0p4f63dfk" path="res://assets/spells/Explosion/007.png" id="13_6p2bd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j7s51"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0e16w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_l8mav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mt57b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6b141")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q525n")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_n8be1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8222j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8w832")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l01qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wp2uw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_p4d0q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_6p2bd")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edodp"]
+radius = 19.2354
+
+[node name="ThrownItem" type="Area2D"]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_lgxlq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -33)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_j7s51")
+animation = &"hit"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -18)
+shape = SubResource("CircleShape2D_edodp")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

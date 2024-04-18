@@ -53,13 +53,13 @@ position = Vector2(656, 583)
 position = Vector2(138, 851)
 
 [node name="Acolyte3" parent="." instance=ExtResource("5_jse6e")]
-position = Vector2(-246, 1553)
+position = Vector2(-790, 1164)
 
 [node name="Cleric1" parent="." instance=ExtResource("6_3v3a7")]
 position = Vector2(122, 448)
 
 [node name="Cleric2" parent="." instance=ExtResource("6_3v3a7")]
-position = Vector2(-637, 1092)
+position = Vector2(-891, 1113)
 
 [node name="Orc1" parent="." instance=ExtResource("7_si73m")]
 position = Vector2(-279, 430)

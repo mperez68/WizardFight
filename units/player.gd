@@ -17,11 +17,12 @@ func _ready():
 	MANA_REGEN = 1
 	
 	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIRE_BLAST))
-	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIREBALL))
-	spells.push_back(Spell.Spell.new(Spell.SpellNames.TESTICULAR_TORSION))
 	
 	items.push_back(Item.Item.new(Item.ItemNames.HEALTH_POTION))
 	items.push_back(Item.Item.new(Item.ItemNames.MANA_POTION))
+	items.push_back(Item.Item.new(Item.ItemNames.FIRE_BOMB))
+	items.push_back(Item.Item.new(Item.ItemNames.SCROLL, Spell.SpellNames.HEALING_TOUCH))
+	items.push_back(Item.Item.new(Item.ItemNames.SCROLL, Spell.SpellNames.FIREBALL))
 	
 	super()
 
@@ -39,12 +40,14 @@ func _physics_process(_delta):
 func _process(delta):
 	if select_mode == Select.SHOOT and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, spells[spell_pointer].range):
 		tilemap.draw_target(z_index, get_global_mouse_position(), spells[spell_pointer].radius, true)
-	elif select_mode == Select.SHOOT:
+	if select_mode == Select.ITEM and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, items[item_pointer].range):
+		tilemap.draw_target(z_index, get_global_mouse_position(), items[item_pointer].radius, true)
+	elif (select_mode == Select.SHOOT or select_mode == Select.ITEM):
 		tilemap.clear_target()
 
 func _on_hit():
 	super()
-	if active_missiles == 0:
+	if active_missiles <= 0:
 		reset_hud()
 
 func reset_hud():
@@ -73,6 +76,10 @@ func _unhandled_input(event):
 	# Select shooting target if possible
 	if event.is_action_pressed("primary_mouse") and select_mode == Select.SHOOT:
 		select_shoot(click_position)
+		
+	# Select item target if possible
+	if event.is_action_pressed("primary_mouse") and select_mode == Select.ITEM:
+		select_item(click_position)
 	
 	# Select moving target if possible
 	if event.is_action_pressed("primary_mouse") and tilemap.is_point_walkable(z_index, click_position):
@@ -93,6 +100,8 @@ func set_highlight(active = true):
 			tilemap.draw_weighted_range(z_index, global_position, speed, true)
 		Select.SHOOT:
 			tilemap.draw_range(z_index, global_position, spells[spell_pointer].range, true)
+		Select.ITEM:
+			tilemap.draw_range(z_index, global_position, items[item_pointer].range, true)
 		Select.NONE:
 			tilemap.draw_weighted_range(z_index, global_position, speed, false)
 		_:
@@ -127,7 +136,11 @@ func button_item(selected_item: int):
 	else:
 		return
 	
-	use_item()
+	# Self-cast
+	if items[item_pointer].range == 0:
+		use_item()
+	else:
+		select_mode = Select.ITEM
 
 # targetting via mouse clicks
 func select_shoot(click_position):
@@ -144,13 +157,7 @@ func select_shoot(click_position):
 		tilemap.clear_target()
 		
 		# damage any targets at location
-		if spells[spell_pointer].radius:
-			shoot_radius(target_grid_loc, z_index)
-		else:
-			for i in main.characters.size():
-				if main.characters[i].get_grid_position() == target_grid_loc:
-					shoot(main.characters[i])
-					break
+		shoot(spells[spell_pointer], target_grid_loc, z_index)
 		
 		# reset highlights
 		tilemap.draw_weighted_range(z_index, global_position, speed, false)
@@ -174,8 +181,39 @@ func select_move(click_position):
 			main.camera.position = focus
 			main.set_hud(false)
 
-func use_item(pointer = item_pointer, target: CharacterBody2D = null):
-	super()
+func select_item(click_position):
+	var grid_loc = tilemap.local_to_map(global_position)
+	var target_grid_loc = tilemap.local_to_map(click_position)
+	
+	if item_uses <= 0 or items[item_pointer].cost > mana:
+		return
+	
+	# Spell-Like
+	if !items[item_pointer].spell and (tilemap.is_visible_target(z_index, click_position, z_index, global_position, items[item_pointer].range)) and select_mode == Select.ITEM:
+		select_mode = Select.NONE
+		set_highlight(false)
+		main.set_hud(false)
+		tilemap.clear_target()
+		
+		# damage any targets at location
+		use_item(item_pointer, target_grid_loc, z_index)
+	
+	
+	# Scrolls
+	if items[item_pointer].spell and ((grid_loc == target_grid_loc and items[item_pointer].spell.self_cast) or tilemap.is_visible_target(z_index, click_position, z_index, global_position, items[item_pointer].spell.range)) and select_mode == Select.ITEM:
+		select_mode = Select.NONE
+		set_highlight(false)
+		main.set_hud(false)
+		tilemap.clear_target()
+		
+		# damage any targets at location
+		use_item(item_pointer, target_grid_loc, z_index)
+		
+		# reset highlights
+		tilemap.draw_weighted_range(z_index, global_position, speed, false)
+
+func use_item(pointer = item_pointer, location = get_grid_position(), layer = z_index):
+	super(pointer, location, layer)
 	reset_hud()
 
 func start_turn():

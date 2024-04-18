@@ -111,7 +111,7 @@ func draw_range(layer, origin, range, is_highlight):
 					highlight_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
 					$HighlightTileMap/AnimationPlayer.play("lowlight")
 
-func draw_target(layer, origin, radius, is_highlight):
+func draw_target(layer, origin, radius: int, is_highlight):
 	clear_target()
 	var rough_range_start = local_to_map(origin) - Vector2i(radius, radius)
 	for i in 2 * radius + 1:

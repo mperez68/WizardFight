@@ -59,7 +59,7 @@ func turn_process():
 	
 	# Shoot if in range
 	if target and attacks > 0 and mana >= spells[spell_pointer].cost and tilemap.distance_to(target.z_index, target.global_position, z_index, global_position) <= spells[spell_pointer].range:
-		shoot(target)
+		shoot(spells[spell_pointer], target.get_grid_position(), target.z_index)
 	
 	while active_missiles > 0:
 		await get_tree().create_timer(2).timeout
@@ -81,6 +81,7 @@ func start_turn():
 	await get_tree().create_timer(1).timeout
 	turn_process()
 
+# Tooltip fill/clear
 func populate_tooltip():
 	var icons = main.get_tooltip_icons("Spell")
 	# set [in]visible and name buttons
