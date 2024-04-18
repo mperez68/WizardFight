@@ -13,7 +13,7 @@ const PAN_SPEED = 1024
 
 @onready var tilemap = $TileMap
 @onready var camera = $Camera2D
-@onready var tooltip = $HUD/ToolTip/VBoxContainer/Label
+@onready var tooltip = $HUD/ScreenSize/ToolTip/VBoxContainer/Label
 
 func _process(delta):
 		
@@ -43,7 +43,7 @@ func _ready():
 
 func inc_turn():
 	# Break if game is over
-	if $HUD/EndGameScreen.visible:
+	if $HUD/ScreenSize/EndGameScreen.visible:
 		return
 	
 	turn_pointer += 1
@@ -62,7 +62,7 @@ func inc_turn():
 	else:
 		turn_pointer = -1
 		turn_counter += 1
-		$HUD/TurnCounter.text = str(turn_counter)
+		$HUD/ScreenSize/TurnCounter.text = str(turn_counter)
 		# Clear dead characters
 		pending_removal_pointers.sort()
 		while !pending_removal_pointers.is_empty():
@@ -80,11 +80,11 @@ func state_check():
 	
 	if teams_alive[0] and !teams_alive[1]:	# Win State
 		set_hud(false)
-		$HUD/EndGameScreen.visible = true
+		$HUD/ScreenSize/EndGameScreen.visible = true
 	if !teams_alive[0]:	# Lose State
 		set_hud(false)
-		$HUD/EndGameScreen/MainTextRect/Label.text = "YOU LOSE"
-		$HUD/EndGameScreen.visible = true
+		$HUD/ScreenSize/EndGameScreen/MainTextRect/Label.text = "YOU LOSE"
+		$HUD/ScreenSize/EndGameScreen.visible = true
 
 func update_characters():
 	characters = find_children("*", "CharacterBody2D")
@@ -176,9 +176,9 @@ func _on_item_pressed(selected_item):
 func _input(event):
 	# Pause Menu
 	if event.is_action_pressed("ui_cancel"):
-		if !$HUD/PauseScreen.visible:
+		if !$HUD/ScreenSize/PauseScreen.visible:
 			get_tree().paused = true
-			$HUD/PauseScreen.visible = true
+			$HUD/ScreenSize/PauseScreen.visible = true
 	
 	# Break if not active
 	if !characters[turn_pointer].name.contains("Player"):

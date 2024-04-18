@@ -42,7 +42,7 @@ layer_0/tile_data = PackedInt32Array(65537, 65537, 1, 65538, 1, 1, 131073, 1, 1,
 layer_1/tile_data = PackedInt32Array(786440, 196609, 3, 262152, 196608, 7, 393220, 196608, 7, 131083, 196608, 7, 458763, 196608, 7, 720907, 196608, 7, 655374, 196609, 3, 327694, 196608, 7, 851971, 196608, 7, 131075, 196609, 3, 131079, 5, 1, 655372, 5, 1, 851972, 5, 1, 720905, 131074, 8, 655369, 65538, 12, 589829, 2, 12, 917512, 131074, 13, 327681, 6, 0, 65549, 131072, 7, 196624, 0, 7, 262160, 0, 7, 393223, 0, 8, 393232, 393216, 13, 524297, 393216, 12, 655361, 0, 12, 524295, 458752, 9, 131081, 196609, 3, 327688, 196609, 3, 655365, 196609, 3, 983054, 65536, 12, 786449, 393216, 12, 983051, 65538, 12, 458769, 131074, 12)
 
 [node name="Player1" parent="." instance=ExtResource("4_3rm8y")]
-position = Vector2(-1291, 898)
+position = Vector2(-1276, 900)
 
 [node name="Player2" parent="." instance=ExtResource("4_3rm8y")]
 position = Vector2(1924, 1087)
@@ -67,21 +67,44 @@ position = Vector2(-279, 430)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="TurnText" type="Label" parent="HUD"]
-offset_left = 775.0
-offset_top = 25.0
-offset_right = 825.0
-offset_bottom = 50.0
+[node name="ScreenSize" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TurnText" type="Label" parent="HUD/ScreenSize"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -540.0
+offset_right = 25.0
+offset_bottom = -515.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 text = "Turn"
 horizontal_alignment = 1
 
-[node name="TurnCounter" type="Label" parent="HUD"]
-offset_left = 750.0
-offset_top = 50.0
-offset_right = 850.0
-offset_bottom = 100.0
+[node name="TurnCounter" type="Label" parent="HUD/ScreenSize"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = -515.0
+offset_right = 25.0
+offset_bottom = -475.0
+grow_horizontal = 2
 theme_type_variation = &"HeaderLarge"
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
@@ -89,16 +112,21 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonPassTurn" type="TextureButton" parent="HUD"]
+[node name="ButtonMove" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 1400.0
-offset_top = 600.0
-offset_right = 1575.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -935.0
+offset_top = 415.0
+offset_right = -835.0
+offset_bottom = 515.0
+grow_vertical = 0
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonPassTurn"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonMove"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -108,37 +136,7 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonPassTurn/VBoxContainer"]
-custom_minimum_size = Vector2(1, 1)
-layout_mode = 2
-size_flags_vertical = 1
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 3
-text = "Pass Turn"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="ButtonMove" type="TextureButton" parent="HUD"]
-self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 25.0
-offset_top = 675.0
-offset_right = 125.0
-offset_bottom = 775.0
-texture_normal = ExtResource("8_1bjbd")
-stretch_mode = 0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonMove"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-alignment = 1
-
-[node name="Label" type="Label" parent="HUD/ButtonMove/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonMove/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -149,16 +147,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell1" type="TextureButton" parent="HUD"]
+[node name="ButtonSpell1" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 150.0
-offset_top = 675.0
-offset_right = 250.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -815.0
+offset_top = 415.0
+offset_right = -715.0
+offset_bottom = 515.0
+grow_vertical = 0
 texture_normal = ExtResource("9_qpeuh")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -168,7 +171,7 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonSpell1/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell1/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -179,16 +182,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell2" type="TextureButton" parent="HUD"]
+[node name="ButtonSpell2" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 275.0
-offset_top = 675.0
-offset_right = 375.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -690.0
+offset_top = 415.0
+offset_right = -590.0
+offset_bottom = 515.0
+grow_vertical = 0
 texture_normal = ExtResource("10_obtjx")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -198,7 +206,7 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonSpell2/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell2/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -209,16 +217,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell3" type="TextureButton" parent="HUD"]
+[node name="ButtonSpell3" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 400.0
-offset_top = 675.0
-offset_right = 500.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -565.0
+offset_top = 415.0
+offset_right = -465.0
+offset_bottom = 515.0
+grow_vertical = 0
 texture_normal = ExtResource("11_8tjvn")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -227,7 +240,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonSpell3/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell3/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -238,16 +251,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell4" type="TextureButton" parent="HUD"]
+[node name="ButtonSpell4" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 525.0
-offset_top = 675.0
-offset_right = 625.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = 415.0
+offset_right = -340.0
+offset_bottom = 515.0
+grow_vertical = 0
 texture_normal = ExtResource("12_vo36x")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -256,7 +274,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonSpell4/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell4/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -268,16 +286,21 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonSpell5" type="TextureButton" parent="HUD"]
+[node name="ButtonSpell5" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 650.0
-offset_top = 675.0
-offset_right = 750.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -315.0
+offset_top = 415.0
+offset_right = -215.0
+offset_bottom = 515.0
+grow_vertical = 0
 texture_normal = ExtResource("13_l14n4")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell5"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell5"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -286,7 +309,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonSpell5/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell5/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -297,16 +320,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem1" type="TextureButton" parent="HUD"]
+[node name="ButtonItem1" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 1275.0
-offset_top = 675.0
-offset_right = 1375.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 635.0
+offset_top = 415.0
+offset_right = 735.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem1"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -315,7 +346,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonItem1/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem1/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -326,16 +357,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem2" type="TextureButton" parent="HUD"]
+[node name="ButtonItem2" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 1150.0
-offset_top = 675.0
-offset_right = 1250.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 510.0
+offset_top = 415.0
+offset_right = 610.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -344,7 +383,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonItem2/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem2/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -355,16 +394,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem3" type="TextureButton" parent="HUD"]
+[node name="ButtonItem3" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 1025.0
-offset_top = 675.0
-offset_right = 1125.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 385.0
+offset_top = 415.0
+offset_right = 485.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem3"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -373,7 +420,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonItem3/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem3/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -384,16 +431,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem4" type="TextureButton" parent="HUD"]
+[node name="ButtonItem4" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 900.0
-offset_top = 675.0
-offset_right = 1000.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 260.0
+offset_top = 415.0
+offset_right = 360.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem4"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -402,7 +457,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonItem4/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem4/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -413,16 +468,24 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ButtonItem5" type="TextureButton" parent="HUD"]
+[node name="ButtonItem5" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 775.0
-offset_top = 675.0
-offset_right = 875.0
-offset_bottom = 775.0
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 415.0
+offset_right = 240.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem5"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem5"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -431,7 +494,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ButtonItem5/VBoxContainer"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem5/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 1
@@ -442,14 +505,57 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="ToolTip" type="ColorRect" parent="HUD"]
-offset_left = 25.0
-offset_top = 450.0
-offset_right = 325.0
-offset_bottom = 650.0
+[node name="ButtonPassTurn" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 760.0
+offset_top = 340.0
+offset_right = 935.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonPassTurn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonPassTurn/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Pass Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ToolTip" type="ColorRect" parent="HUD/ScreenSize"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -935.0
+offset_top = 200.0
+offset_right = -535.0
+offset_bottom = 400.0
+grow_vertical = 0
 color = Color(0, 0, 0, 0.403922)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ToolTip"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ToolTip"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -461,77 +567,111 @@ offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="RichTextLabel" parent="HUD/ToolTip/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="HUD/ScreenSize/ToolTip/VBoxContainer"]
 layout_mode = 2
 fit_content = true
 autowrap_mode = 2
 
-[node name="TooltipSpell1" type="TextureRect" parent="HUD"]
+[node name="TooltipSpell1" type="TextureRect" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 25.0
-offset_top = 400.0
-offset_right = 75.0
-offset_bottom = 450.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -940.0
+offset_top = 150.0
+offset_right = -890.0
+offset_bottom = 200.0
+grow_vertical = 0
 texture = ExtResource("9_qpeuh")
 
-[node name="TooltipSpell2" type="TextureRect" parent="HUD"]
+[node name="TooltipSpell2" type="TextureRect" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 75.0
-offset_top = 400.0
-offset_right = 125.0
-offset_bottom = 450.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -890.0
+offset_top = 150.0
+offset_right = -840.0
+offset_bottom = 200.0
+grow_vertical = 0
 texture = ExtResource("10_obtjx")
 
-[node name="TooltipSpell3" type="TextureRect" parent="HUD"]
+[node name="TooltipSpell3" type="TextureRect" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 125.0
-offset_top = 400.0
-offset_right = 175.0
-offset_bottom = 450.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -840.0
+offset_top = 150.0
+offset_right = -790.0
+offset_bottom = 200.0
+grow_vertical = 0
 texture = ExtResource("11_8tjvn")
 
-[node name="TooltipSpell4" type="TextureRect" parent="HUD"]
+[node name="TooltipSpell4" type="TextureRect" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 175.0
-offset_top = 400.0
-offset_right = 225.0
-offset_bottom = 450.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -790.0
+offset_top = 150.0
+offset_right = -740.0
+offset_bottom = 200.0
+grow_vertical = 0
 texture = ExtResource("12_vo36x")
 
-[node name="TooltipSpell5" type="TextureRect" parent="HUD"]
+[node name="TooltipSpell5" type="TextureRect" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
-offset_left = 225.0
-offset_top = 400.0
-offset_right = 275.0
-offset_bottom = 450.0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -740.0
+offset_top = 150.0
+offset_right = -690.0
+offset_bottom = 200.0
+grow_vertical = 0
 texture = ExtResource("13_l14n4")
 
-[node name="EndGameScreen" type="Control" parent="HUD"]
+[node name="EndGameScreen" type="Control" parent="HUD/ScreenSize"]
 visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MainTextRect" type="TextureRect" parent="HUD/EndGameScreen"]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 200.0
-offset_right = 1200.0
-offset_bottom = 450.0
-texture = ExtResource("8_1bjbd")
-
-[node name="Label" type="Label" parent="HUD/EndGameScreen/MainTextRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -295.5
-offset_top = -97.5
-offset_right = 269.5
-offset_bottom = 77.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainTextRect" type="TextureRect" parent="HUD/ScreenSize/EndGameScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -295.0
+offset_right = 405.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_1bjbd")
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/EndGameScreen/MainTextRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "YOU WIN"
@@ -539,16 +679,23 @@ label_settings = SubResource("LabelSettings_nxx1c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Return" type="TextureButton" parent="HUD/EndGameScreen"]
-layout_mode = 0
-offset_left = 750.0
-offset_top = 500.0
-offset_right = 850.0
-offset_bottom = 550.0
+[node name="Return" type="TextureButton" parent="HUD/ScreenSize/EndGameScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = 80.0
+offset_right = 55.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/EndGameScreen/Return"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/EndGameScreen/Return"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -559,23 +706,38 @@ text = "RETURN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PauseScreen" type="Control" parent="HUD"]
+[node name="PauseScreen" type="Control" parent="HUD/ScreenSize"]
 visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("14_4dsbs")
 
-[node name="MainTextRect" type="TextureRect" parent="HUD/PauseScreen"]
-layout_mode = 0
-offset_left = 400.0
-offset_top = 200.0
-offset_right = 1200.0
-offset_bottom = 450.0
+[node name="MainTextRect" type="TextureRect" parent="HUD/ScreenSize/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -295.0
+offset_right = 405.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("8_1bjbd")
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/MainTextRect"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/MainTextRect"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -593,22 +755,37 @@ label_settings = SubResource("LabelSettings_nxx1c")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Menu" type="Control" parent="HUD/PauseScreen"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Menu" type="Control" parent="HUD/ScreenSize/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Resume" type="TextureButton" parent="HUD/PauseScreen/Menu"]
-layout_mode = 0
-offset_left = 825.0
-offset_top = 500.0
-offset_right = 1025.0
-offset_bottom = 550.0
+[node name="Resume" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 80.0
+offset_right = 105.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/Menu/Resume"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Menu/Resume"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -619,16 +796,23 @@ text = "RESUME GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Settings" type="TextureButton" parent="HUD/PauseScreen/Menu"]
-layout_mode = 0
-offset_left = 575.0
-offset_top = 500.0
-offset_right = 775.0
-offset_bottom = 550.0
+[node name="Settings" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/Menu/Settings"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Menu/Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -639,15 +823,23 @@ text = "SETTINGS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Return" type="TextureButton" parent="HUD/PauseScreen/Menu"]
-offset_left = 700.0
-offset_top = 575.0
-offset_right = 900.0
-offset_bottom = 625.0
+[node name="Return" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 230.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/Menu/Return"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Menu/Return"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -658,21 +850,29 @@ text = "EXIT TO MENU"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Settings" type="Control" parent="HUD/PauseScreen"]
+[node name="Settings" type="Control" parent="HUD/ScreenSize/PauseScreen"]
 visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Volume" type="TextureButton" parent="HUD/PauseScreen/Settings"]
-offset_left = 575.0
-offset_top = 500.0
-offset_right = 775.0
-offset_bottom = 550.0
+[node name="Volume" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Volume"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Volume"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -683,15 +883,23 @@ text = "VOLUME"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Full Screen" type="TextureButton" parent="HUD/PauseScreen/Settings"]
-offset_left = 825.0
-offset_top = 500.0
-offset_right = 900.0
-offset_bottom = 550.0
+[node name="Full Screen" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 155.0
+offset_top = 5.0
+offset_right = 230.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Full Screen"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Full Screen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -704,15 +912,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Borderless" type="TextureButton" parent="HUD/PauseScreen/Settings"]
-offset_left = 950.0
-offset_top = 500.0
-offset_right = 1025.0
-offset_bottom = 550.0
+[node name="Borderless" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Borderless"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Borderless"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -725,15 +941,23 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Back" type="TextureButton" parent="HUD/PauseScreen/Settings"]
-offset_left = 700.0
-offset_top = 575.0
-offset_right = 900.0
-offset_bottom = 625.0
+[node name="Back" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 80.0
+offset_right = 105.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
 texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
-[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Back"]
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Back"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -744,40 +968,40 @@ text = "BACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="HUD/ButtonPassTurn" to="." method="_on_pass_turn_pressed"]
-[connection signal="pressed" from="HUD/ButtonMove" to="." method="_on_move_pressed"]
-[connection signal="mouse_entered" from="HUD/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]
-[connection signal="mouse_exited" from="HUD/ButtonSpell1" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonSpell1" to="." method="_on_spell_pressed" binds= [0]]
-[connection signal="mouse_entered" from="HUD/ButtonSpell2" to="." method="_on_button_mouse_entered" binds= [1, "spell"]]
-[connection signal="mouse_exited" from="HUD/ButtonSpell2" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonSpell2" to="." method="_on_spell_pressed" binds= [1]]
-[connection signal="mouse_entered" from="HUD/ButtonSpell3" to="." method="_on_button_mouse_entered" binds= [2, "spell"]]
-[connection signal="mouse_exited" from="HUD/ButtonSpell3" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonSpell3" to="." method="_on_spell_pressed" binds= [2]]
-[connection signal="mouse_entered" from="HUD/ButtonSpell4" to="." method="_on_button_mouse_entered" binds= [3, "spell"]]
-[connection signal="mouse_exited" from="HUD/ButtonSpell4" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonSpell4" to="." method="_on_spell_pressed" binds= [3]]
-[connection signal="mouse_entered" from="HUD/ButtonSpell5" to="." method="_on_button_mouse_entered" binds= [4, "spell"]]
-[connection signal="mouse_exited" from="HUD/ButtonSpell5" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonSpell5" to="." method="_on_spell_pressed" binds= [4]]
-[connection signal="mouse_entered" from="HUD/ButtonItem1" to="." method="_on_button_mouse_entered" binds= [0, "item"]]
-[connection signal="mouse_exited" from="HUD/ButtonItem1" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonItem1" to="." method="_on_item_pressed" binds= [0]]
-[connection signal="mouse_entered" from="HUD/ButtonItem2" to="." method="_on_button_mouse_entered" binds= [1, "item"]]
-[connection signal="mouse_exited" from="HUD/ButtonItem2" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonItem2" to="." method="_on_item_pressed" binds= [1]]
-[connection signal="mouse_entered" from="HUD/ButtonItem3" to="." method="_on_button_mouse_entered" binds= [2, "item"]]
-[connection signal="mouse_exited" from="HUD/ButtonItem3" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonItem3" to="." method="_on_item_pressed" binds= [2]]
-[connection signal="mouse_entered" from="HUD/ButtonItem4" to="." method="_on_button_mouse_entered" binds= [3, "item"]]
-[connection signal="mouse_exited" from="HUD/ButtonItem4" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonItem4" to="." method="_on_item_pressed" binds= [3]]
-[connection signal="mouse_entered" from="HUD/ButtonItem5" to="." method="_on_button_mouse_entered" binds= [4, "item"]]
-[connection signal="mouse_exited" from="HUD/ButtonItem5" to="." method="_on_button_mouse_exited"]
-[connection signal="pressed" from="HUD/ButtonItem5" to="." method="_on_item_pressed" binds= [4]]
-[connection signal="pressed" from="HUD/EndGameScreen/Return" to="." method="_on_return_button_pressed"]
-[connection signal="pressed" from="HUD/PauseScreen/Menu/Resume" to="HUD/PauseScreen" method="_on_resume_pressed"]
-[connection signal="pressed" from="HUD/PauseScreen/Menu/Settings" to="HUD/PauseScreen" method="_on_settings_pressed"]
-[connection signal="pressed" from="HUD/PauseScreen/Menu/Return" to="HUD/PauseScreen" method="_on_return_pressed"]
-[connection signal="pressed" from="HUD/PauseScreen/Settings/Back" to="HUD/PauseScreen" method="_on_back_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonMove" to="." method="_on_move_pressed"]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_spell_pressed" binds= [0]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell2" to="." method="_on_button_mouse_entered" binds= [1, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell2" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell2" to="." method="_on_spell_pressed" binds= [1]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell3" to="." method="_on_button_mouse_entered" binds= [2, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell3" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell3" to="." method="_on_spell_pressed" binds= [2]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell4" to="." method="_on_button_mouse_entered" binds= [3, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell4" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell4" to="." method="_on_spell_pressed" binds= [3]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell5" to="." method="_on_button_mouse_entered" binds= [4, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell5" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell5" to="." method="_on_spell_pressed" binds= [4]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem1" to="." method="_on_button_mouse_entered" binds= [0, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem1" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem1" to="." method="_on_item_pressed" binds= [0]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem2" to="." method="_on_button_mouse_entered" binds= [1, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem2" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem2" to="." method="_on_item_pressed" binds= [1]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem3" to="." method="_on_button_mouse_entered" binds= [2, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem3" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem3" to="." method="_on_item_pressed" binds= [2]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem4" to="." method="_on_button_mouse_entered" binds= [3, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem4" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem4" to="." method="_on_item_pressed" binds= [3]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem5" to="." method="_on_button_mouse_entered" binds= [4, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem5" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem5" to="." method="_on_item_pressed" binds= [4]]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonPassTurn" to="." method="_on_pass_turn_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/EndGameScreen/Return" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Resume" to="HUD/ScreenSize/PauseScreen" method="_on_resume_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Settings" to="HUD/ScreenSize/PauseScreen" method="_on_settings_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Return" to="HUD/ScreenSize/PauseScreen" method="_on_return_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Back" to="HUD/ScreenSize/PauseScreen" method="_on_back_pressed"]
