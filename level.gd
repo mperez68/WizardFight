@@ -174,6 +174,13 @@ func _on_item_pressed(selected_item):
 		characters[turn_pointer].button_item(selected_item)
 	
 func _input(event):
+	# Pause Menu
+	if event.is_action_pressed("ui_cancel"):
+		if !$HUD/PauseScreen.visible:
+			get_tree().paused = true
+			$HUD/PauseScreen.visible = true
+	
+	# Break if not active
 	if !characters[turn_pointer].name.contains("Player"):
 		return
 	

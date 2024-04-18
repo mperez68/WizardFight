@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccnd06f2g635t"]
+[gd_scene load_steps=16 format=3 uid="uid://ccnd06f2g635t"]
 
 [ext_resource type="Script" path="res://level.gd" id="1_i8qan"]
 [ext_resource type="Texture2D" uid="uid://bgek84jsv3okh" path="res://1-Background_scene 0@2x.jpg" id="2_5e3j0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="11_8tjvn"]
 [ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="12_vo36x"]
 [ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="13_l14n4"]
+[ext_resource type="Script" path="res://PauseScreen.gd" id="14_4dsbs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
 font_size = 128
@@ -558,6 +559,191 @@ text = "RETURN"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PauseScreen" type="Control" parent="HUD"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("14_4dsbs")
+
+[node name="MainTextRect" type="TextureRect" parent="HUD/PauseScreen"]
+layout_mode = 0
+offset_left = 400.0
+offset_top = 200.0
+offset_right = 1200.0
+offset_bottom = 450.0
+texture = ExtResource("8_1bjbd")
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/MainTextRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.5
+offset_top = -97.5
+offset_right = 269.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_nxx1c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Control" parent="HUD/PauseScreen"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Resume" type="TextureButton" parent="HUD/PauseScreen/Menu"]
+layout_mode = 0
+offset_left = 825.0
+offset_top = 500.0
+offset_right = 1025.0
+offset_bottom = 550.0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/Menu/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="HUD/PauseScreen/Menu"]
+layout_mode = 0
+offset_left = 575.0
+offset_top = 500.0
+offset_right = 775.0
+offset_bottom = 550.0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/Menu/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="TextureButton" parent="HUD/PauseScreen/Menu"]
+offset_left = 700.0
+offset_top = 575.0
+offset_right = 900.0
+offset_bottom = 625.0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/Menu/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="HUD/PauseScreen"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Volume" type="TextureButton" parent="HUD/PauseScreen/Settings"]
+offset_left = 575.0
+offset_top = 500.0
+offset_right = 775.0
+offset_bottom = 550.0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Full Screen" type="TextureButton" parent="HUD/PauseScreen/Settings"]
+offset_left = 825.0
+offset_top = 500.0
+offset_right = 900.0
+offset_bottom = 550.0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Full Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FULL SCREEN
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Borderless" type="TextureButton" parent="HUD/PauseScreen/Settings"]
+offset_left = 950.0
+offset_top = 500.0
+offset_right = 1025.0
+offset_bottom = 550.0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Borderless"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BORDER-
+LESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Back" type="TextureButton" parent="HUD/PauseScreen/Settings"]
+offset_left = 700.0
+offset_top = 575.0
+offset_right = 900.0
+offset_bottom = 625.0
+texture_normal = ExtResource("8_1bjbd")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/PauseScreen/Settings/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="HUD/ButtonPassTurn" to="." method="_on_pass_turn_pressed"]
 [connection signal="pressed" from="HUD/ButtonMove" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="HUD/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]
@@ -591,3 +777,7 @@ vertical_alignment = 1
 [connection signal="mouse_exited" from="HUD/ButtonItem5" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="HUD/ButtonItem5" to="." method="_on_item_pressed" binds= [4]]
 [connection signal="pressed" from="HUD/EndGameScreen/Return" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/Menu/Resume" to="HUD/PauseScreen" method="_on_resume_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/Menu/Settings" to="HUD/PauseScreen" method="_on_settings_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/Menu/Return" to="HUD/PauseScreen" method="_on_return_pressed"]
+[connection signal="pressed" from="HUD/PauseScreen/Settings/Back" to="HUD/PauseScreen" method="_on_back_pressed"]

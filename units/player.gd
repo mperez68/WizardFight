@@ -69,6 +69,7 @@ func _unhandled_input(event):
 	if event.is_action_pressed("ui_cancel") and select_mode != Select.NONE:
 		select_mode = Select.NONE
 		set_highlight()
+		tilemap.clear_target()
 	
 	# Collect position
 	var click_position = get_global_mouse_position()
