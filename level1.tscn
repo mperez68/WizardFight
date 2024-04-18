@@ -1,25 +1,25 @@
 [gd_scene load_steps=15 format=3 uid="uid://ccnd06f2g635t"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_fs8yo"]
-[ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="2_wav2n"]
-[ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://BaseTileMap.tscn" id="3_2ifxl"]
-[ext_resource type="Texture2D" uid="uid://bgek84jsv3okh" path="res://1-Background_scene 0@2x.jpg" id="3_rr6pe"]
-[ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="5_jse6e"]
-[ext_resource type="PackedScene" uid="uid://cr3jfrupjwqnl" path="res://units/cleric.tscn" id="6_3v3a7"]
-[ext_resource type="PackedScene" uid="uid://dc024yahh3u6" path="res://units/orc.tscn" id="7_si73m"]
-[ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="8_bywpw"]
-[ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="9_5yd1v"]
-[ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="10_i8exu"]
-[ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="11_2iski"]
-[ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="12_6tjh0"]
-[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="13_dd41g"]
+[ext_resource type="Script" path="res://level.gd" id="1_i8qan"]
+[ext_resource type="Texture2D" uid="uid://bgek84jsv3okh" path="res://1-Background_scene 0@2x.jpg" id="2_5e3j0"]
+[ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://BaseTileMap.tscn" id="3_2ent8"]
+[ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="4_3rm8y"]
+[ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="5_10yby"]
+[ext_resource type="PackedScene" uid="uid://cr3jfrupjwqnl" path="res://units/cleric.tscn" id="6_b6x2f"]
+[ext_resource type="PackedScene" uid="uid://dc024yahh3u6" path="res://units/orc.tscn" id="7_kcp42"]
+[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="8_1bjbd"]
+[ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="9_qpeuh"]
+[ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="10_obtjx"]
+[ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="11_8tjvn"]
+[ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="12_vo36x"]
+[ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="13_l14n4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
 font_size = 128
 
-[node name="Main" type="Node2D"]
+[node name="Level1" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_fs8yo")
+script = ExtResource("1_i8qan")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
@@ -34,34 +34,34 @@ motion_mirroring = Vector2(3840, 2400)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(103, -45)
-texture = ExtResource("3_rr6pe")
+texture = ExtResource("2_5e3j0")
 
-[node name="TileMap" parent="." instance=ExtResource("3_2ifxl")]
+[node name="TileMap" parent="." instance=ExtResource("3_2ent8")]
 layer_0/tile_data = PackedInt32Array(65537, 65537, 1, 65538, 1, 1, 131073, 1, 1, 196609, 1, 0, 196610, 1, 0, 131075, 1, 0, 65539, 65537, 0, 262145, 1, 0, 262146, 1, 0, 262147, 65537, 0, 262148, 1, 0, 196612, 196609, 1, 196613, 65537, 0, 131077, 1, 0, 131076, 1, 0, 65540, 65537, 0, 65541, 1, 0, 196614, 65537, 0, 262150, 65537, 0, 262149, 1, 0, 393221, 1, 0, 327684, 65537, 0, 393219, 65537, 0, 327683, 1, 0, 327682, 65537, 0, 327681, 1, 0, 1, 65537, 3, 65536, 65537, 3, 2, 65537, 3, 3, 65537, 3, 4, 65537, 3, 131072, 65537, 3, 196608, 65537, 3, 262144, 65537, 3, 393216, 65537, 3, 327680, 65537, 3, 393217, 65537, 0, 393218, 1, 1, 393222, 1, 0, 327686, 1, 0, 131078, 1, 0, 65542, 1, 0, 6, 65537, 3, 5, 65537, 3, 131074, 65537, 0, 393220, 65537, 0, 0, 65537, 3, 196611, 65537, 0, 327687, 1, 0, 262151, 1, 0, 196615, 1, 0, 131079, 1, 0, 393224, 1, 0, 393223, 1, 0, 327688, 65537, 0, 262152, 65537, 0, 262153, 1, 1, 327689, 65537, 0, 327690, 1, 1, 131080, 65537, 0, 196616, 65537, 0, 65543, 65537, 0, 65544, 65537, 0, 458762, 65537, 0, 393226, 65537, 0, 393225, 196609, 1, 196617, 1, 1, 131081, 1, 1, 65545, 1, 1, 262154, 1, 4, 196618, 196609, 1, 131082, 65537, 1, 65546, 65537, 1, 65547, 196609, 1, 131083, 196609, 1, 196619, 1, 4, 262155, 1, 4, 327691, 1, 1, 393227, 1, 1, 458763, 1, 1, 262156, 1, 4, 196620, 131073, 4, 131084, 131073, 4, 65548, 131073, 4, 262157, 131073, 4, 262158, 131073, 4, 131085, 65537, 4, 131086, 65537, 4, 65550, 65537, 4, 65549, 65537, 4, 327692, 65537, 1, 393228, 65537, 1, 458764, 65537, 1, 327693, 65537, 1, 327694, 1, 4, 393230, 1, 4, 393229, 196609, 1, 458765, 131073, 1, 458766, 131073, 1, 524301, 196609, 0, 524302, 196609, 0, 524303, 196609, 0, 458767, 196609, 0, 589839, 131073, 0, 589838, 196609, 0, 589837, 131073, 0, 524300, 196609, 0, 589836, 196609, 0, 589835, 196609, 0, 524299, 1, 4, 524298, 1, 4, 589834, 196609, 0, 458761, 65537, 3, 524297, 65537, 3, 524296, 65537, 3, 524295, 196609, 1, 458759, 65537, 3, 458760, 65537, 3, 589832, 65537, 3, 589833, 65537, 3, 589831, 65537, 3, 458758, 65537, 3, 524294, 131073, 1, 589830, 196609, 1, 458757, 65537, 3, 458756, 1, 1, 458755, 1, 1, 458754, 1, 1, 458753, 1, 1, 458752, 65537, 3, 524293, 65537, 3, 589829, 65537, 3, 589828, 65537, 3, 589827, 65537, 3, 589826, 65537, 1, 524290, 65537, 1, 524289, 65537, 1, 524288, 65537, 3, 524291, 1, 1, 524292, 65537, 3, 589825, 65537, 3, 589824, 65537, 3, 196622, 65537, 4, 196623, 65537, 4, 65551, 65537, 4, 262159, 65537, 4, 393231, 131073, 4, 327695, 131073, 4, 393232, 65537, 4, 262160, 65537, 4, 196624, 65537, 4, 327696, 65537, 3, 458768, 65537, 3, 524304, 65537, 3, 589840, 65537, 3, 131087, 65537, 3, 131088, 65537, 3, 65552, 65537, 3, 65554, 65537, 3, 65553, 65537, 3, 131089, 65537, 3, 131090, 65537, 3, 196626, 65537, 3, 262162, 65537, 3, 327698, 65537, 3, 393234, 65537, 3, 458770, 65537, 3, 524306, 65537, 3, 524305, 65537, 3, 589841, 65537, 4, 589842, 65537, 3, 458769, 65537, 3, 393233, 65537, 3, 327697, 65537, 3, 262161, 65537, 3, 196625, 65537, 3, 655376, 65537, 3, 655375, 196609, 0, 655374, 196609, 0, 655370, 1, 4, 655369, 65537, 3, 655378, 65537, 3, 655377, 65537, 4, 655368, 65537, 3, 655367, 65537, 3, 655366, 65537, 3, 655365, 65537, 3, 655364, 65537, 3, 655363, 65537, 3, 655362, 65537, 3, 655361, 65537, 3, 655360, 65537, 3, 7, 65537, 3, 8, 65537, 3, 9, 65537, 3, 10, 65537, 3, 11, 65537, 3, 12, 65537, 3, 13, 65537, 3, 14, 65537, 3, 15, 65537, 3, 16, 65537, 3, 17, 65537, 3, 18, 65537, 3, 655371, 196609, 0, 655372, 196609, 0, 655373, 196609, 0, 327685, 65537, 3, 196621, 65537, 3, 720908, 131073, 1, 720907, 1, 4, 720906, 1, 4, 786443, 65537, 1, 851978, 65537, 1, 851977, 1, 1, 851976, 1, 1, 786440, 65537, 0, 786439, 1, 1, 786441, 1, 1, 786442, 1, 1, 720905, 1, 1, 720904, 1, 1, 720903, 1, 1, 720902, 196609, 1, 720901, 196609, 1, 786437, 196609, 1, 786436, 196609, 1, 851975, 1, 1, 851974, 196609, 1, 851973, 196609, 1, 720900, 131073, 1, 720899, 196609, 0, 720898, 131073, 1, 786434, 131073, 1, 786433, 196609, 1, 720897, 196609, 1, 786435, 131073, 1, 851971, 196609, 1, 851972, 196609, 1, 917508, 196609, 1, 917507, 196609, 1, 851970, 196609, 1, 720911, 196609, 1, 720910, 131073, 1, 786446, 131073, 1, 786445, 131073, 1, 720909, 131073, 1, 851981, 196609, 1, 851980, 196609, 1, 786444, 196609, 1, 851979, 65537, 1, 786438, 65537, 3, 720896, 65537, 3, 786432, 65537, 3, 851968, 65537, 3, 851969, 65537, 3, 917505, 65537, 3, 917504, 65537, 3, 917506, 65537, 3, 983041, 65537, 3, 983040, 65537, 3, 1048576, 65537, 3, 1048577, 65537, 3, 1048578, 65537, 3, 1048579, 65537, 3, 983043, 65537, 3, 983042, 65537, 3, 1048580, 65537, 3, 1048581, 65537, 3, 1048582, 65537, 3, 1048583, 65537, 3, 1048584, 65537, 3, 1048585, 65537, 3, 1048586, 65537, 3, 1048587, 65537, 3, 1048588, 65537, 3, 1048589, 65537, 3, 1048590, 65537, 3, 720914, 65537, 3, 786450, 65537, 3, 851986, 65537, 3, 917522, 65537, 3, 983058, 65537, 3, 1048594, 65537, 3, 1048593, 65537, 3, 1048592, 65537, 3, 1048591, 65537, 3, 983055, 65537, 3, 917519, 65537, 3, 917518, 65537, 3, 851982, 65537, 3, 851983, 65537, 3, 786447, 65537, 3, 786448, 65537, 3, 786449, 65537, 3, 720912, 65537, 3, 720913, 65537, 3, 851985, 65537, 3, 917521, 1, 1, 983057, 65537, 1, 983056, 1, 1, 917520, 65537, 0, 851984, 65537, 3, 983054, 65537, 3, 983053, 65537, 3, 983052, 65537, 3, 983051, 65537, 3, 983050, 65537, 3, 983049, 65537, 3, 983046, 65537, 3, 983044, 65537, 3, 983045, 65537, 3, 983048, 65537, 3, 917509, 196609, 1, 917510, 65537, 1, 983047, 65537, 3, 917512, 65537, 1, 917511, 65537, 1, 917513, 65537, 3, 917514, 65537, 3, 917515, 65537, 3, 917516, 65537, 3, 917517, 65537, 3)
 layer_1/tile_data = PackedInt32Array(786440, 196609, 3, 262152, 196608, 7, 393220, 196608, 7, 131083, 196608, 7, 458763, 196608, 7, 720907, 196608, 7, 655374, 196609, 3, 327694, 196608, 7, 851971, 196608, 7, 131075, 196609, 3, 131079, 5, 1, 655372, 5, 1, 851972, 5, 1, 720905, 131074, 8, 655369, 65538, 12, 589829, 2, 12, 917512, 131074, 13, 327681, 6, 0, 65549, 131072, 7, 196624, 0, 7, 262160, 0, 7, 393223, 0, 8, 393232, 393216, 13, 524297, 393216, 12, 655361, 0, 12, 524295, 458752, 9, 131081, 196609, 3, 327688, 196609, 3, 655365, 196609, 3, 983054, 65536, 12, 786449, 393216, 12, 983051, 65538, 12, 458769, 131074, 12)
 
-[node name="Player1" parent="." instance=ExtResource("2_wav2n")]
+[node name="Player1" parent="." instance=ExtResource("4_3rm8y")]
 position = Vector2(-1291, 898)
 
-[node name="Player2" parent="." instance=ExtResource("2_wav2n")]
+[node name="Player2" parent="." instance=ExtResource("4_3rm8y")]
 position = Vector2(1924, 1087)
 
-[node name="Acolyte1" parent="." instance=ExtResource("5_jse6e")]
+[node name="Acolyte1" parent="." instance=ExtResource("5_10yby")]
 position = Vector2(656, 583)
 
-[node name="Acolyte2" parent="." instance=ExtResource("5_jse6e")]
+[node name="Acolyte2" parent="." instance=ExtResource("5_10yby")]
 position = Vector2(138, 851)
 
-[node name="Acolyte3" parent="." instance=ExtResource("5_jse6e")]
+[node name="Acolyte3" parent="." instance=ExtResource("5_10yby")]
 position = Vector2(-790, 1164)
 
-[node name="Cleric1" parent="." instance=ExtResource("6_3v3a7")]
+[node name="Cleric1" parent="." instance=ExtResource("6_b6x2f")]
 position = Vector2(122, 448)
 
-[node name="Cleric2" parent="." instance=ExtResource("6_3v3a7")]
+[node name="Cleric2" parent="." instance=ExtResource("6_b6x2f")]
 position = Vector2(-891, 1113)
 
-[node name="Orc1" parent="." instance=ExtResource("7_si73m")]
+[node name="Orc1" parent="." instance=ExtResource("7_kcp42")]
 position = Vector2(-279, 430)
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -94,7 +94,7 @@ offset_left = 1400.0
 offset_top = 600.0
 offset_right = 1575.0
 offset_bottom = 775.0
-texture_normal = ExtResource("13_dd41g")
+texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonPassTurn"]
@@ -124,7 +124,7 @@ offset_left = 25.0
 offset_top = 675.0
 offset_right = 125.0
 offset_bottom = 775.0
-texture_normal = ExtResource("13_dd41g")
+texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonMove"]
@@ -154,7 +154,7 @@ offset_left = 150.0
 offset_top = 675.0
 offset_right = 250.0
 offset_bottom = 775.0
-texture_normal = ExtResource("8_bywpw")
+texture_normal = ExtResource("9_qpeuh")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell1"]
@@ -184,7 +184,7 @@ offset_left = 275.0
 offset_top = 675.0
 offset_right = 375.0
 offset_bottom = 775.0
-texture_normal = ExtResource("9_5yd1v")
+texture_normal = ExtResource("10_obtjx")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell2"]
@@ -214,7 +214,7 @@ offset_left = 400.0
 offset_top = 675.0
 offset_right = 500.0
 offset_bottom = 775.0
-texture_normal = ExtResource("10_i8exu")
+texture_normal = ExtResource("11_8tjvn")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell3"]
@@ -243,7 +243,7 @@ offset_left = 525.0
 offset_top = 675.0
 offset_right = 625.0
 offset_bottom = 775.0
-texture_normal = ExtResource("11_2iski")
+texture_normal = ExtResource("12_vo36x")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell4"]
@@ -273,7 +273,7 @@ offset_left = 650.0
 offset_top = 675.0
 offset_right = 750.0
 offset_bottom = 775.0
-texture_normal = ExtResource("12_6tjh0")
+texture_normal = ExtResource("13_l14n4")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonSpell5"]
@@ -302,7 +302,7 @@ offset_left = 1275.0
 offset_top = 675.0
 offset_right = 1375.0
 offset_bottom = 775.0
-texture_normal = ExtResource("13_dd41g")
+texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem1"]
@@ -331,7 +331,7 @@ offset_left = 1150.0
 offset_top = 675.0
 offset_right = 1250.0
 offset_bottom = 775.0
-texture_normal = ExtResource("13_dd41g")
+texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem2"]
@@ -360,7 +360,7 @@ offset_left = 1025.0
 offset_top = 675.0
 offset_right = 1125.0
 offset_bottom = 775.0
-texture_normal = ExtResource("13_dd41g")
+texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem3"]
@@ -389,7 +389,7 @@ offset_left = 900.0
 offset_top = 675.0
 offset_right = 1000.0
 offset_bottom = 775.0
-texture_normal = ExtResource("13_dd41g")
+texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem4"]
@@ -418,7 +418,7 @@ offset_left = 775.0
 offset_top = 675.0
 offset_right = 875.0
 offset_bottom = 775.0
-texture_normal = ExtResource("13_dd41g")
+texture_normal = ExtResource("8_1bjbd")
 stretch_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/ButtonItem5"]
@@ -489,7 +489,7 @@ offset_left = 25.0
 offset_top = 400.0
 offset_right = 75.0
 offset_bottom = 450.0
-texture = ExtResource("8_bywpw")
+texture = ExtResource("9_qpeuh")
 
 [node name="TooltipSpell2" type="TextureRect" parent="HUD"]
 self_modulate = Color(1, 1, 1, 0.627451)
@@ -497,7 +497,7 @@ offset_left = 75.0
 offset_top = 400.0
 offset_right = 125.0
 offset_bottom = 450.0
-texture = ExtResource("9_5yd1v")
+texture = ExtResource("10_obtjx")
 
 [node name="TooltipSpell3" type="TextureRect" parent="HUD"]
 self_modulate = Color(1, 1, 1, 0.627451)
@@ -505,7 +505,7 @@ offset_left = 125.0
 offset_top = 400.0
 offset_right = 175.0
 offset_bottom = 450.0
-texture = ExtResource("10_i8exu")
+texture = ExtResource("11_8tjvn")
 
 [node name="TooltipSpell4" type="TextureRect" parent="HUD"]
 self_modulate = Color(1, 1, 1, 0.627451)
@@ -513,7 +513,7 @@ offset_left = 175.0
 offset_top = 400.0
 offset_right = 225.0
 offset_bottom = 450.0
-texture = ExtResource("11_2iski")
+texture = ExtResource("12_vo36x")
 
 [node name="TooltipSpell5" type="TextureRect" parent="HUD"]
 self_modulate = Color(1, 1, 1, 0.627451)
@@ -521,7 +521,7 @@ offset_left = 225.0
 offset_top = 400.0
 offset_right = 275.0
 offset_bottom = 450.0
-texture = ExtResource("12_6tjh0")
+texture = ExtResource("13_l14n4")
 
 [connection signal="pressed" from="HUD/ButtonPassTurn" to="." method="_on_pass_turn_pressed"]
 [connection signal="pressed" from="HUD/ButtonMove" to="." method="_on_move_pressed"]

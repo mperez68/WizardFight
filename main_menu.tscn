@@ -1,0 +1,482 @@
+[gd_scene load_steps=4 format=3 uid="uid://colr5daibln1y"]
+
+[ext_resource type="Script" path="res://main_menu.gd" id="1_txcqa"]
+[ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://BaseTileMap.tscn" id="1_v2dho"]
+[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="2_up7me"]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource("1_txcqa")
+
+[node name="TileMap" parent="." instance=ExtResource("1_v2dho")]
+layer_0/tile_data = PackedInt32Array(0, 196609, 1, 65536, 196609, 1, 131072, 196609, 1, 196608, 196609, 1, 262144, 196609, 1, 327680, 65537, 3, 393216, 65537, 3, 458752, 65537, 3, 524288, 65537, 3, 589824, 65537, 3, 655360, 196609, 1, 720896, 196609, 1, 1, 196609, 1, 65537, 196609, 1, 131073, 196609, 1, 196609, 196609, 1, 262145, 196609, 1, 327681, 65537, 3, 393217, 65537, 3, 458753, 65537, 3, 524289, 65537, 3, 589825, 65537, 3, 655361, 196609, 1, 720897, 196609, 1, 2, 196609, 1, 65538, 196609, 1, 131074, 196609, 1, 196610, 196609, 1, 262146, 65537, 1, 327682, 1, 1, 393218, 1, 1, 458754, 1, 1, 524290, 1, 1, 589826, 1, 1, 655362, 65537, 1, 720898, 196609, 1, 3, 196609, 1, 65539, 196609, 1, 131075, 196609, 1, 196611, 65537, 1, 262147, 1, 1, 327683, 65537, 0, 393219, 65537, 0, 458755, 65537, 0, 524291, 65537, 0, 589827, 65537, 0, 655363, 1, 1, 720899, 65537, 1, 4, 196609, 1, 65540, 65537, 3, 131076, 65537, 3, 196612, 1, 1, 262148, 65537, 0, 327684, 65537, 0, 393220, 1, 0, 458756, 1, 0, 524292, 1, 0, 589828, 65537, 0, 655364, 65537, 0, 720900, 1, 1, 5, 196609, 1, 65541, 65537, 3, 131077, 65537, 3, 196613, 1, 1, 262149, 65537, 0, 327685, 196609, 4, 393221, 196609, 4, 458757, 196609, 4, 524293, 196609, 4, 589829, 1, 0, 655365, 65537, 0, 720901, 1, 1, 6, 196609, 1, 65542, 65537, 3, 131078, 65537, 3, 196614, 1, 1, 262150, 65537, 0, 327686, 1, 0, 393222, 1, 0, 458758, 65537, 4, 524294, 196609, 4, 589830, 1, 0, 655366, 65537, 0, 720902, 1, 1, 7, 196609, 1, 65543, 65537, 3, 131079, 65537, 3, 196615, 1, 1, 262151, 65537, 0, 327687, 1, 0, 393223, 196609, 4, 458759, 196609, 4, 524295, 1, 0, 589831, 1, 0, 655367, 65537, 0, 720903, 1, 1, 8, 196609, 1, 65544, 65537, 3, 131080, 65537, 3, 196616, 1, 1, 262152, 65537, 0, 327688, 65537, 0, 393224, 1, 0, 458760, 196609, 4, 524296, 1, 0, 589832, 65537, 0, 655368, 65537, 0, 720904, 1, 1, 9, 196609, 1, 65545, 196609, 1, 131081, 196609, 1, 196617, 65537, 1, 262153, 1, 1, 327689, 65537, 0, 393225, 65537, 0, 458761, 65537, 0, 524297, 65537, 0, 589833, 65537, 0, 655369, 1, 1, 720905, 65537, 1, 10, 196609, 1, 65546, 196609, 1, 131082, 196609, 1, 196618, 196609, 1, 262154, 65537, 1, 327690, 1, 1, 393226, 1, 1, 458762, 1, 1, 524298, 1, 1, 589834, 1, 1, 655370, 65537, 1, 720906, 196609, 1, 11, 196609, 1, 65547, 196609, 1, 131083, 196609, 1, 196619, 196609, 1, 262155, 196609, 1, 327691, 65537, 3, 393227, 65537, 3, 458763, 65537, 3, 524299, 65537, 3, 589835, 65537, 1, 655371, 196609, 1, 720907, 196609, 1, 786432, 196609, 1, 851968, 196609, 1, 786433, 196609, 1, 851969, 196609, 1, 786434, 196609, 1, 851970, 196609, 1, 786435, 196609, 1, 851971, 196609, 1, 786436, 65537, 3, 851972, 65537, 3, 786437, 65537, 3, 851973, 65537, 3, 786438, 65537, 3, 851974, 65537, 3, 786439, 65537, 3, 851975, 65537, 3, 786440, 65537, 1, 851976, 196609, 1, 786441, 196609, 1, 851977, 196609, 1, 786442, 196609, 1, 851978, 196609, 1, 786443, 196609, 1, 851979, 196609, 1, 12, 196609, 1, 65548, 196609, 1, 131084, 196609, 1, 196620, 196609, 1, 262156, 196609, 1, 327692, 65537, 3, 393228, 65537, 3, 458764, 65537, 3, 524300, 65537, 3, 589836, 196609, 1, 655372, 196609, 1, 720908, 196609, 1, 786444, 196609, 1, 851980, 196609, 1, 65535, 196609, 1, 131071, 196609, 1, 196607, 196609, 1, 262143, 196609, 1, 327679, 196609, 1, 393215, 196609, 1, 458751, 196609, 1, 524287, 196609, 1, 589823, 196609, 1, 655359, 196609, 1, 720895, 196609, 1, 786431, 196609, 1, 851967, 196609, 1, 917503, 196609, 1)
+layer_1/tile_data = PackedInt32Array(393223, 458752, 13, 458757, 393216, 13, 393225, 3, 5, 393219, 65539, 5, 655367, 2, 13, 524298, 65538, 8, 262151, 393216, 7, 655364, 458752, 7, 262148, 0, 9, 655369, 131072, 9, 524290, 196612, 5)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 875)
+
+[node name="TitleScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NewGameButton" type="TextureButton" parent="TitleScreen"]
+z_index = 1
+offset_left = -150.0
+offset_top = 800.0
+offset_right = 150.0
+offset_bottom = 925.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="TitleScreen/NewGameButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "NEW GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SettingsButton" type="TextureButton" parent="TitleScreen"]
+z_index = 1
+offset_left = -150.0
+offset_top = 950.0
+offset_right = 150.0
+offset_bottom = 1075.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="TitleScreen/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ExitButton" type="TextureButton" parent="TitleScreen"]
+z_index = 1
+offset_left = -100.0
+offset_top = 1100.0
+offset_right = 100.0
+offset_bottom = 1200.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="TitleScreen/ExitButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "EXIT"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LogoPanel" type="TextureRect" parent="TitleScreen"]
+z_index = 1
+offset_left = -250.0
+offset_top = 500.0
+offset_right = 250.0
+offset_bottom = 750.0
+texture = ExtResource("2_up7me")
+
+[node name="Label" type="Label" parent="TitleScreen/LogoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 84
+text = "WIZARD FIGHT"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SettingsScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FullScreenButton" type="TextureButton" parent="SettingsScreen"]
+z_index = 1
+offset_left = -150.0
+offset_top = 800.0
+offset_right = -25.0
+offset_bottom = 925.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="SettingsScreen/FullScreenButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 18
+text = "FULL
+SCREEN"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BorderlessButton" type="TextureButton" parent="SettingsScreen"]
+z_index = 1
+offset_left = 25.0
+offset_top = 800.0
+offset_right = 150.0
+offset_bottom = 925.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="SettingsScreen/BorderlessButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 18
+text = "BORDER
+LESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SettingsButton" type="TextureButton" parent="SettingsScreen"]
+z_index = 1
+offset_left = -150.0
+offset_top = 950.0
+offset_right = 150.0
+offset_bottom = 1075.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="SettingsScreen/SettingsButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="SettingsScreen"]
+z_index = 1
+offset_left = -100.0
+offset_top = 1100.0
+offset_right = 100.0
+offset_bottom = 1200.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="SettingsScreen/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LogoPanel" type="TextureRect" parent="SettingsScreen"]
+z_index = 1
+offset_left = -250.0
+offset_top = 500.0
+offset_right = 250.0
+offset_bottom = 750.0
+texture = ExtResource("2_up7me")
+
+[node name="Label" type="Label" parent="SettingsScreen/LogoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 84
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="NewGameScreen" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Level1Button" type="TextureButton" parent="NewGameScreen"]
+z_index = 1
+offset_left = -500.0
+offset_top = 600.0
+offset_right = -200.0
+offset_bottom = 800.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameScreen/Level1Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "LEVEL 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Level2Button" type="TextureButton" parent="NewGameScreen"]
+z_index = 1
+offset_left = -150.0
+offset_top = 600.0
+offset_right = 150.0
+offset_bottom = 800.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameScreen/Level2Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "LEVEL 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Level3Button" type="TextureButton" parent="NewGameScreen"]
+z_index = 1
+offset_left = 200.0
+offset_top = 600.0
+offset_right = 500.0
+offset_bottom = 800.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameScreen/Level3Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "LEVEL 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="2PlayerButton" type="TextureButton" parent="NewGameScreen"]
+z_index = 1
+offset_left = -500.0
+offset_top = 850.0
+offset_right = -200.0
+offset_bottom = 1050.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameScreen/2PlayerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "2 PLAYER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="3PlayerButton" type="TextureButton" parent="NewGameScreen"]
+z_index = 1
+offset_left = -150.0
+offset_top = 850.0
+offset_right = 150.0
+offset_bottom = 1050.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameScreen/3PlayerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "3 PLAYER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="4PlayerButton" type="TextureButton" parent="NewGameScreen"]
+z_index = 1
+offset_left = 200.0
+offset_top = 850.0
+offset_right = 500.0
+offset_bottom = 1050.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameScreen/4PlayerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 42
+text = "4 PLAYER"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="NewGameScreen"]
+z_index = 1
+offset_left = -100.0
+offset_top = 1100.0
+offset_right = 100.0
+offset_bottom = 1200.0
+texture_normal = ExtResource("2_up7me")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="NewGameScreen/BackButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="TitleScreen/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="TitleScreen/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="TitleScreen/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="SettingsScreen/FullScreenButton" to="." method="_on_full_screen_button_pressed"]
+[connection signal="pressed" from="SettingsScreen/BorderlessButton" to="." method="_on_borderless_button_pressed"]
+[connection signal="pressed" from="SettingsScreen/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="SettingsScreen/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/Level1Button" to="." method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/Level2Button" to="." method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/Level3Button" to="." method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/2PlayerButton" to="." method="_on_player_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/3PlayerButton" to="." method="_on_player_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/4PlayerButton" to="." method="_on_player_button_pressed"]
+[connection signal="pressed" from="NewGameScreen/BackButton" to="." method="_on_back_button_pressed"]
