@@ -42,6 +42,10 @@ func _ready():
 		icons[i].visible = false
 
 func inc_turn():
+	# Break if game is over
+	if $HUD/EndGameScreen.visible:
+		return
+	
 	turn_pointer += 1
 	#character turns
 	if characters and turn_pointer < characters.size():
@@ -73,7 +77,7 @@ func state_check():
 	
 	# Only gets to this point if above loop didn't break
 	set_hud(false)
-	$HUD/CenterText.visible = true
+	$HUD/EndGameScreen.visible = true
 
 func update_characters():
 	characters = find_children("*", "CharacterBody2D")
@@ -200,3 +204,6 @@ func _on_button_mouse_exited():
 	if characters[turn_pointer].name.contains("Player"):
 		characters[turn_pointer].set_highlight()
 		tilemap.clear_target()
+
+func _on_return_button_pressed():
+	get_tree().change_scene_to_file("res://main_menu.tscn")
