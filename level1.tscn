@@ -1004,4 +1004,6 @@ vertical_alignment = 1
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Resume" to="HUD/ScreenSize/PauseScreen" method="_on_resume_pressed"]
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Settings" to="HUD/ScreenSize/PauseScreen" method="_on_settings_pressed"]
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Return" to="HUD/ScreenSize/PauseScreen" method="_on_return_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Full Screen" to="HUD/ScreenSize/PauseScreen" method="_on_full_screen_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Borderless" to="HUD/ScreenSize/PauseScreen" method="_on_borderless_pressed"]
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Back" to="HUD/ScreenSize/PauseScreen" method="_on_back_pressed"]

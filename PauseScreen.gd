@@ -1,5 +1,8 @@
 extends Control
 
+@onready var FULL_SIZE = DisplayServer.screen_get_size()
+const WINDOW_SIZE = Vector2i(1440, 900)
+
 var sure_displayed = false
 
 func _ready():
@@ -30,3 +33,9 @@ func _on_resume_pressed():
 	reset_return()
 	get_tree().paused = false
 	visible = false
+
+func _on_full_screen_pressed():
+	MainMenu.full_screen(FULL_SIZE, WINDOW_SIZE)
+
+func _on_borderless_pressed():
+	get_tree().root.borderless = !get_tree().root.borderless
