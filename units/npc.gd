@@ -13,7 +13,9 @@ var ai_profile
 func _ready():
 	super()
 	ai_profile = Ai.AiProfile.new(self, Ai.ProfileNames.MINION)
-	team = 1
+	
+	if (!team):
+		team = 1
 
 func start_turn():
 	super()

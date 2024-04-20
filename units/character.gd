@@ -18,23 +18,23 @@ var _adj_vectors: Array[Vector2]
 @onready var level = $".."
 
 @export var team: int
-@export var _max_hp = 3
-@export var _max_mana = 2
-@export var _max_speed = 3
-@export var _max_attacks = 1
-@export var _max_item_uses = 1
-@export var _hp_regen = 0
-@export var _mana_regen = 1
-
-var start: Vector2i
-var current_path: Array[Vector2i]
-var focus = Vector2(global_position)
+var _max_hp = 3
+var _max_mana = 2
+var _max_speed = 3
+var _max_attacks = 1
+var _max_item_uses = 1
+var _hp_regen = 0
+var _mana_regen = 1
 
 var hp = _max_hp
 var mana = _max_mana
 var speed = _max_speed
 var attacks = _max_attacks
 var item_uses = _max_item_uses
+
+var start: Vector2i
+var current_path: Array[Vector2i]
+var focus = Vector2(global_position)
 
 var spells: Array[Spell.Spell]
 var spell_pointer = 0
@@ -143,9 +143,8 @@ func add_mana(value):
 func set_active(new_state = true):
 	is_active = new_state
 
-func can_cast(pointer = null, spell: Spell.Spell = null):
-	var temp_pointer = spell_pointer
-	if !pointer:
+func can_cast(pointer:int = -1, spell: Spell.Spell = null):
+	if pointer < 0:
 		for i in spells.size():
 			if spells[i].cost <= mana:
 				spell_pointer = i
@@ -154,7 +153,7 @@ func can_cast(pointer = null, spell: Spell.Spell = null):
 	if spell:
 		temp_spell = spell
 	else:
-		temp_spell = spells[temp_pointer]
+		temp_spell = spells[pointer]
 	return attacks > 0 and mana >= temp_spell.cost
 
 func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int = z_index):
@@ -178,7 +177,7 @@ func _on_hit():
 		level.camera.position = focus
 	
 func shoot(spell: Spell.Spell, location: Vector2i, layer = z_index):
-	if !can_cast(spell):
+	if !can_cast(0, spell):
 		print("Cannot cast! ", mana, " < ", spell.cost, " :: attacks == ", attacks)
 		return false
 	

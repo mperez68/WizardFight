@@ -18,40 +18,52 @@ class AiProfile:
 		_profile = profile
 		
 		match profile:
-			ProfileNames.MINION:
-				priority.push_back(approach_enemy)
-				priority.push_back(shoot)
 			ProfileNames.SUPPORT:
-				priority.push_back(approach_ally)
 				priority.push_back(shoot_ally)
-				priority.push_back(approach_enemy)
+				priority.push_back(approach_ally)
 				priority.push_back(shoot)
+				priority.push_back(approach_enemy)
 			_:
-				priority.push_back(approach_enemy)
 				priority.push_back(shoot)
-	
+				priority.push_back(approach_enemy)
+
 	# Decision Making
 	func find_closest_target(team = 0, is_team = true):
-		var best_target
+		var best_target:TacticsCharacter = null
 		var best_distance = 999
 		var temp_distance = best_distance
+		var temp_manhattan = temp_distance
 		
 		for i in level.characters.size():
-			for j in _adj_vectors.size():
-				temp_distance = tilemap.distance_to_weighted(_char.z_index, level.characters[i].global_position + _adj_vectors[j], _char.global_position)
-				if is_team == (level.characters[i].team == team) and temp_distance > 1 and temp_distance < best_distance:
-					best_distance = temp_distance
-					best_target = level.characters[i]
-					
+			# Only proceed if they're the correct team we're looking for and not dead or self
+			if is_team == (level.characters[i].team == team) and !level.characters[i].is_dead and self != level.characters[i]:
+				temp_manhattan = tilemap.distance_to(level.characters[i].z_index, level.characters[i].global_position, _char.z_index, _char.global_position)
+				# Adjacent, break and assume this is best
+				if temp_manhattan == 1:
+					return level.characters[i]
+				for j in _adj_vectors.size():
+					temp_distance = tilemap.distance_to_weighted(_char.z_index, level.characters[i].global_position + _adj_vectors[j], _char.global_position)
+					if temp_manhattan > 0 and temp_distance > 0 and temp_distance < best_distance:
+						best_distance = temp_distance
+						best_target = level.characters[i]
 		return best_target
 	
-	var approach_enemy = func():
+	func set_spell_to_enemy():
 		# set spell pointer to damaging spell
 		for i in _char.spells.size():
 			if _char.spells[i].damage > 0:
 				_char.spell_pointer = i
 				break
-		
+	
+	func set_spell_to_ally():
+		# set spell pointer to friendly spell
+		for i in _char.spells.size():
+			if _char.spells[i].damage <= 0:
+				_char.spell_pointer = i
+				break
+	
+	var approach_enemy = func():
+		set_spell_to_enemy()
 		# break if not able to approach
 		if !(target and _char.speed > 0 and tilemap.distance_to(target.z_index, target.global_position, _char.z_index, _char.global_position) > _char.spells[_char.spell_pointer].range):
 			return false
@@ -79,15 +91,10 @@ class AiProfile:
 		return true
 	
 	var approach_ally = func():
-		if ally.hp == ally._max_hp:
+		if ally and (ally.hp == ally._max_hp or ally.is_dead):
 			return false
 		
-		# set spell pointer to friendly spell
-		for i in _char.spells.size():
-			if _char.spells[i].damage <= 0:
-				_char.spell_pointer = i
-				break
-			
+		set_spell_to_ally()
 		# break if not able to approach
 		if !(ally and _char.speed > 0 and tilemap.distance_to(ally.z_index, ally.global_position, _char.z_index, _char.global_position) > _char.spells[_char.spell_pointer].range):
 			return false
@@ -115,6 +122,16 @@ class AiProfile:
 		return true
 	
 	var shoot = func():		#todo add radius optimization i.e. shoot at location that maximizes targets
+		set_spell_to_enemy()
+		var valid_spell = false
+		for i in _char.spells.size():
+			if _char.can_cast(i) and tilemap.is_visible_target(target.z_index, target.global_position, _char.z_index, _char.global_position, _char.spells[i].range):
+				_char.spell_pointer = i
+				valid_spell = true
+				break
+		if !valid_spell:
+			return false
+		
 		if target and _char.attacks > 0 and _char.mana >= _char.spells[_char.spell_pointer].cost and tilemap.distance_to(target.z_index, target.global_position, _char.z_index, _char.global_position) <= _char.spells[_char.spell_pointer].range:
 			_char.shoot(_char.spells[_char.spell_pointer], target.get_grid_position(), target.z_index)
 			return true
@@ -122,8 +139,10 @@ class AiProfile:
 			return false
 	
 	var shoot_ally = func():
-		if ally.hp == ally._max_hp:
+		if ally and (ally.hp == ally._max_hp or ally.is_dead):
 			return false
+		
+		set_spell_to_ally()
 		if ally and _char.attacks > 0 and _char.mana >= _char.spells[_char.spell_pointer].cost and tilemap.distance_to(ally.z_index, ally.global_position, _char.z_index, _char.global_position) <= _char.spells[_char.spell_pointer].range:
 			_char.shoot(_char.spells[_char.spell_pointer], ally.get_grid_position(), ally.z_index)
 			return true

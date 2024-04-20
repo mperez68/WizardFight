@@ -1,6 +1,6 @@
 const Effect = preload("res://status/StatusEffect.gd")
 
-enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, SHOCKING_GRASP, HEALING_TOUCH, FIREBALL, TESTICULAR_TORSION }
+enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, SHOCKING_GRASP, HEALING_TOUCH, FIREBALL, TESTICULAR_TORSION, AXE, ROCK }
 
 class Spell:
 
@@ -38,6 +38,12 @@ class Spell:
 			SpellNames.TESTICULAR_TORSION:
 				populate("Testicular Torsion", preload("res://spells/testicular_torsion.tscn"), preload("res://assets/spells/Tornado/tile009.png"), 3, 1, 4, 0.8, 0.2, 0, false, Effect.EffectNames.SLOW)
 				tooltip = "Jesus fucking Christ, you monster. Slows target for two turns."
+			SpellNames.ROCK:
+				populate("Rock", preload("res://spells/rock.tscn"), preload("res://assets/spells/Rocks/tile007.png"), 0, 1, 4, 0.5, 0)
+				tooltip = "A simpler spell for a simpler time."
+			SpellNames.AXE:
+				populate("Axe", preload("res://spells/axe.tscn"), preload("res://assets/spells/Molten_Spear/tile006.png"), 0, 2, 1, 0.8, 0.4)
+				tooltip = "Counterspell this, nerd."
 			_:
 				populate("Magic Missile", preload("res://spells/magic_missile.tscn"), preload("res://assets/spells/Wind/tile003.png"), 1, 1, 6, 1, 0)	#default to magic missile todo change to rock
 	

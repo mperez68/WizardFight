@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dc024yahh3u6"]
 
-[ext_resource type="Script" path="res://units/Orc.gd" id="1_1hidc"]
+[ext_resource type="Script" path="res://units/orc.gd" id="1_hi776"]
 [ext_resource type="Texture2D" uid="uid://shw4sb7vak0r" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_1lenv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evbtd"]
@@ -155,7 +155,7 @@ animations = [{
 
 [node name="Orc" type="CharacterBody2D"]
 input_pickable = true
-script = ExtResource("1_1hidc")
+script = ExtResource("1_hi776")
 
 [node name="Info" type="Control" parent="."]
 z_index = 6
@@ -218,6 +218,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ManaBackground" type="ProgressBar" parent="Info"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 100.0
@@ -228,6 +229,7 @@ value = 1.0
 show_percentage = false
 
 [node name="ManaBar" type="ProgressBar" parent="Info"]
+visible = false
 modulate = Color(0, 0, 1, 1)
 layout_mode = 0
 offset_right = 100.0
@@ -239,6 +241,7 @@ value = 1.0
 show_percentage = false
 
 [node name="ManaTextLevel" type="Label" parent="Info"]
+visible = false
 layout_mode = 0
 offset_right = 50.0
 offset_bottom = 25.0
@@ -247,6 +250,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ManaTextSlash" type="Label" parent="Info"]
+visible = false
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 25.0
@@ -255,6 +259,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ManaTextMax" type="Label" parent="Info"]
+visible = false
 layout_mode = 0
 offset_left = 50.0
 offset_right = 100.0

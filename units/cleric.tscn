@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://cr3jfrupjwqnl"]
 
-[ext_resource type="Script" path="res://units/Cleric.gd" id="1_x5i6d"]
+[ext_resource type="Script" path="res://units/cleric.gd" id="1_x5i6d"]
 [ext_resource type="Texture2D" uid="uid://shw4sb7vak0r" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_bneyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evbtd"]
