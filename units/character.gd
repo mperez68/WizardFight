@@ -1,34 +1,40 @@
 extends CharacterBody2D
 
 class_name TacticsCharacter
+## Abstract class for all units in the game. This includes player and NPC units.
+##
+## Extending from this class is required to create units. To create an NPC unit,
+## extend fron NPC instead because it contains AI profiles and other automatic turn
+## passing methods.
 
 const ANIM_SPEED = 4
 const Spell = preload("res://spells/Spell.gd")
 const Item = preload("res://items/item.gd")
 const Effect = preload("res://status/StatusEffect.gd")
-var ADJ_VECTORS: Array[Vector2]
+var _adj_vectors: Array[Vector2]
 
 @onready var tilemap = $"../TileMap"
 @onready var anim = $AnimatedSprite2D
-@onready var main = $".."
+@onready var level = $".."
 
-@export var MAX_SPEED = 3
-@export var MAX_ATTACKS = 1
-@export var MAX_ITEM_USES = 1
-@export var MAX_HP = 3
-@export var MAX_MANA = 2
-@export var HP_REGEN = 0
-@export var MANA_REGEN = 1
+@export var team: int
+@export var _max_hp = 3
+@export var _max_mana = 2
+@export var _max_speed = 3
+@export var _max_attacks = 1
+@export var _max_item_uses = 1
+@export var _hp_regen = 0
+@export var _mana_regen = 1
 
 var start: Vector2i
 var current_path: Array[Vector2i]
 var focus = Vector2(global_position)
 
-var hp = MAX_HP
-var mana = MAX_MANA
-var speed = MAX_SPEED
-var attacks = MAX_ATTACKS
-var item_uses = MAX_ITEM_USES
+var hp = _max_hp
+var mana = _max_mana
+var speed = _max_speed
+var attacks = _max_attacks
+var item_uses = _max_item_uses
 
 var spells: Array[Spell.Spell]
 var spell_pointer = 0
@@ -44,11 +50,11 @@ var active_missiles = 0
 func _ready():
 	var vec_x = tilemap.tile_set.tile_size.x / 2
 	var vec_y = tilemap.tile_set.tile_size.y / 2
-	ADJ_VECTORS = [Vector2(vec_x, vec_y), Vector2(-vec_x, vec_y),
+	_adj_vectors = [Vector2(vec_x, vec_y), Vector2(-vec_x, vec_y),
 	Vector2(vec_x, -vec_y), Vector2(-vec_x, -vec_y)]
 	
-	hp = MAX_HP
-	mana = MAX_MANA
+	hp = _max_hp
+	mana = _max_mana
 	
 	if !start:
 		start = tilemap.local_to_map(global_position)
@@ -103,7 +109,7 @@ func _physics_process(delta):
 		if current_path.is_empty():
 			# Set camera focus
 			focus = global_position
-			main.camera.position = focus
+			level.camera.position = focus
 		
 		vert_check(current_path)
 
@@ -117,14 +123,14 @@ func set_hp(value):
 		is_dead = true
 		set_hp(0)
 		set_mana(0)
-		for i in main.characters.size():
-			if main.characters[i] == self:
-				main.pending_removal_pointers.push_front(i)
-				main.state_check()
+		for i in level.characters.size():
+			if level.characters[i] == self:
+				level.pending_removal_pointers.push_front(i)
+				level.state_check()
 				return
 
 func add_hp(value):
-	set_hp(min(hp + value, MAX_HP))
+	set_hp(min(hp + value, _max_hp))
 
 func set_mana(value):
 	mana = value
@@ -132,7 +138,7 @@ func set_mana(value):
 	$Info/ManaBar.value = mana
 
 func add_mana(value):
-	set_mana(min(mana + value, MAX_MANA))
+	set_mana(min(mana + value, _max_mana))
 
 func set_active(new_state = true):
 	is_active = new_state
@@ -159,9 +165,9 @@ func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int 
 		for j in 2 * radius + 1:
 			var temp_loc = Vector2i(i, j) + rough_range_start
 			# select any targets at location
-			for k in main.characters.size():
-				if main.characters[k].get_grid_position() == temp_loc:
-					targets.push_back(main.characters[k])
+			for k in level.characters.size():
+				if level.characters[k].get_grid_position() == temp_loc:
+					targets.push_back(level.characters[k])
 	
 	return targets
 
@@ -169,7 +175,7 @@ func _on_hit():
 	active_missiles -= 1
 	if active_missiles <= 0:
 		focus = global_position
-		main.camera.position = focus
+		level.camera.position = focus
 	
 func shoot(spell: Spell.Spell, location: Vector2i, layer = z_index):
 	if !can_cast(spell):
@@ -205,7 +211,7 @@ func focus_targets(targets):
 	for i in focus_targets.size():
 		temp += focus_targets[i].position
 	focus = temp / focus_targets.size()
-	main.camera.position = focus
+	level.camera.position = focus
 
 func use_item(pointer = item_pointer, location = get_grid_position(), layer = z_index):
 	var targets: Array[TacticsCharacter] = []
@@ -238,7 +244,7 @@ func use_item(pointer = item_pointer, location = get_grid_position(), layer = z_
 	if items[pointer].quantity <= 0:
 		items.remove_at(pointer)
 	item_uses -= 1
-	main.populate_items(items)
+	level.populate_items(items)
 
 func get_grid_position():
 	return tilemap.local_to_map(global_position)
@@ -268,15 +274,15 @@ func start_turn():
 		return
 	
 	focus = global_position
-	main.camera.position = focus
-	main.camera.zoom = Vector2(1, 1)
+	level.camera.position = focus
+	level.camera.zoom = Vector2(1, 1)
 	# Reset resources
-	speed = MAX_SPEED
-	attacks = MAX_ATTACKS
-	item_uses = MAX_ITEM_USES
+	speed = _max_speed
+	attacks = _max_attacks
+	item_uses = _max_item_uses
 	set_active(true)
-	add_hp(HP_REGEN)
-	add_mana(MANA_REGEN)
+	add_hp(_hp_regen)
+	add_mana(_mana_regen)
 	
 	# Effect modifiers
 	for i in effects.size():
@@ -288,7 +294,7 @@ func end_turn():
 	if is_dead:
 		return
 	
-	main.camera.position = focus
+	level.camera.position = focus
 	# Effect modifiers
 	for i in effects.size():
 		var j = effects.size() - 1 - i

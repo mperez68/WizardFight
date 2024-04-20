@@ -1,7 +1,7 @@
 extends NPC
 
 func _ready():
-	MAX_HP = 2
+	_max_hp = 2
 	
 	super()
 	

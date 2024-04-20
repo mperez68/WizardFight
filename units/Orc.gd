@@ -1,8 +1,8 @@
 extends NPC
 
 func _ready():
-	MAX_HP = 4
-	MAX_MANA = 5
+	_max_hp = 4
+	_max_mana = 5
 	
 	super()
 	

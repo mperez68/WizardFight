@@ -144,6 +144,7 @@ func populate_items(items: Array[Item.Item]):
 
 func get_buttons(filter: String):
 	var buttons = find_children("*", "TextureButton")
+	@warning_ignore("unassigned_variable")
 	var filter_buttons: Array[TextureButton]
 	for i in buttons.size():
 		if buttons[i].name.contains(filter):
@@ -152,6 +153,7 @@ func get_buttons(filter: String):
 
 func get_tooltip_icons(filter: String):
 	var icons = find_children("*", "TextureRect")
+	@warning_ignore("unassigned_variable")
 	var filter_icons: Array[TextureRect]
 	for i in icons.size():
 		if icons[i].name.contains(filter):

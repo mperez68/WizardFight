@@ -1,6 +1,6 @@
 enum EffectNames{ POISON, SLOW }
 
-var ADJ_VECTORS: Array[Vector2]
+var _adj_vectors: Array[Vector2]
 
 class StatusEffect:
 

@@ -6,15 +6,15 @@ var select_mode = Select.NONE
 
 # Instantiate with Player specific variables
 func _ready():
-	MAX_SPEED = 4
-	MAX_ATTACKS = 1
-	MAX_ITEM_USES = 1
+	_max_speed = 4
+	_max_attacks = 1
+	_max_item_uses = 1
 	
-	MAX_HP = 5
-	MAX_MANA = 3
+	_max_hp = 5
+	_max_mana = 3
 	
-	HP_REGEN = 0
-	MANA_REGEN = 1
+	_hp_regen = 0
+	_mana_regen = 1
 	
 	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIRE_BLAST))
 	
@@ -25,6 +25,8 @@ func _ready():
 	items.push_back(Item.Item.new(Item.ItemNames.SCROLL, Spell.SpellNames.FIREBALL))
 	
 	super()
+	
+	team = 0
 
 # Viewport Updates
 func _physics_process(_delta):
@@ -51,13 +53,13 @@ func _on_hit():
 		reset_hud()
 
 func reset_hud():
-	main.set_hud(true)
+	level.set_hud(true)
 	if speed <= 0:
-		main.set_hud(false, "Move")
+		level.set_hud(false, "Move")
 	if attacks <= 0:
-		main.set_hud(false, "Spell")
+		level.set_hud(false, "Spell")
 	if item_uses <= 0:
-		main.set_hud(false, "Item")
+		level.set_hud(false, "Item")
 
 # IO Events
 func _unhandled_input(event):
@@ -154,7 +156,7 @@ func select_shoot(click_position):
 	if ((grid_loc == target_grid_loc and spells[spell_pointer].self_cast) or tilemap.is_visible_target(z_index, click_position, z_index, global_position, spells[spell_pointer].range)) and select_mode == Select.SHOOT:
 		select_mode = Select.NONE
 		set_highlight(false)
-		main.set_hud(false)
+		level.set_hud(false)
 		tilemap.clear_target()
 		
 		# damage any targets at location
@@ -179,8 +181,8 @@ func select_move(click_position):
 		# Set camera focus
 		if current_path.size() > 0:
 			focus = (tilemap.map_to_local(current_path.back()) + global_position) / 2
-			main.camera.position = focus
-			main.set_hud(false)
+			level.camera.position = focus
+			level.set_hud(false)
 
 func select_item(click_position):
 	var grid_loc = tilemap.local_to_map(global_position)
@@ -193,7 +195,7 @@ func select_item(click_position):
 	if !items[item_pointer].spell and (tilemap.is_visible_target(z_index, click_position, z_index, global_position, items[item_pointer].range)) and select_mode == Select.ITEM:
 		select_mode = Select.NONE
 		set_highlight(false)
-		main.set_hud(false)
+		level.set_hud(false)
 		tilemap.clear_target()
 		
 		# damage any targets at location
@@ -204,7 +206,7 @@ func select_item(click_position):
 	if items[item_pointer].spell and ((grid_loc == target_grid_loc and items[item_pointer].spell.self_cast) or tilemap.is_visible_target(z_index, click_position, z_index, global_position, items[item_pointer].spell.range)) and select_mode == Select.ITEM:
 		select_mode = Select.NONE
 		set_highlight(false)
-		main.set_hud(false)
+		level.set_hud(false)
 		tilemap.clear_target()
 		
 		# damage any targets at location
