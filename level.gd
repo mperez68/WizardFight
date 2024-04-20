@@ -16,7 +16,6 @@ const PAN_SPEED = 1024
 @onready var tooltip = $HUD/ScreenSize/ToolTip/VBoxContainer/Label
 
 func _process(delta):
-		
 	# Scroll with keyboard
 	if Input.is_action_pressed("ui_left"):
 		pan_vector.x = -PAN_SPEED
@@ -71,19 +70,17 @@ func inc_turn():
 		inc_turn()
 
 func state_check():
-	var teams_alive = [false, false]	# 0 is player, >1 is enemies. Will expand later
+	var living_teams = {}
 	for i in characters.size():
-		if characters[i].name.contains("Player") and !characters[i].is_dead:
-			teams_alive[0] = true
-		if !characters[i].name.contains("Player") and !characters[i].is_dead:
-			teams_alive[1] = true
+		if !characters[i].is_dead and living_teams.has(characters[i].team):
+			living_teams[characters[i].team] = living_teams[characters[i].team] + 1
+		elif !characters[i].is_dead:
+			living_teams[characters[i].team] = 1
+			
 	
-	if teams_alive[0] and !teams_alive[1]:	# Win State
+	if living_teams.size() == 1:
 		set_hud(false)
-		$HUD/ScreenSize/EndGameScreen.visible = true
-	if !teams_alive[0]:	# Lose State
-		set_hud(false)
-		$HUD/ScreenSize/EndGameScreen/MainTextRect/Label.text = "YOU LOSE"
+		$HUD/ScreenSize/EndGameScreen/MainTextRect/Label.text = "TEAM %s WINS" % [living_teams.keys()[0]]
 		$HUD/ScreenSize/EndGameScreen.visible = true
 
 func update_characters():
@@ -174,7 +171,7 @@ func _on_spell_pressed(selected_spell):
 func _on_item_pressed(selected_item):
 	if turn_pointer >= 0 and characters[turn_pointer].name.contains("Player"):
 		characters[turn_pointer].button_item(selected_item)
-	
+
 func _input(event):
 	# Pause Menu
 	if event.is_action_pressed("ui_cancel"):

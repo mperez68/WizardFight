@@ -45,6 +45,9 @@ func clear_tooltip():
 		icons[i].visible = false
 
 func _on_mouse_entered():
+	if is_dead:
+		return
+	
 	populate_tooltip()
 	level.tooltip.clear()
 	level.tooltip.append_text("[b]%s[/b]\n" % [tooltip_name])
@@ -53,6 +56,9 @@ func _on_mouse_entered():
 		tilemap.draw_weighted_range(z_index, global_position, _max_speed, true)
 
 func _on_mouse_exited():
+	if is_dead:
+		return
+	
 	clear_tooltip()
 	level.tooltip.clear()
 	if level.characters[level.turn_pointer].name.contains("Player"):

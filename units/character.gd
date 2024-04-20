@@ -120,14 +120,20 @@ func set_hp(value):
 	$Info/HPBar.value = hp
 	
 	if hp <= 0 and !is_dead:
-		is_dead = true
-		set_hp(0)
-		set_mana(0)
-		for i in level.characters.size():
-			if level.characters[i] == self:
-				level.pending_removal_pointers.push_front(i)
-				level.state_check()
-				return
+		die()
+
+func die():
+	is_dead = true
+	$Info.visible = false
+	var vec_x = tilemap.tile_set.tile_size.x / 12
+	var vec_y = tilemap.tile_set.tile_size.y / 12
+	global_position += Vector2(-vec_x, vec_y)
+	tilemap.astar[z_index].set_point_solid(get_grid_position(), false)
+	for i in level.characters.size():
+		if level.characters[i] == self:
+			level.pending_removal_pointers.push_front(i)
+			level.state_check()
+			return
 
 func add_hp(value):
 	set_hp(min(hp + value, _max_hp))
@@ -165,7 +171,7 @@ func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int 
 			var temp_loc = Vector2i(i, j) + rough_range_start
 			# select any targets at location
 			for k in level.characters.size():
-				if level.characters[k].get_grid_position() == temp_loc:
+				if level.characters[k].get_grid_position() == temp_loc and !level.characters[k].is_dead:
 					targets.push_back(level.characters[k])
 	
 	return targets
@@ -223,10 +229,13 @@ func use_item(pointer = item_pointer, location = get_grid_position(), layer = z_
 		return
 	
 	if items[pointer].spell:
-		if shoot(items[pointer].spell, location, layer):
-			# refund resources
-			add_mana(items[item_pointer].spell.cost - items[item_pointer].cost)
-			attacks += 1
+		# refund resources
+		add_mana(items[item_pointer].spell.cost - items[item_pointer].cost)
+		attacks += 1
+		if !shoot(items[pointer].spell, location, layer):
+			# undo refund if failed to cast
+			add_mana(-(items[item_pointer].spell.cost - items[item_pointer].cost))
+			attacks -= 1
 	else:
 		active_missiles = 0
 		for i in targets.size():
