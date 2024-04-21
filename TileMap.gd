@@ -226,7 +226,7 @@ func is_visible_target(target_layer, target_local_position, origin_layer, origin
 			
 			# if this tile is blocked, inc self and inc tiles behind it
 			var t = get_cell_tile_data(origin_layer + 1, quad_rect.position + Vector2i(i, j) - Vector2i(origin_layer + 1, origin_layer + 1))
-			if t:# and t.terrain_data.get_custom_data("type") == "block":
+			if t and t.get_custom_data("type") == "block":
 				quad_grid[i][j] += 1
 	
 	# Scan for shadows
