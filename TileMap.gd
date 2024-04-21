@@ -16,13 +16,16 @@ var astar: Array[AStarGrid2D]
 var highlighted_tiles: Array[Set]
 var targeted_tiles: Array[Set]
 
+# todo cache shadow tracing
+#var cache_position: Vector2i
+#var cache_visible map Array[Rect2i]
+
 @onready var target_map = $TargetHighlightTileMap
 @onready var highlight_map = $HighlightTileMap
 @onready var water_map = $WaterTileMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
 	# Populate astar map
 	for i in get_layers_count() - 1:
 		populate_layer(i)
@@ -88,12 +91,11 @@ func draw_weighted_range(layer, origin, speed, is_higlight):
 			var temp_atlas = get_cell_atlas_coords(temp_layer, temp_loc)
 			if is_point_in_range_weighted(layer, map_to_local(Vector2i(i, j) + rough_range_start), origin, speed):
 				highlighted_tiles.push_front(Set.new(temp_layer, temp_loc, temp_atlas))
-				if is_higlight:
-					highlight_map.set_cell(temp_layer, temp_loc, 1, temp_atlas, 0)
-					$HighlightTileMap/AnimationPlayer.play("highlight")
-				else:
-					highlight_map.set_cell(temp_layer, temp_loc, 1, temp_atlas, 0)
-					$HighlightTileMap/AnimationPlayer.play("lowlight")
+				highlight_map.set_cell(temp_layer, temp_loc, 1, temp_atlas, 0)
+	if is_higlight:
+		$HighlightTileMap/AnimationPlayer.play("highlight")
+	else:
+		$HighlightTileMap/AnimationPlayer.play("lowlight")
 
 func draw_range(layer, origin, range, is_highlight):
 	clear_highlights()
@@ -104,12 +106,11 @@ func draw_range(layer, origin, range, is_highlight):
 			var temp_atlas = get_cell_atlas_coords(layer, temp_loc)
 			if is_visible_target(layer, map_to_local(temp_loc), layer, origin, range):
 				highlighted_tiles.push_front(Set.new(layer, temp_loc, temp_atlas))
-				if is_highlight:
-					highlight_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
-					$HighlightTileMap/AnimationPlayer.play("highlight")
-				else:
-					highlight_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
-					$HighlightTileMap/AnimationPlayer.play("lowlight")
+				highlight_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
+	if is_highlight:
+		$HighlightTileMap/AnimationPlayer.play("highlight")
+	else:
+		$HighlightTileMap/AnimationPlayer.play("lowlight")
 
 func draw_target(layer, origin, radius: int, is_highlight):
 	clear_target()
@@ -120,12 +121,11 @@ func draw_target(layer, origin, radius: int, is_highlight):
 			var temp_atlas = get_cell_atlas_coords(layer, temp_loc)
 			if is_visible_target(layer, map_to_local(temp_loc), layer, origin, radius) or temp_loc == local_to_map(origin):
 				targeted_tiles.push_front(Set.new(layer, temp_loc, temp_atlas))
-				if is_highlight:
-					target_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
-					$TargetHighlightTileMap/AnimationPlayer.play("highlight")
-				else:
-					target_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
-					$TargetHighlightTileMap/AnimationPlayer.play("lowlight")
+				target_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
+	if is_highlight:
+		$TargetHighlightTileMap/AnimationPlayer.play("highlight")
+	else:
+		$TargetHighlightTileMap/AnimationPlayer.play("lowlight")
 
 func clear_highlights():
 	for i in highlighted_tiles.size():
@@ -184,6 +184,75 @@ func distance_to(layer, local_position, origin_layer, origin):
 	var map_origin = local_to_map(origin)
 	return abs(layer - origin_layer) + abs(map_position.x - map_origin.x) + abs(map_position.y - map_origin.y)
 
-func is_visible_target(layer, local_position, origin_layer, origin, range):	#todo change to not include tiles behind walls
-	var distance = distance_to(layer, local_position, origin_layer, origin)
-	return distance <= range and distance > 0
+func is_visible_target(target_layer, target_local_position, origin_layer, origin_local_position, range):
+	# Break early if manhattan distance is out of range or target is self
+	var distance = distance_to(target_layer, target_local_position, origin_layer, origin_local_position)
+	if distance > range or distance == 0:
+		return false
+	
+	# Translate to tilemap grid
+	var target_grid = local_to_map(target_local_position)
+	var origin_grid = local_to_map(origin_local_position)
+	
+	# Determine quadrant
+	var quad_position = origin_grid - target_grid
+	var quad_origin: Vector2i
+	var quad_vector: Vector2i
+	if quad_position.x <= 0:
+		if quad_position.y <= 0: # Upper Left
+			quad_origin = Vector2i(0, 0)
+			quad_vector = Vector2i(1, 1)
+		else: 					# Lower Left
+			quad_origin = Vector2i(0, range)
+			quad_vector = Vector2i(1, -1)
+	else:
+		if quad_position.y <= 0: # Upper Right
+			quad_origin = Vector2i(range, 0)
+			quad_vector = Vector2i(-1, 1)
+		else: 					# Lower Right
+			quad_origin = Vector2i(range, range)
+			quad_vector = Vector2i(-1, -1)
+	
+	# Create sub-grid of quadrant, mark origin block
+	var quad_grid = []
+	var quad_rect = Rect2i(origin_grid - quad_origin, Vector2i(range + 1, range + 1))
+	
+	# Scan for blockers
+	for i in quad_rect.size.x:
+		quad_grid.push_back([])
+		for j in quad_rect.size.y:
+			# start at 0 (fully visible)
+			quad_grid[i].push_back(0)
+			
+			# if this tile is blocked, inc self and inc tiles behind it
+			var t = get_cell_tile_data(origin_layer + 1, quad_rect.position + Vector2i(i, j) - Vector2i(origin_layer + 1, origin_layer + 1))
+			if t:# and t.terrain_data.get_custom_data("type") == "block":
+				quad_grid[i][j] += 1
+	
+	# Scan for shadows
+	for i in quad_rect.size.x:
+		var a = i
+		if quad_origin.x:
+			a = quad_rect.size.x - i - 1
+		for j in quad_rect.size.y:
+			var b = j
+			if quad_origin.y:
+				b = quad_rect.size.y - j - 1
+			# Valid checks
+			var i_is_valid = a - quad_vector.x >= 0 and a - quad_vector.x < quad_rect.size.x
+			var j_is_valid = b - quad_vector.y >= 0 and b - quad_vector.y < quad_rect.size.y
+			# If previous angle tile is blocker, increment self
+			if i_is_valid and j_is_valid and quad_grid[a - quad_vector.x][b - quad_vector.y]:
+				quad_grid[a][b] += 1
+			if i > j:
+				# If previous tile is blocker, increment self
+				if i_is_valid and quad_grid[a - quad_vector.x][b]:
+					quad_grid[a][b] += 1
+			if i < j:
+				# If previous tile is blocker, increment self
+				if j_is_valid and quad_grid[a][b - quad_vector.y]:
+					quad_grid[a][b] += 1
+	
+	# return false if block value is above threshold
+	var temp = target_grid - quad_rect.position
+	return !quad_grid[temp.x][temp.y]

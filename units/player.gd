@@ -16,7 +16,10 @@ func _ready():
 	_hp_regen = 0
 	_mana_regen = 1
 	
+	spells.push_back(Spell.Spell.new(Spell.SpellNames.TESTICULAR_TORSION))
 	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIRE_BLAST))
+	#spells.push_back(Spell.Spell.new((randi() % 4) + 2))
+	
 	
 	items.push_back(Item.Item.new(Item.ItemNames.HEALTH_POTION))
 	items.push_back(Item.Item.new(Item.ItemNames.MANA_POTION))
@@ -42,7 +45,7 @@ func _physics_process(_delta):
 func _process(delta):
 	if select_mode == Select.SHOOT and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, spells[spell_pointer].range):
 		tilemap.draw_target(z_index, get_global_mouse_position(), spells[spell_pointer].radius, true)
-	if select_mode == Select.ITEM and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, items[item_pointer].range):
+	elif select_mode == Select.ITEM and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, items[item_pointer].range):
 		tilemap.draw_target(z_index, get_global_mouse_position(), items[item_pointer].radius, true)
 	elif (select_mode == Select.SHOOT or select_mode == Select.ITEM):
 		tilemap.clear_target()

@@ -65,7 +65,7 @@ class AiProfile:
 	var approach_enemy = func():
 		set_spell_to_enemy()
 		# break if not able to approach
-		if !(target and _char.speed > 0 and tilemap.distance_to(target.z_index, target.global_position, _char.z_index, _char.global_position) > _char.spells[_char.spell_pointer].range):
+		if !(target and _char.speed > 0 and !tilemap.is_visible_target(target.z_index, target.global_position, _char.z_index, _char.global_position, _char.spells[_char.spell_pointer].range)):
 			return false
 		
 		var best_loc
