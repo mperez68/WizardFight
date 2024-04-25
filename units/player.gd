@@ -16,18 +16,9 @@ func _ready():
 	_hp_regen = 0
 	_mana_regen = 1
 	
-	spells.push_back(Spell.Spell.new(Spell.SpellNames.TESTICULAR_TORSION))
-	spells.push_back(Spell.Spell.new(Spell.SpellNames.FIRE_BLAST))
-	#spells.push_back(Spell.Spell.new((randi() % 4) + 2))
-	
-	
-	items.push_back(Item.Item.new(Item.ItemNames.HEALTH_POTION))
-	items.push_back(Item.Item.new(Item.ItemNames.MANA_POTION))
-	items.push_back(Item.Item.new(Item.ItemNames.FIRE_BOMB))
-	items.push_back(Item.Item.new(Item.ItemNames.SCROLL, Spell.SpellNames.HEALING_TOUCH))
-	items.push_back(Item.Item.new(Item.ItemNames.SCROLL, Spell.SpellNames.FIREBALL))
-	
 	super()
+	
+	spells = []
 	
 	team = 0
 

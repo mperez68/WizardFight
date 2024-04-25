@@ -42,7 +42,6 @@ func _on_animation_finished():
 		var damage_indicator = di.instantiate()
 		get_parent().add_child(damage_indicator)
 		if randf() < item.hit_chance:
-		
 			target.add_hp(-item.damage)
 			#Damage Indicator
 			damage_indicator.start(target.global_position + Vector2(0, -64), str(item.damage), false)

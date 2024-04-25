@@ -1,6 +1,6 @@
 const Effect = preload("res://status/StatusEffect.gd")
 
-enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, SHOCKING_GRASP, HEALING_TOUCH, FIREBALL, TESTICULAR_TORSION, AXE, ROCK }
+enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, HEALING_TOUCH, SHOCKING_GRASP, FIREBALL, TESTICULAR_TORSION, AXE, ROCK }
 
 class Spell:
 
@@ -17,8 +17,11 @@ class Spell:
 	var status: Effect.StatusEffect
 	var tooltip: String
 	
-	func _init(spell: SpellNames):
+	func _init(spell: SpellNames = -1):
 		tooltip = "this is a tooltip!"
+		_populate(spell)
+	
+	func _populate(spell: SpellNames = -1):
 		match spell:
 			SpellNames.MAGIC_MISSILE:
 				populate("Magic Missile", preload("res://spells/magic_missile.tscn"), preload("res://assets/spells/Wind/tile003.png"), 1, 1, 6, 1, 0)
@@ -45,7 +48,8 @@ class Spell:
 				populate("Axe", preload("res://spells/axe.tscn"), preload("res://assets/spells/Molten_Spear/tile006.png"), 0, 2, 1, 0.8, 0.4)
 				tooltip = "Counterspell this, nerd."
 			_:
-				populate("Magic Missile", preload("res://spells/magic_missile.tscn"), preload("res://assets/spells/Wind/tile003.png"), 1, 1, 6, 1, 0)	#default to magic missile todo change to rock
+				_populate(randi() % SpellNames.size())
+				name = "Random Spell"
 	
 	func populate(new_name, new_node, new_icon, new_cost, new_damage, new_range, new_hit_chance, new_crit_chance, new_radius = 0, new_self_cast = false, new_effect = null ):
 		name = new_name

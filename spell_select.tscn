@@ -1,0 +1,1564 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqq3h0x7dpwsn"]
+
+[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="1_3ujud"]
+[ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="1_l3yxh"]
+[ext_resource type="Script" path="res://spell_select.gd" id="1_pq2dr"]
+[ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="2_auhx6"]
+[ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="3_fg8xw"]
+[ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="4_qhlga"]
+
+[node name="SpellSelectScreen" type="CanvasLayer"]
+script = ExtResource("1_pq2dr")
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.196078)
+
+[node name="Selection1" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -440.0
+offset_right = -750.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_l3yxh")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/Selection1/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Fireblast"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection2" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -650.0
+offset_top = -440.0
+offset_right = -550.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_auhx6")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/Selection2/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Healing Touch"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection3" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -440.0
+offset_right = -350.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_fg8xw")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/Selection3/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Shocking Grasp"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection4" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -440.0
+offset_right = -150.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("4_qhlga")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/Selection4/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Fireball"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection5" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -440.0
+offset_right = 50.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_fg8xw")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/Selection5/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Testicular Torsion"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection6" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -440.0
+offset_right = 250.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection6/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection7" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = -440.0
+offset_right = 450.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection7/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection8" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 550.0
+offset_top = -440.0
+offset_right = 650.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection8/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection9" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = -440.0
+offset_right = 850.0
+offset_bottom = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection9/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection10" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -315.0
+offset_right = -750.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection10"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection10/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection11" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -650.0
+offset_top = -315.0
+offset_right = -550.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection11"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection11/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection12" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -315.0
+offset_right = -350.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection12"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection12/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection13" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -315.0
+offset_right = -150.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection13"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection13/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection14" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -315.0
+offset_right = 50.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection14"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection14/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection15" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -315.0
+offset_right = 250.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection15"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection15/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection16" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = -315.0
+offset_right = 450.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection16"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection16/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection17" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 550.0
+offset_top = -315.0
+offset_right = 650.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection17"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection17/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection18" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = -315.0
+offset_right = 850.0
+offset_bottom = -215.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection18"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection18/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection19" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -850.0
+offset_top = -190.0
+offset_right = -750.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection19"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection19/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection20" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -650.0
+offset_top = -190.0
+offset_right = -550.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection20"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection20/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection21" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -450.0
+offset_top = -190.0
+offset_right = -350.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection21"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection21/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection22" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -190.0
+offset_right = -150.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection22"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection22/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection23" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -190.0
+offset_right = 50.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection23"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection23/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection24" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = -190.0
+offset_right = 250.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection24"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection24/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection25" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 350.0
+offset_top = -190.0
+offset_right = 450.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection25"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection25/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection26" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 550.0
+offset_top = -190.0
+offset_right = 650.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection26"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection26/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Selection27" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 750.0
+offset_top = -190.0
+offset_right = 850.0
+offset_bottom = -90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Selection27"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/Selection27/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedOption1" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = 260.0
+offset_right = -400.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedOption1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/SelectedOption1/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedOption2" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = 260.0
+offset_right = -150.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedOption2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/SelectedOption2/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedOption3" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 260.0
+offset_right = 100.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedOption3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/SelectedOption3/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedOption4" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = 260.0
+offset_right = 350.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedOption4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/SelectedOption4/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedOption5" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 400.0
+offset_top = 260.0
+offset_right = 600.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedOption5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="BG/SelectedOption5/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedWizard1" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = 110.0
+offset_right = -400.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedWizard1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/SelectedWizard1/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Wizard 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+uppercase = true
+
+[node name="SelectedWizard2" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = 110.0
+offset_right = -150.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedWizard2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/SelectedWizard2/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Wizard 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedWizard3" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 110.0
+offset_right = 100.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedWizard3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/SelectedWizard3/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Wizard 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SelectedWizard4" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 150.0
+offset_top = 110.0
+offset_right = 350.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SelectedWizard4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/SelectedWizard4/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Wizard 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SpItSwitch" type="TextureButton" parent="BG"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 400.0
+offset_top = 110.0
+offset_right = 600.0
+offset_bottom = 210.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/SpItSwitch"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="BG/SpItSwitch/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 28
+text = "Select Items"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="LargeIcon" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 475.0
+offset_right = 510.0
+offset_bottom = 625.0
+texture = ExtResource("1_3ujud")
+
+[node name="Tooltip" type="ColorRect" parent="BG"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 475.0
+offset_right = 1560.0
+offset_bottom = 625.0
+color = Color(0, 0, 0, 0.196078)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BG/Tooltip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="BG/Tooltip/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+autowrap_mode = 2
+
+[node name="GoButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 650.0
+offset_top = 235.0
+offset_right = 900.0
+offset_bottom = 485.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GoButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GoButton/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 128
+text = "GO"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ViewMapButton" type="TextureButton" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -900.0
+offset_top = 235.0
+offset_right = -650.0
+offset_bottom = 485.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_3ujud")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ViewMapButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ViewMapButton/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 64
+text = "VIEW MAP"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="mouse_entered" from="BG/Selection1" to="." method="_on_selection_mouse_entered" binds= [0]]
+[connection signal="mouse_exited" from="BG/Selection1" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection1" to="." method="_on_selection_pressed" binds= [0]]
+[connection signal="mouse_entered" from="BG/Selection2" to="." method="_on_selection_mouse_entered" binds= [1]]
+[connection signal="mouse_exited" from="BG/Selection2" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection2" to="." method="_on_selection_pressed" binds= [1]]
+[connection signal="mouse_entered" from="BG/Selection3" to="." method="_on_selection_mouse_entered" binds= [2]]
+[connection signal="mouse_exited" from="BG/Selection3" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection3" to="." method="_on_selection_pressed" binds= [2]]
+[connection signal="mouse_entered" from="BG/Selection4" to="." method="_on_selection_mouse_entered" binds= [3]]
+[connection signal="mouse_exited" from="BG/Selection4" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection4" to="." method="_on_selection_pressed" binds= [3]]
+[connection signal="mouse_entered" from="BG/Selection5" to="." method="_on_selection_mouse_entered" binds= [4]]
+[connection signal="mouse_exited" from="BG/Selection5" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection5" to="." method="_on_selection_pressed" binds= [4]]
+[connection signal="mouse_entered" from="BG/Selection6" to="." method="_on_selection_mouse_entered" binds= [5]]
+[connection signal="mouse_exited" from="BG/Selection6" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection6" to="." method="_on_selection_pressed" binds= [5]]
+[connection signal="mouse_entered" from="BG/Selection7" to="." method="_on_selection_mouse_entered" binds= [6]]
+[connection signal="mouse_exited" from="BG/Selection7" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection7" to="." method="_on_selection_pressed" binds= [6]]
+[connection signal="mouse_entered" from="BG/Selection8" to="." method="_on_selection_mouse_entered" binds= [7]]
+[connection signal="mouse_exited" from="BG/Selection8" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection8" to="." method="_on_selection_pressed" binds= [7]]
+[connection signal="mouse_entered" from="BG/Selection9" to="." method="_on_selection_mouse_entered" binds= [8]]
+[connection signal="mouse_exited" from="BG/Selection9" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection9" to="." method="_on_selection_pressed" binds= [8]]
+[connection signal="mouse_entered" from="BG/Selection10" to="." method="_on_selection_mouse_entered" binds= [9]]
+[connection signal="mouse_exited" from="BG/Selection10" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection10" to="." method="_on_selection_pressed" binds= [9]]
+[connection signal="mouse_entered" from="BG/Selection11" to="." method="_on_selection_mouse_entered" binds= [10]]
+[connection signal="mouse_exited" from="BG/Selection11" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection11" to="." method="_on_selection_pressed" binds= [10]]
+[connection signal="mouse_entered" from="BG/Selection12" to="." method="_on_selection_mouse_entered" binds= [11]]
+[connection signal="mouse_exited" from="BG/Selection12" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection12" to="." method="_on_selection_pressed" binds= [11]]
+[connection signal="mouse_entered" from="BG/Selection13" to="." method="_on_selection_mouse_entered" binds= [12]]
+[connection signal="mouse_exited" from="BG/Selection13" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection13" to="." method="_on_selection_pressed" binds= [12]]
+[connection signal="mouse_entered" from="BG/Selection14" to="." method="_on_selection_mouse_entered" binds= [13]]
+[connection signal="mouse_exited" from="BG/Selection14" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection14" to="." method="_on_selection_pressed" binds= [13]]
+[connection signal="mouse_entered" from="BG/Selection15" to="." method="_on_selection_mouse_entered" binds= [14]]
+[connection signal="mouse_exited" from="BG/Selection15" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection15" to="." method="_on_selection_pressed" binds= [14]]
+[connection signal="mouse_entered" from="BG/Selection16" to="." method="_on_selection_mouse_entered" binds= [15]]
+[connection signal="mouse_exited" from="BG/Selection16" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection16" to="." method="_on_selection_pressed" binds= [15]]
+[connection signal="mouse_entered" from="BG/Selection17" to="." method="_on_selection_mouse_entered" binds= [16]]
+[connection signal="mouse_exited" from="BG/Selection17" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection17" to="." method="_on_selection_pressed" binds= [16]]
+[connection signal="mouse_entered" from="BG/Selection18" to="." method="_on_selection_mouse_entered" binds= [17]]
+[connection signal="mouse_exited" from="BG/Selection18" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection18" to="." method="_on_selection_pressed" binds= [17]]
+[connection signal="mouse_entered" from="BG/Selection19" to="." method="_on_selection_mouse_entered" binds= [18]]
+[connection signal="mouse_exited" from="BG/Selection19" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection19" to="." method="_on_selection_pressed" binds= [18]]
+[connection signal="mouse_entered" from="BG/Selection20" to="." method="_on_selection_mouse_entered" binds= [19]]
+[connection signal="mouse_exited" from="BG/Selection20" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection20" to="." method="_on_selection_pressed" binds= [19]]
+[connection signal="mouse_entered" from="BG/Selection21" to="." method="_on_selection_mouse_entered" binds= [20]]
+[connection signal="mouse_exited" from="BG/Selection21" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection21" to="." method="_on_selection_pressed" binds= [20]]
+[connection signal="mouse_entered" from="BG/Selection22" to="." method="_on_selection_mouse_entered" binds= [21]]
+[connection signal="mouse_exited" from="BG/Selection22" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection22" to="." method="_on_selection_pressed" binds= [21]]
+[connection signal="mouse_entered" from="BG/Selection23" to="." method="_on_selection_mouse_entered" binds= [22]]
+[connection signal="mouse_exited" from="BG/Selection23" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection23" to="." method="_on_selection_pressed" binds= [22]]
+[connection signal="mouse_entered" from="BG/Selection24" to="." method="_on_selection_mouse_entered" binds= [23]]
+[connection signal="mouse_exited" from="BG/Selection24" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection24" to="." method="_on_selection_pressed" binds= [23]]
+[connection signal="mouse_entered" from="BG/Selection25" to="." method="_on_selection_mouse_entered" binds= [24]]
+[connection signal="mouse_exited" from="BG/Selection25" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection25" to="." method="_on_selection_pressed" binds= [24]]
+[connection signal="mouse_entered" from="BG/Selection26" to="." method="_on_selection_mouse_entered" binds= [25]]
+[connection signal="mouse_exited" from="BG/Selection26" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection26" to="." method="_on_selection_pressed" binds= [25]]
+[connection signal="mouse_entered" from="BG/Selection27" to="." method="_on_selection_mouse_entered" binds= [26]]
+[connection signal="mouse_exited" from="BG/Selection27" to="." method="_on_selection_mouse_exited"]
+[connection signal="pressed" from="BG/Selection27" to="." method="_on_selection_pressed" binds= [26]]
+[connection signal="pressed" from="BG/SelectedOption1" to="." method="_on_selected_option_pressed" binds= [0]]
+[connection signal="pressed" from="BG/SelectedOption2" to="." method="_on_selected_option_pressed" binds= [1]]
+[connection signal="pressed" from="BG/SelectedOption3" to="." method="_on_selected_option_pressed" binds= [2]]
+[connection signal="pressed" from="BG/SelectedOption4" to="." method="_on_selected_option_pressed" binds= [3]]
+[connection signal="pressed" from="BG/SelectedOption5" to="." method="_on_selected_option_pressed" binds= [4]]
+[connection signal="pressed" from="BG/SelectedWizard1" to="." method="_on_selected_wizard_pressed" binds= [0]]
+[connection signal="pressed" from="BG/SelectedWizard2" to="." method="_on_selected_wizard_pressed" binds= [1]]
+[connection signal="pressed" from="BG/SelectedWizard3" to="." method="_on_selected_wizard_pressed" binds= [2]]
+[connection signal="pressed" from="BG/SelectedWizard4" to="." method="_on_selected_wizard_pressed" binds= [3]]
+[connection signal="pressed" from="BG/SpItSwitch" to="." method="_on_sp_it_switch_pressed"]
+[connection signal="pressed" from="GoButton" to="." method="_on_go_button_pressed"]
+[connection signal="pressed" from="ViewMapButton" to="." method="_on_view_map_button_pressed"]

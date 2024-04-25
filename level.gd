@@ -34,11 +34,14 @@ func _process(delta):
 	camera.position += pan_vector * delta
 
 func _ready():
+	# Setup
 	update_characters()
-	inc_turn()
 	var icons = get_tooltip_icons("Spell")
 	for i in icons.size():
 		icons[i].visible = false
+	
+	# Create Spell Select Screen
+	$SpellSelectScreen.visible = true
 
 func inc_turn():
 	# Break if game is over
@@ -76,7 +79,6 @@ func state_check():
 			living_teams[characters[i].team] = living_teams[characters[i].team] + 1
 		elif !characters[i].is_dead:
 			living_teams[characters[i].team] = 1
-			
 	
 	if living_teams.size() == 1:
 		set_hud(false)
@@ -180,7 +182,7 @@ func _input(event):
 			$HUD/ScreenSize/PauseScreen.visible = true
 	
 	# Break if not active
-	if !characters[turn_pointer].name.contains("Player"):
+	if !characters[turn_pointer].name.contains("Player") or $SpellSelectScreen.visible:
 		return
 	
 	# Scroll with mouse
@@ -214,7 +216,7 @@ func _on_button_mouse_entered(num, type):
 
 func _on_button_mouse_exited():
 	tooltip.clear()
-	if characters[turn_pointer].name.contains("Player"):
+	if characters[turn_pointer].name.contains("Player") and !$SpellSelectScreen.visible:
 		characters[turn_pointer].set_highlight()
 		tilemap.clear_target()
 

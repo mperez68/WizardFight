@@ -13,11 +13,12 @@ class Item:
 	var damage
 	var range
 	var hit_chance
+	var crit_chance = 0
 	var radius
 	var tooltip
 	var spell: Spell.Spell
 	
-	func _init(item: ItemNames, spell_in: Spell.SpellNames = Spell.SpellNames.MAGIC_MISSILE):
+	func _init(item: ItemNames, spell_in: Spell.SpellNames = -1):
 		icon = preload("res://assets/item.png")
 		tooltip = "this is an item tooltip!"
 		spell = null
