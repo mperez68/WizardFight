@@ -52,7 +52,7 @@ func _on_mouse_entered():
 	level.tooltip.clear()
 	level.tooltip.append_text("[b]%s[/b]\n" % [tooltip_name])
 	level.tooltip.append_text(tooltip_text)
-	if level.characters[level.turn_pointer].name.contains("Player"):
+	if level.characters[level.turn_pointer].name.contains("Player") and level.characters[level.turn_pointer].select_mode == level.characters[level.turn_pointer].Select.NONE:
 		tilemap.draw_weighted_range(z_index, global_position, _max_speed, true)
 
 func _on_mouse_exited():

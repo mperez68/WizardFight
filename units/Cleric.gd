@@ -1,6 +1,7 @@
 extends NPC
 
 func _ready():
+	_max_speed += 1
 	super()
 	
 	tooltip_text = "He's got band-aids in blue, green, [i]and[/i] pink."

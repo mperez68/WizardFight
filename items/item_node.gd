@@ -5,6 +5,7 @@ class_name ItemNode
 signal hit
 
 const Item = preload("res://items/item.gd")
+const di = preload("res://damage_indicator.tscn")
 const ANIM_SPEED = 30
 
 var anim: AnimatedSprite2D
@@ -37,11 +38,19 @@ func start(target_body: CharacterBody2D, origin: Vector2, origin_height = 64):
 
 func _on_animation_finished():
 	if anim and anim.animation == "hit":
+		#Damage Indicator
+		var damage_indicator = di.instantiate()
+		get_parent().add_child(damage_indicator)
 		if randf() < item.hit_chance:
 		
 			target.add_hp(-item.damage)
+			#Damage Indicator
+			damage_indicator.start(target.global_position + Vector2(0, -64), str(item.damage), false)
 			if item.status:
 				target.effects.push_front(item.status)
+		else:
+			#Damage Indicator (miss)
+			damage_indicator.start(target.global_position + Vector2(0, -64), "MISS!", false)
 		
 		hit.emit()
 		queue_free()

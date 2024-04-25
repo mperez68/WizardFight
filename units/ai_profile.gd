@@ -23,12 +23,15 @@ class AiProfile:
 				priority.push_back(approach_ally)
 				priority.push_back(shoot)
 				priority.push_back(approach_enemy)
+			ProfileNames.ORC:
+				priority.push_back(approach_enemy)
+				priority.push_back(shoot)
 			_:
 				priority.push_back(shoot)
 				priority.push_back(approach_enemy)
 
 	# Decision Making
-	func find_closest_target(team = 0, is_team = true):
+	func find_closest_target(team: int, is_team = true):
 		var best_target:TacticsCharacter = null
 		var best_distance = 999
 		var temp_distance = best_distance
