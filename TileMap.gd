@@ -10,6 +10,7 @@ class Set:
 		atlas_location = atlas
 
 const ATLAS_WATER = Vector2i(1, 3)
+const ATLAS_LIGHT_WATER = Vector2i(0, 3)
 
 var map_rect: Array[Rect2i]
 var astar: Array[AStarGrid2D]
@@ -72,6 +73,10 @@ func populate_layer(layer):
 			if get_cell_atlas_coords(layer, coordinates) == ATLAS_WATER:
 				erase_cell(layer, coordinates)
 				water_map.set_cell(layer, coordinates, 0, ATLAS_WATER)
+				astar[layer].set_point_solid(coordinates)
+			if get_cell_atlas_coords(layer, coordinates) == ATLAS_LIGHT_WATER:
+				erase_cell(layer, coordinates)
+				water_map.set_cell(layer, coordinates, 0, ATLAS_LIGHT_WATER)
 				astar[layer].set_point_solid(coordinates)
 			
 			# set walls

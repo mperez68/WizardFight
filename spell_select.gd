@@ -43,7 +43,6 @@ func _ready():
 		$BG/SpItSwitch.visible = false
 	
 	for i in level.characters.size():
-		print(level.characters[i].name)
 		if level.characters[i].name.contains("Player"):
 			var w = Wizard.new()
 			w.char = level.characters[i]
@@ -87,7 +86,6 @@ func _on_selection_pressed(key):
 		sel = sp.Spell.new(key)
 	else:
 		sel = it.Item.new(key)
-	print(sel.name)
 	
 	if get_arr().size() < selected_option_buttons.size():
 		for i in get_arr().size():
