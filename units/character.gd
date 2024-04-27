@@ -171,7 +171,9 @@ func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int 
 			var temp_loc = Vector2i(i, j) + rough_range_start
 			# select any targets at location
 			for k in level.characters.size():
-				if level.characters[k].get_grid_position() == temp_loc and !level.characters[k].is_dead:
+				if level.characters[k].get_grid_position() == origin and !level.characters[k].is_dead and !targets.has(level.characters[k]):
+					targets.push_back(level.characters[k])
+				elif level.characters[k].get_grid_position() == temp_loc and !level.characters[k].is_dead and tilemap.is_visible_target(level.characters[k].z_index, level.characters[k].position, z_index, tilemap.map_to_local(origin), radius):
 					targets.push_back(level.characters[k])
 	
 	return targets
