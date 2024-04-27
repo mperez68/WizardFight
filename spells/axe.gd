@@ -1,4 +1,4 @@
 extends SpellNode
 
 func _ready():
-	spell = Spell.Spell.new(Spell.SpellNames.AXE)
+	spell = Spell.Spell.new(Spell.SpellNames.SPEAR)

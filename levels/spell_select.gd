@@ -65,6 +65,11 @@ func _ready():
 
 # Button press methods
 func _on_go_button_pressed():
+	for i in wizards.size():
+		if !wizards[i].chosen_spells.size():
+			print("Empty spells list")
+			return
+	
 	visible = false
 	$"../HUD".visible = true
 	

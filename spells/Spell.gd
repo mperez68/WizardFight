@@ -1,6 +1,6 @@
 const Effect = preload("res://status/StatusEffect.gd")
 
-enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, HEALING_TOUCH, SHOCKING_GRASP, FIREBALL, TESTICULAR_TORSION, AXE, ROCK }
+enum SpellNames{ MAGIC_MISSILE, FIRE_BLAST, HEALING_TOUCH, SHOCKING_GRASP, FIREBALL, TESTICULAR_TORSION, SPEAR, ROCK }
 
 class Spell:
 
@@ -44,8 +44,8 @@ class Spell:
 			SpellNames.ROCK:
 				populate("Rock", preload("res://spells/rock.tscn"), preload("res://assets/spells/Rocks/tile007.png"), 0, 1, 4, 0.5, 0)
 				tooltip = "A simpler spell for a simpler time."
-			SpellNames.AXE:
-				populate("Axe", preload("res://spells/axe.tscn"), preload("res://assets/spells/Molten_Spear/tile006.png"), 0, 2, 1, 0.8, 0.4)
+			SpellNames.SPEAR:
+				populate("Spear", preload("res://spells/axe.tscn"), preload("res://assets/spells/Molten_Spear/tile006.png"), 0, 2, 1, 0.8, 0.4)
 				tooltip = "Counterspell this, nerd."
 			_:
 				_populate(randi() % SpellNames.size())

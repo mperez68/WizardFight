@@ -5,7 +5,7 @@ class_name ItemNode
 signal hit
 
 const Item = preload("res://items/item.gd")
-const di = preload("res://damage_indicator.tscn")
+const di = preload("res://spells/damage_indicator.tscn")
 const ANIM_SPEED = 30
 
 var anim: AnimatedSprite2D

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="1_3ujud"]
 [ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="1_l3yxh"]
-[ext_resource type="Script" path="res://spell_select.gd" id="1_pq2dr"]
+[ext_resource type="Script" path="res://levels/spell_select.gd" id="1_pq2dr"]
 [ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="2_auhx6"]
 [ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="3_fg8xw"]
 [ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="4_qhlga"]

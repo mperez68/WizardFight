@@ -4,6 +4,7 @@ class_name MainMenu
 
 @onready var FULL_SIZE = DisplayServer.screen_get_size()
 const WINDOW_SIZE = Vector2i(1440, 900)
+const levels = ["res://levels/level1.tscn", "res://levels/level2.tscn", "res://levels/level3.tscn"]
 
 
 # Title Screen
@@ -20,17 +21,9 @@ func _on_exit_button_pressed():
 
 
 # New Game Screen
-func _on_level_1_button_pressed():
-	get_tree().change_scene_to_file("res://level1.tscn")
-
-func _on_level_2_button_pressed():
-	pass # Replace with function body.
-
-func _on_level_3_button_pressed():
-	pass # Replace with function body.
-
-func _on_player_button_pressed():
-	pass # Replace with function body.
+func _on_level_button_pressed(key):
+	if key < levels.size():
+		get_tree().change_scene_to_file(levels[key])
 
 
 # Settings Screen
@@ -53,3 +46,7 @@ func _on_back_button_pressed():
 	$TitleScreen.visible = true
 	$SettingsScreen.visible = false
 	$NewGameScreen.visible = false
+
+
+func _on_player_button_pressed(extra_arg_0):
+	pass # Replace with function body.

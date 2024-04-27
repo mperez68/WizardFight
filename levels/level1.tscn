@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://ccnd06f2g635t"]
+[gd_scene load_steps=16 format=3 uid="uid://ccnd06f2g635t"]
 
-[ext_resource type="Script" path="res://level.gd" id="1_i8qan"]
-[ext_resource type="PackedScene" uid="uid://bqq3h0x7dpwsn" path="res://spell_select.tscn" id="2_4bm8o"]
+[ext_resource type="Script" path="res://levels/level.gd" id="1_i8qan"]
+[ext_resource type="PackedScene" uid="uid://bqq3h0x7dpwsn" path="res://levels/spell_select.tscn" id="2_4bm8o"]
 [ext_resource type="Texture2D" uid="uid://bgek84jsv3okh" path="res://1-Background_scene 0@2x.jpg" id="2_5e3j0"]
-[ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://BaseTileMap.tscn" id="3_2ent8"]
+[ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://levels/BaseTileMap.tscn" id="3_2ent8"]
 [ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="4_3rm8y"]
+[ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="5_10yby"]
 [ext_resource type="PackedScene" uid="uid://dc024yahh3u6" path="res://units/orc.tscn" id="7_kcp42"]
 [ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="8_1bjbd"]
 [ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="9_qpeuh"]
@@ -12,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="11_8tjvn"]
 [ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="12_vo36x"]
 [ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="13_l14n4"]
-[ext_resource type="Script" path="res://PauseScreen.gd" id="14_4dsbs"]
+[ext_resource type="Script" path="res://levels/PauseScreen.gd" id="14_4dsbs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
 font_size = 128
@@ -964,6 +965,9 @@ position = Vector2(-491, 1939)
 
 [node name="Orc5" parent="." instance=ExtResource("7_kcp42")]
 position = Vector2(-367, 1079)
+
+[node name="Acolyte1" parent="." instance=ExtResource("5_10yby")]
+position = Vector2(-894, 1475)
 
 [node name="Player1" parent="." instance=ExtResource("4_3rm8y")]
 position = Vector2(640, 689)

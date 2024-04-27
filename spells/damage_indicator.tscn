@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxjj04x0s5t58"]
 
-[ext_resource type="Script" path="res://damage_indicator.gd" id="1_t5dm2"]
+[ext_resource type="Script" path="res://spells/damage_indicator.gd" id="1_t5dm2"]
 
 [sub_resource type="Animation" id="Animation_74mfw"]
 resource_name = "fade"

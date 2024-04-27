@@ -128,7 +128,7 @@ class AiProfile:
 		set_spell_to_enemy()
 		var valid_spell = false
 		for i in _char.spells.size():
-			if _char.can_cast(i) and tilemap.is_visible_target(target.z_index, target.global_position, _char.z_index, _char.global_position, _char.spells[i].range):
+			if target and _char.can_cast(i) and tilemap.is_visible_target(target.z_index, target.global_position, _char.z_index, _char.global_position, _char.spells[i].range):
 				_char.spell_pointer = i
 				valid_spell = true
 				break

@@ -9,9 +9,9 @@ func _ready():
 	
 	super()
 	
-	tooltip_text = "He casts [b]AXE[/b]."
+	tooltip_text = "The only thing he casts are dispersions."
 	tooltip_name = "Orc"
 	
 	ai_profile = Ai.AiProfile.new(self, Ai.ProfileNames.ORC)
 	
-	spells = [Spell.Spell.new(Spell.SpellNames.AXE), Spell.Spell.new(Spell.SpellNames.ROCK)]
+	spells = [Spell.Spell.new(Spell.SpellNames.SPEAR), Spell.Spell.new(Spell.SpellNames.ROCK)]
