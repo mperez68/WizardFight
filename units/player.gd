@@ -35,7 +35,7 @@ func _physics_process(_delta):
 
 func _process(delta):
 	if select_mode == Select.SHOOT and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, spells[spell_pointer].range):
-		tilemap.draw_target(z_index, get_global_mouse_position(), spells[spell_pointer].radius, true)
+		tilemap.draw_target(z_index, get_global_mouse_position(), spells[spell_pointer].radius, true, spells[spell_pointer].is_line, self)
 	elif select_mode == Select.ITEM and tilemap.is_visible_target(z_index, get_global_mouse_position(), z_index, global_position, items[item_pointer].range):
 		tilemap.draw_target(z_index, get_global_mouse_position(), items[item_pointer].radius, true)
 	elif (select_mode == Select.SHOOT or select_mode == Select.ITEM):

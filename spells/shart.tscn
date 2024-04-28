@@ -1,0 +1,77 @@
+[gd_scene load_steps=13 format=3 uid="uid://bvbay4w8hxnys"]
+
+[ext_resource type="Script" path="res://spells/shart.gd" id="1_17fo7"]
+[ext_resource type="Texture2D" uid="uid://cic3e6ghu7kkg" path="res://assets/spells/Earth_Spike/001.png" id="2_3ysg8"]
+[ext_resource type="Texture2D" uid="uid://xj5mpgm2krku" path="res://assets/spells/Earth_Spike/002.png" id="3_mg186"]
+[ext_resource type="Texture2D" uid="uid://nl0er383081i" path="res://assets/spells/Earth_Spike/003.png" id="4_p7ywf"]
+[ext_resource type="Texture2D" uid="uid://bcb0gu3kklcya" path="res://assets/spells/Earth_Spike/004.png" id="5_jkmdf"]
+[ext_resource type="Texture2D" uid="uid://bo6vqpwjfefqw" path="res://assets/spells/Earth_Spike/005.png" id="6_hayp7"]
+[ext_resource type="Texture2D" uid="uid://csfi2ysu0gi12" path="res://assets/spells/Earth_Spike/006.png" id="7_uwdmj"]
+[ext_resource type="Texture2D" uid="uid://dked80m1wrpfe" path="res://assets/spells/Earth_Spike/007.png" id="8_sgyai"]
+[ext_resource type="Texture2D" uid="uid://dw0au76ay0fxe" path="res://assets/spells/Earth_Spike/008.png" id="9_31x42"]
+[ext_resource type="Texture2D" uid="uid://cjk01mywcc644" path="res://assets/spells/Earth_Spike/009.png" id="10_e1u2s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_71078"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_e1u2s")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3ysg8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mg186")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p7ywf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jkmdf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hayp7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_uwdmj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sgyai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_31x42")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_e1u2s")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42v6v"]
+radius = 32.0
+
+[node name="Shart" type="Area2D"]
+visible = false
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_17fo7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_71078")
+animation = &"fly"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_42v6v")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

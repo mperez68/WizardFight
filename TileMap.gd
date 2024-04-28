@@ -117,7 +117,7 @@ func draw_range(layer, origin, range, is_highlight):
 	else:
 		$HighlightTileMap/AnimationPlayer.play("lowlight")
 
-func draw_target(layer, origin, radius: int, is_highlight):
+func draw_target(layer, origin, radius: int, is_highlight, is_line = true, caster: TacticsCharacter = null):
 	clear_target()
 	var rough_range_start = local_to_map(origin) - Vector2i(radius, radius)
 	for i in 2 * radius + 1:
@@ -127,6 +127,24 @@ func draw_target(layer, origin, radius: int, is_highlight):
 			if is_visible_target(layer, map_to_local(temp_loc), layer, origin, radius) or temp_loc == local_to_map(origin):
 				targeted_tiles.push_front(Set.new(layer, temp_loc, temp_atlas))
 				target_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
+				if is_line and caster:
+					var line_loc = temp_loc
+					var line_loc_global = map_to_local(temp_loc)
+					var iter = Vector2(tile_set.tile_size.y / 2, 0).rotated(line_loc_global.angle_to_point(caster.global_position))
+					var iterating = true
+					while iterating:
+						# if line_loc == origin, break loop
+						if local_to_map(line_loc_global) == local_to_map(caster.global_position):
+							iterating = false
+						# if new line_loc_global is a new line_loc, mark as targetted
+						elif local_to_map(line_loc_global) != line_loc:
+							line_loc = local_to_map(line_loc_global)
+							var line_atlas = get_cell_atlas_coords(layer, line_loc)
+							targeted_tiles.push_front(Set.new(layer, line_loc, line_atlas))
+							target_map.set_cell(layer, line_loc, 1, line_atlas, 0)
+						# shift line_loc_global toards origin
+						line_loc_global += iter
+	
 	if is_highlight:
 		$TargetHighlightTileMap/AnimationPlayer.play("highlight")
 	else:

@@ -27,6 +27,7 @@ func _physics_process(_delta):
 		
 		if current_path.is_empty():
 			anim.play("hit")
+			visible = true
 
 func start(target_body: TacticsCharacter, origin: Vector2, origin_height = 64):
 	target = target_body

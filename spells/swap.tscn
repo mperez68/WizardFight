@@ -1,0 +1,119 @@
+[gd_scene load_steps=14 format=3 uid="uid://d4iw23sbcncc7"]
+
+[ext_resource type="Script" path="res://spells/Swap.gd" id="1_mvux7"]
+[ext_resource type="Texture2D" uid="uid://diqggda353umx" path="res://assets/spells/Teleport/007.png" id="2_dxw5x"]
+[ext_resource type="Texture2D" uid="uid://o3mki2ipucql" path="res://assets/spells/Teleport/008.png" id="3_wfkwo"]
+[ext_resource type="Texture2D" uid="uid://d2kdlqkt5kxj5" path="res://assets/spells/Teleport/006.png" id="4_enih0"]
+[ext_resource type="Texture2D" uid="uid://bfhlis663lrbp" path="res://assets/spells/Teleport/009.png" id="5_ankyv"]
+[ext_resource type="Texture2D" uid="uid://c8jkt6qtry1b4" path="res://assets/spells/Teleport/010.png" id="6_hed3c"]
+[ext_resource type="Texture2D" uid="uid://42ppejejb7sc" path="res://assets/spells/Teleport/001.png" id="7_82xpu"]
+[ext_resource type="Texture2D" uid="uid://bfa0uld71dup4" path="res://assets/spells/Teleport/002.png" id="8_w3qmq"]
+[ext_resource type="Texture2D" uid="uid://daejmebqiixrb" path="res://assets/spells/Teleport/003.png" id="9_1hq11"]
+[ext_resource type="Texture2D" uid="uid://catfrbtp0l0ju" path="res://assets/spells/Teleport/004.png" id="10_u4l0s"]
+[ext_resource type="Texture2D" uid="uid://d1fft65i08d2c" path="res://assets/spells/Teleport/005.png" id="11_jioej"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6iejy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dxw5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wfkwo")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_enih0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dxw5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wfkwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ankyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hed3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_82xpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_w3qmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1hq11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u4l0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jioej")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_82xpu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_w3qmq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_1hq11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u4l0s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jioej")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hed3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ankyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wfkwo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dxw5x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_enih0")
+}],
+"loop": false,
+"name": &"post_hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42v6v"]
+radius = 48.0
+
+[node name="Swap" type="Area2D"]
+visible = false
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(3, 3)
+script = ExtResource("1_mvux7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_6iejy")
+animation = &"fly"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_42v6v")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

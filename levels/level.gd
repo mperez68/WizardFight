@@ -209,7 +209,6 @@ func _on_button_mouse_entered(num, type):
 		if characters[turn_pointer].name.contains("Player"):
 			tilemap.draw_range(characters[turn_pointer].z_index, characters[turn_pointer].global_position, spell.range, false)
 			tilemap.draw_target(characters[turn_pointer].z_index, characters[turn_pointer].global_position, spell.radius, false)
-	
 	if (type == "item"):
 		var item = characters[turn_pointer].items[num]
 		tooltip.append_text("[b]%s: [/b]\n%s" % [item.name, item.tooltip])

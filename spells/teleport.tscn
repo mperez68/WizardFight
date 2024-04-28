@@ -110,7 +110,7 @@ script = ExtResource("1_dyedu")
 z_index = 1
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_6iejy")
-animation = &"fly"
+animation = &"post_hit"
 speed_scale = 3.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

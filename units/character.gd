@@ -162,14 +162,7 @@ func can_cast(pointer:int = -1, spell: Spell.Spell = null):
 		temp_spell = spells[pointer]
 	return attacks > 0 and mana >= temp_spell.cost
 
-func get_line(location: Vector2i, origin: Vector2i = get_grid_position(), layer = z_index):
-	pass
-
-func get_cone(radius: int, location: Vector2i, origin: Vector2i = get_grid_position(), layer = z_index):
-	pass
-
-func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int = z_index):
-	
+func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int = z_index, is_line = false):
 	var targets: Array[TacticsCharacter] = []
 	var rough_range_start = origin - Vector2i(radius, radius)
 	for i in 2 * radius + 1:
@@ -177,10 +170,31 @@ func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int 
 			var temp_loc = Vector2i(i, j) + rough_range_start
 			# select any targets at location
 			for k in level.characters.size():
-				if level.characters[k].get_grid_position() == origin and !level.characters[k].is_dead and !targets.has(level.characters[k]):
-					targets.push_back(level.characters[k])
-				elif level.characters[k].get_grid_position() == temp_loc and !level.characters[k].is_dead and tilemap.is_visible_target(level.characters[k].z_index, level.characters[k].position, z_index, tilemap.map_to_local(origin), radius):
-					targets.push_back(level.characters[k])
+				# Break if already added
+				if !targets.has(level.characters[k]):
+					# Self
+					if level.characters[k].get_grid_position() == origin and !level.characters[k].is_dead:
+						targets.push_back(level.characters[k])
+					#Points in radius
+					elif level.characters[k].get_grid_position() == temp_loc and !level.characters[k].is_dead and tilemap.is_visible_target(level.characters[k].z_index, level.characters[k].position, z_index, tilemap.map_to_local(origin), radius):
+						targets.push_back(level.characters[k])
+				#Points in line
+				if is_line:
+					var line_loc = temp_loc
+					var line_loc_global = tilemap.map_to_local(temp_loc)
+					var iter = Vector2(tilemap.tile_set.tile_size.y / 2, 0).rotated(line_loc_global.angle_to_point(global_position))
+					var iterating = true
+					while iterating:
+						# if line_loc == origin, break loop
+						if tilemap.local_to_map(line_loc_global) == tilemap.local_to_map(global_position):
+							iterating = false
+						# if new line_loc_global is a new line_loc, mark as targetted
+						elif tilemap.local_to_map(line_loc_global) != line_loc:
+							line_loc = tilemap.local_to_map(line_loc_global)
+							if level.characters[k].get_grid_position() == line_loc and !targets.has(level.characters[k]):
+								targets.push_back(level.characters[k])
+						# shift line_loc_global toards origin
+						line_loc_global += iter
 	
 	return targets
 
@@ -195,7 +209,7 @@ func shoot(spell: Spell.Spell, location: Vector2i, layer = z_index):
 		print("Cannot cast! ", mana, " < ", spell.cost, " :: attacks == ", attacks)
 		return false
 		
-	var targets = get_radius(spell.radius, location, layer)
+	var targets = get_radius(spell.radius, location, layer, spell.is_line)
 	
 	if (targets.size() and !spell.no_target) or (targets.is_empty() and spell.no_target):
 		anim.play("cast")
@@ -304,7 +318,6 @@ func start_turn():
 	speed = _max_speed
 	attacks = _max_attacks
 	item_uses = _max_item_uses
-	set_active(true)
 	add_hp(_hp_regen)
 	add_mana(_mana_regen)
 	
@@ -316,6 +329,8 @@ func start_turn():
 			effects.remove_at(j)
 	
 	tilemap.astar[z_index].set_point_solid(get_grid_position(), false)
+	
+	set_active(true)
 
 func end_turn():
 	if is_dead:
