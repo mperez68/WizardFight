@@ -1,4 +1,4 @@
-enum EffectNames{ POISON, SLOW }
+enum EffectNames{ POISON, SLOW, RUSH, SPELLSHIELD }
 
 var _adj_vectors: Array[Vector2]
 
@@ -25,6 +25,10 @@ class StatusEffect:
 				populate("Poison", 1, null, poison, _on_end)
 			EffectNames.SLOW:
 				populate("Slow", 2, null, slow, _on_end)
+			EffectNames.RUSH:
+				populate("Rush", 3, null, rush, _on_end)
+			EffectNames.SPELLSHIELD:
+				populate("Spellshield", 2, null, fall_off, _on_end)
 			_:
 				pass
 	
@@ -40,8 +44,22 @@ class StatusEffect:
 		turns_remaining -= 1
 	
 	# Effect functions
+	var rush_end = func(target: TacticsCharacter):
+		_on_end.call(target)
+		if turns_remaining <= 0:
+			target.effects.push_back(StatusEffect.new(EffectNames.SLOW))
+	
+	var none = func(target: TacticsCharacter):
+		pass
+	
+	var fall_off = func(target: TacticsCharacter):
+		turns_remaining = 0
+	
 	var poison = func(target: TacticsCharacter):
 		target.add_hp(-1)
 
 	var slow = func(target: TacticsCharacter):
 		target.speed -= 2
+
+	var rush = func(target: TacticsCharacter):
+		target.speed += 2

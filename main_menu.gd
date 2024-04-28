@@ -4,7 +4,7 @@ class_name MainMenu
 
 @onready var FULL_SIZE = DisplayServer.screen_get_size()
 const WINDOW_SIZE = Vector2i(1440, 900)
-const levels = ["res://levels/level1.tscn", "res://levels/level2.tscn", "res://levels/level3.tscn"]
+const levels = ["res://levels/level1.tscn", "res://levels/level2.tscn", "res://levels/level3.tscn", "res://levels/level4.tscn", "res://levels/level5.tscn", "res://levels/level6.tscn"]
 
 
 # Title Screen

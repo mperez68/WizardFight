@@ -13,7 +13,7 @@ var current_path: Array[Vector2]
 var target: CharacterBody2D
 var item = Item.Item.new(Item.ItemNames.HEALTH_POTION)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if current_path.is_empty():
 		return
 	

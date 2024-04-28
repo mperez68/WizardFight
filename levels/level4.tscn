@@ -1,0 +1,997 @@
+[gd_scene load_steps=15 format=3 uid="uid://dg0ero300ul55"]
+
+[ext_resource type="Script" path="res://levels/level.gd" id="1_i2gq3"]
+[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="2_u8jhf"]
+[ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="3_owqd7"]
+[ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="4_b60bb"]
+[ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="5_xdj1x"]
+[ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="6_m15fi"]
+[ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="7_mps8x"]
+[ext_resource type="Script" path="res://levels/PauseScreen.gd" id="8_mqldd"]
+[ext_resource type="PackedScene" uid="uid://bqq3h0x7dpwsn" path="res://levels/spell_select.tscn" id="9_rky2i"]
+[ext_resource type="Texture2D" uid="uid://bgek84jsv3okh" path="res://1-Background_scene 0@2x.jpg" id="10_lxwwt"]
+[ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://levels/BaseTileMap.tscn" id="11_m0la2"]
+[ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="12_8pvqa"]
+[ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="13_y644w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
+font_size = 128
+
+[node name="Level3" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_i2gq3")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScreenSize" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TurnText" type="Label" parent="HUD/ScreenSize"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -540.0
+offset_right = 25.0
+offset_bottom = -515.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Turn"
+horizontal_alignment = 1
+
+[node name="TurnCounter" type="Label" parent="HUD/ScreenSize"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = -515.0
+offset_right = 25.0
+offset_bottom = -475.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMove" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -935.0
+offset_top = 415.0
+offset_right = -835.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonMove"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonMove/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell1" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -815.0
+offset_top = 415.0
+offset_right = -715.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("3_owqd7")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell1/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell2" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -690.0
+offset_top = 415.0
+offset_right = -590.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("4_b60bb")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell2/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell3" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -565.0
+offset_top = 415.0
+offset_right = -465.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("5_xdj1x")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell3/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell4" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = 415.0
+offset_right = -340.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("6_m15fi")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell4/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell5" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -315.0
+offset_top = 415.0
+offset_right = -215.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("7_mps8x")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonSpell5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonSpell5/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem1" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 635.0
+offset_top = 415.0
+offset_right = 735.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem1/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem2" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 510.0
+offset_top = 415.0
+offset_right = 610.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem2/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem3" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 385.0
+offset_top = 415.0
+offset_right = 485.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem3/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem4" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 260.0
+offset_top = 415.0
+offset_right = 360.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem4/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem5" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 415.0
+offset_right = 240.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonItem5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonItem5/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonPassTurn" type="TextureButton" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 760.0
+offset_top = 340.0
+offset_right = 935.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ButtonPassTurn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonPassTurn/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Pass Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ToolTip" type="ColorRect" parent="HUD/ScreenSize"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -935.0
+offset_top = 200.0
+offset_right = -535.0
+offset_bottom = 400.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.403922)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/ToolTip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="HUD/ScreenSize/ToolTip/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+autowrap_mode = 2
+
+[node name="TooltipSpell1" type="TextureRect" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -940.0
+offset_top = 150.0
+offset_right = -890.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("3_owqd7")
+
+[node name="TooltipSpell2" type="TextureRect" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -890.0
+offset_top = 150.0
+offset_right = -840.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("4_b60bb")
+
+[node name="TooltipSpell3" type="TextureRect" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -840.0
+offset_top = 150.0
+offset_right = -790.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("5_xdj1x")
+
+[node name="TooltipSpell4" type="TextureRect" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -790.0
+offset_top = 150.0
+offset_right = -740.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("6_m15fi")
+
+[node name="TooltipSpell5" type="TextureRect" parent="HUD/ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -740.0
+offset_top = 150.0
+offset_right = -690.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("7_mps8x")
+
+[node name="EndGameScreen" type="Control" parent="HUD/ScreenSize"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainTextRect" type="TextureRect" parent="HUD/ScreenSize/EndGameScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -295.0
+offset_right = 405.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u8jhf")
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/EndGameScreen/MainTextRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU WIN"
+label_settings = SubResource("LabelSettings_nxx1c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="TextureButton" parent="HUD/ScreenSize/EndGameScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = 80.0
+offset_right = 55.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/EndGameScreen/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseScreen" type="Control" parent="HUD/ScreenSize"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_mqldd")
+
+[node name="MainTextRect" type="TextureRect" parent="HUD/ScreenSize/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -295.0
+offset_right = 405.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_u8jhf")
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/MainTextRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.5
+offset_top = -97.5
+offset_right = 269.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_nxx1c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Control" parent="HUD/ScreenSize/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 80.0
+offset_right = 105.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Menu/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Menu/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 230.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Menu/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="HUD/ScreenSize/PauseScreen"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Volume" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Volume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Full Screen" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 155.0
+offset_top = 5.0
+offset_right = 230.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Full Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FULL SCREEN
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Borderless" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 105.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Borderless"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BORDER-
+LESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Back" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 80.0
+offset_right = 105.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("2_u8jhf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpellSelectScreen" parent="." instance=ExtResource("9_rky2i")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(1.1, 1.1)
+motion_mirroring = Vector2(3840, 2400)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(221, -171)
+texture = ExtResource("10_lxwwt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 1200)
+zoom = Vector2(0.4, 0.4)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
+rotation_smoothing_speed = 2.0
+
+[node name="TileMap" parent="." instance=ExtResource("11_m0la2")]
+layer_0/tile_data = PackedInt32Array(65537, 65537, 4, 65538, 65537, 4, 131073, 65537, 4, 1, 65537, 3, 65536, 65537, 3, 2, 65537, 3, 131072, 65537, 3, 131074, 65537, 4, 0, 65537, 3, 196609, 65537, 4, 262145, 65537, 4, 196610, 65537, 4, 262146, 65537, 4, 65539, 65537, 4, 131075, 65537, 4, 196611, 65537, 4, 262147, 65537, 4, 65540, 65537, 4, 131076, 65537, 4, 196612, 65537, 4, 262148, 65537, 4)
+
+[node name="Player1" parent="." instance=ExtResource("12_8pvqa")]
+position = Vector2(-228, 400)
+team = 2
+
+[node name="Acolyte1" parent="." instance=ExtResource("13_y644w")]
+position = Vector2(528, 396)
+team = 1
+
+[connection signal="pressed" from="HUD/ScreenSize/ButtonMove" to="." method="_on_move_pressed"]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_spell_pressed" binds= [0]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell2" to="." method="_on_button_mouse_entered" binds= [1, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell2" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell2" to="." method="_on_spell_pressed" binds= [1]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell3" to="." method="_on_button_mouse_entered" binds= [2, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell3" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell3" to="." method="_on_spell_pressed" binds= [2]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell4" to="." method="_on_button_mouse_entered" binds= [3, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell4" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell4" to="." method="_on_spell_pressed" binds= [3]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell5" to="." method="_on_button_mouse_entered" binds= [4, "spell"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell5" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonSpell5" to="." method="_on_spell_pressed" binds= [4]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem1" to="." method="_on_button_mouse_entered" binds= [0, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem1" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem1" to="." method="_on_item_pressed" binds= [0]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem2" to="." method="_on_button_mouse_entered" binds= [1, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem2" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem2" to="." method="_on_item_pressed" binds= [1]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem3" to="." method="_on_button_mouse_entered" binds= [2, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem3" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem3" to="." method="_on_item_pressed" binds= [2]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem4" to="." method="_on_button_mouse_entered" binds= [3, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem4" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem4" to="." method="_on_item_pressed" binds= [3]]
+[connection signal="mouse_entered" from="HUD/ScreenSize/ButtonItem5" to="." method="_on_button_mouse_entered" binds= [4, "item"]]
+[connection signal="mouse_exited" from="HUD/ScreenSize/ButtonItem5" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonItem5" to="." method="_on_item_pressed" binds= [4]]
+[connection signal="pressed" from="HUD/ScreenSize/ButtonPassTurn" to="." method="_on_pass_turn_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/EndGameScreen/Return" to="." method="_on_return_button_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Resume" to="HUD/ScreenSize/PauseScreen" method="_on_resume_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Settings" to="HUD/ScreenSize/PauseScreen" method="_on_settings_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Menu/Return" to="HUD/ScreenSize/PauseScreen" method="_on_return_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Full Screen" to="HUD/ScreenSize/PauseScreen" method="_on_full_screen_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Borderless" to="HUD/ScreenSize/PauseScreen" method="_on_borderless_pressed"]
+[connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Back" to="HUD/ScreenSize/PauseScreen" method="_on_back_pressed"]

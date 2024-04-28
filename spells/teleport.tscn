@@ -1,0 +1,119 @@
+[gd_scene load_steps=14 format=3 uid="uid://1hmf8pyw5wxv"]
+
+[ext_resource type="Script" path="res://spells/Teleport.gd" id="1_dyedu"]
+[ext_resource type="Texture2D" uid="uid://42ppejejb7sc" path="res://assets/spells/Teleport/001.png" id="2_law62"]
+[ext_resource type="Texture2D" uid="uid://bfa0uld71dup4" path="res://assets/spells/Teleport/002.png" id="3_ww8lg"]
+[ext_resource type="Texture2D" uid="uid://daejmebqiixrb" path="res://assets/spells/Teleport/003.png" id="4_4h5ju"]
+[ext_resource type="Texture2D" uid="uid://catfrbtp0l0ju" path="res://assets/spells/Teleport/004.png" id="5_g4x3e"]
+[ext_resource type="Texture2D" uid="uid://d1fft65i08d2c" path="res://assets/spells/Teleport/005.png" id="6_8yi70"]
+[ext_resource type="Texture2D" uid="uid://c8jkt6qtry1b4" path="res://assets/spells/Teleport/010.png" id="7_f8gjs"]
+[ext_resource type="Texture2D" uid="uid://bfhlis663lrbp" path="res://assets/spells/Teleport/009.png" id="8_5mync"]
+[ext_resource type="Texture2D" uid="uid://o3mki2ipucql" path="res://assets/spells/Teleport/008.png" id="9_gcb3c"]
+[ext_resource type="Texture2D" uid="uid://diqggda353umx" path="res://assets/spells/Teleport/007.png" id="10_jkiqa"]
+[ext_resource type="Texture2D" uid="uid://d2kdlqkt5kxj5" path="res://assets/spells/Teleport/006.png" id="11_6saiy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6iejy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_jkiqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gcb3c")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_6saiy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jkiqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gcb3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5mync")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f8gjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_law62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ww8lg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4h5ju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g4x3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8yi70")
+}],
+"loop": false,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_law62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ww8lg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4h5ju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g4x3e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8yi70")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_f8gjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5mync")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_gcb3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jkiqa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6saiy")
+}],
+"loop": false,
+"name": &"post_hit",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_42v6v"]
+radius = 48.0
+
+[node name="Teleport" type="Area2D"]
+visible = false
+z_index = 1
+y_sort_enabled = true
+scale = Vector2(3, 3)
+script = ExtResource("1_dyedu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_6iejy")
+animation = &"fly"
+speed_scale = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_42v6v")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]

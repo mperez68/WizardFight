@@ -162,6 +162,12 @@ func can_cast(pointer:int = -1, spell: Spell.Spell = null):
 		temp_spell = spells[pointer]
 	return attacks > 0 and mana >= temp_spell.cost
 
+func get_line(location: Vector2i, origin: Vector2i = get_grid_position(), layer = z_index):
+	pass
+
+func get_cone(radius: int, location: Vector2i, origin: Vector2i = get_grid_position(), layer = z_index):
+	pass
+
 func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int = z_index):
 	
 	var targets: Array[TacticsCharacter] = []
@@ -188,14 +194,15 @@ func shoot(spell: Spell.Spell, location: Vector2i, layer = z_index):
 	if !can_cast(0, spell):
 		print("Cannot cast! ", mana, " < ", spell.cost, " :: attacks == ", attacks)
 		return false
-	
+		
 	var targets = get_radius(spell.radius, location, layer)
 	
-	if targets.size():
+	if (targets.size() and !spell.no_target) or (targets.is_empty() and spell.no_target):
 		anim.play("cast")
 		add_mana(-spell.cost)
 		attacks -= 1
 	else:
+		print("break")
 		_on_hit()
 		return false
 	
@@ -203,6 +210,13 @@ func shoot(spell: Spell.Spell, location: Vector2i, layer = z_index):
 	for i in targets.size():
 		var missile = spell.spell_node.instantiate()
 		missile.start(targets[i], global_position)
+		active_missiles += 1
+		missile.hit.connect(_on_hit)
+		add_child(missile)
+	
+	if targets.is_empty() and spell.no_target:
+		var missile = spell.spell_node.instantiate()
+		missile.start_no_target(self, tilemap.map_to_local(location))
 		active_missiles += 1
 		missile.hit.connect(_on_hit)
 		add_child(missile)
@@ -296,7 +310,10 @@ func start_turn():
 	
 	# Effect modifiers
 	for i in effects.size():
-		effects[i].on_start.call(self)
+		var j = effects.size() - 1 - i
+		effects[j].on_start.call(self)
+		if effects[j].turns_remaining <= 0:
+			effects.remove_at(j)
 	
 	tilemap.astar[z_index].set_point_solid(get_grid_position(), false)
 
