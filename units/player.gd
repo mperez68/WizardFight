@@ -20,7 +20,7 @@ func _ready():
 	
 	spells = []
 	
-	team = 0
+	set_team(1)
 
 # Viewport Updates
 func _physics_process(_delta):

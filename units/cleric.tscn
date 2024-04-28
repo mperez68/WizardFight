@@ -1,7 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://cr3jfrupjwqnl"]
+[gd_scene load_steps=23 format=3 uid="uid://cr3jfrupjwqnl"]
 
 [ext_resource type="Script" path="res://units/cleric.gd" id="1_x5i6d"]
 [ext_resource type="Texture2D" uid="uid://shw4sb7vak0r" path="res://assets/char_a_p1_0bas_humn_v01.png" id="2_bneyn"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_72ytg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_evbtd"]
 size = Vector2(47, 88.5)
@@ -262,6 +264,13 @@ offset_bottom = 25.0
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TeamColor" type="TextureRect" parent="Info"]
+offset_left = -30.0
+offset_top = -20.0
+offset_right = -5.0
+offset_bottom = 20.0
+texture = SubResource("CanvasTexture_72ytg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, -39.75)

@@ -12,7 +12,7 @@ func _on_animation_finished():
 		z.global_position = global_position - Vector2(0, -32)
 		target.level.characters.push_back(z)
 		target.add_sibling(z)
-		z.team = target.team
+		z.set_team(target.team)
 		hit.emit()
 		anim.play("post_hit")
 	if anim and anim.animation == "post_hit":

@@ -14,8 +14,7 @@ func _ready():
 	super()
 	ai_profile = Ai.AiProfile.new(self, Ai.ProfileNames.MINION)
 	
-	if (!team):
-		team = 1
+	set_team()
 
 func start_turn():
 	super()
@@ -26,7 +25,6 @@ func start_turn():
 	
 	await get_tree().create_timer(1).timeout
 	ai_profile.turn_process()
-
 
 # Tooltip fill/clear
 func populate_tooltip():

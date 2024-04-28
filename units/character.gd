@@ -7,6 +7,8 @@ class_name TacticsCharacter
 ## extend fron NPC instead because it contains AI profiles and other automatic turn
 ## passing methods.
 
+const TEAM_COLORS = [ Color(1, 1, 1, 0), Color(0, 0, 1), Color(1, 0, 0), Color(0, 1, 0), Color(1, 1, 0) ]
+
 const ANIM_SPEED = 4
 const Spell = preload("res://spells/Spell.gd")
 const Item = preload("res://items/item.gd")
@@ -55,6 +57,9 @@ func _ready():
 	
 	hp = _max_hp
 	mana = _max_mana
+	
+	if !team:
+		set_team(2)
 	
 	if !start:
 		start = tilemap.local_to_map(global_position)
@@ -146,6 +151,15 @@ func set_mana(value):
 func add_mana(value):
 	set_mana(min(mana + value, _max_mana))
 
+func set_team(tm: int = team):
+	if tm:
+		team = tm
+	if team >= 0 and team < TEAM_COLORS.size():
+		$Info/TeamColor.visible = true
+		$Info/TeamColor.modulate = TEAM_COLORS[tm]
+	else:
+		$Info/TeamColor.visible = false
+		
 func set_active(new_state = true):
 	is_active = new_state
 
