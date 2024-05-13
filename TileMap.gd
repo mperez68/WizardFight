@@ -10,16 +10,23 @@ class Set:
 		atlas_location = atlas
 
 const ATLAS_WATER = Vector2i(1, 3)
-const ATLAS_LIGHT_WATER = Vector2i(0, 3)
+const ATLAS_LIGHT_WATER = Vector2i(1, 3)
+const TERRAIN_ID = 8
+const ATLAS_HIGHLIGHT = Vector2i(0, 2)
+const ATLAS_TARGET = Vector2i(1, 2)
 
 var map_rect: Array[Rect2i]
 var astar: Array[AStarGrid2D]
 var highlighted_tiles: Array[Set]
 var targeted_tiles: Array[Set]
 
+var tile_size: Vector2
+
 # todo cache shadow tracing
 #var cache_position: Vector2i
 #var cache_visible map Array[Rect2i]
+
+@export var print_astar = false
 
 @onready var target_map = $TargetHighlightTileMap
 @onready var highlight_map = $HighlightTileMap
@@ -36,7 +43,7 @@ func _ready():
 
 func populate_layer(layer):
 	# instantiate grid
-	var tile_size = get_tileset().tile_size
+	tile_size = get_tileset().tile_size
 	var tilemap_size = get_used_rect().end - get_used_rect().position
 	map_rect.push_back(Rect2i(Vector2i(get_used_rect().position), tilemap_size))
 	astar.push_back(AStarGrid2D.new())
@@ -50,11 +57,14 @@ func populate_layer(layer):
 	astar[layer].diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar[layer].update()
 	
+	if print_astar:
+		print("\n%s size: %s" % [layer, tilemap_size])
 	for i in tilemap_size.x:
+		var txt = ""
 		for j in tilemap_size.y:
 			
 			# Get temp vars
-			var coordinates = Vector2i(i, j)
+			var coordinates = Vector2i(i + map_rect[layer].position.x, j + map_rect[layer].position.y)
 			var tile_data = get_cell_tile_data(layer, coordinates)
 			var terrain_data = get_cell_tile_data(layer + 1, coordinates)
 			var wall_data = get_cell_tile_data(layer + 1, coordinates - Vector2i(layer + 1, layer + 1))
@@ -74,16 +84,19 @@ func populate_layer(layer):
 				erase_cell(layer, coordinates)
 				water_map.set_cell(layer, coordinates, 0, ATLAS_WATER)
 				astar[layer].set_point_solid(coordinates)
-			if get_cell_atlas_coords(layer, coordinates) == ATLAS_LIGHT_WATER:
-				erase_cell(layer, coordinates)
-				water_map.set_cell(layer, coordinates, 0, ATLAS_LIGHT_WATER)
-				astar[layer].set_point_solid(coordinates)
 			
 			# set walls
-			if astar[layer].is_in_boundsv(coordinates) and (!tile_data or wall_data or terrain_data):
+			if !tile_data or wall_data or terrain_data:
+				txt += "(-, -)"
+				astar[layer].is_in_boundsv(coordinates)
 				astar[layer].set_point_solid(coordinates)
+			else:
+				txt += str(coordinates)
+				#print("blank @ %s" % coordinates)
+		if print_astar:
+			print(txt)
 
-func draw_weighted_range(layer, origin, speed, is_higlight):
+func draw_weighted_range(layer, origin, speed, is_highlight):
 	clear_highlights()
 	var rough_range_start = local_to_map(origin) - Vector2i(speed, speed)
 	for i in 2 * speed + 1:
@@ -93,11 +106,11 @@ func draw_weighted_range(layer, origin, speed, is_higlight):
 			if is_stairs(layer, temp_loc):
 				temp_layer += 1
 				temp_loc -= Vector2i(1, 1)
-			var temp_atlas = get_cell_atlas_coords(temp_layer, temp_loc)
+			#var temp_atlas = get_cell_atlas_coords(temp_layer, temp_loc)
 			if is_point_in_range_weighted(layer, map_to_local(Vector2i(i, j) + rough_range_start), origin, speed):
-				highlighted_tiles.push_front(Set.new(temp_layer, temp_loc, temp_atlas))
-				highlight_map.set_cell(temp_layer, temp_loc, 1, temp_atlas, 0)
-	if is_higlight:
+				highlighted_tiles.push_front(Set.new(temp_layer, temp_loc, ATLAS_HIGHLIGHT))
+				highlight_map.set_cell(temp_layer, temp_loc, TERRAIN_ID, ATLAS_HIGHLIGHT, 0)
+	if is_highlight:
 		$HighlightTileMap/AnimationPlayer.play("highlight")
 	else:
 		$HighlightTileMap/AnimationPlayer.play("lowlight")
@@ -108,10 +121,10 @@ func draw_range(layer, origin, range, is_highlight):
 	for i in 2 * range + 1:
 		for j in 2 * range + 1:
 			var temp_loc = Vector2i(i, j) + rough_range_start
-			var temp_atlas = get_cell_atlas_coords(layer, temp_loc)
-			if is_visible_target(layer, map_to_local(temp_loc), layer, origin, range):
-				highlighted_tiles.push_front(Set.new(layer, temp_loc, temp_atlas))
-				highlight_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
+			#var temp_atlas = get_cell_atlas_coords(layer, temp_loc)
+			if get_cell_tile_data(layer, temp_loc) and is_visible_target(layer, map_to_local(temp_loc), layer, origin, range):
+				highlighted_tiles.push_front(Set.new(layer, temp_loc, ATLAS_HIGHLIGHT))
+				highlight_map.set_cell(layer, temp_loc, TERRAIN_ID, ATLAS_HIGHLIGHT, 0)
 	if is_highlight:
 		$HighlightTileMap/AnimationPlayer.play("highlight")
 	else:
@@ -123,14 +136,14 @@ func draw_target(layer, origin, radius: int, is_highlight, is_line = true, caste
 	for i in 2 * radius + 1:
 		for j in 2 * radius + 1:
 			var temp_loc = Vector2i(i, j) + rough_range_start
-			var temp_atlas = get_cell_atlas_coords(layer, temp_loc)
+			#var temp_atlas = get_cell_atlas_coords(layer, temp_loc)
 			if is_visible_target(layer, map_to_local(temp_loc), layer, origin, radius) or temp_loc == local_to_map(origin):
-				targeted_tiles.push_front(Set.new(layer, temp_loc, temp_atlas))
-				target_map.set_cell(layer, temp_loc, 1, temp_atlas, 0)
+				targeted_tiles.push_front(Set.new(layer, temp_loc, ATLAS_TARGET))
+				target_map.set_cell(layer, temp_loc, TERRAIN_ID, ATLAS_TARGET, 0)
 				if is_line and caster:
 					var line_loc = temp_loc
 					var line_loc_global = map_to_local(temp_loc)
-					var iter = Vector2(tile_set.tile_size.y / 2, 0).rotated(line_loc_global.angle_to_point(caster.global_position))
+					var iter = Vector2(tile_size.y / 2, 0).rotated(line_loc_global.angle_to_point(caster.global_position))
 					var iterating = true
 					while iterating:
 						# if line_loc == origin, break loop
@@ -139,9 +152,9 @@ func draw_target(layer, origin, radius: int, is_highlight, is_line = true, caste
 						# if new line_loc_global is a new line_loc, mark as targetted
 						elif local_to_map(line_loc_global) != line_loc:
 							line_loc = local_to_map(line_loc_global)
-							var line_atlas = get_cell_atlas_coords(layer, line_loc)
-							targeted_tiles.push_front(Set.new(layer, line_loc, line_atlas))
-							target_map.set_cell(layer, line_loc, 1, line_atlas, 0)
+							#var line_atlas = get_cell_atlas_coords(layer, line_loc)
+							targeted_tiles.push_front(Set.new(layer, line_loc, ATLAS_TARGET))
+							target_map.set_cell(layer, line_loc, TERRAIN_ID, ATLAS_TARGET, 0)
 						# shift line_loc_global toards origin
 						line_loc_global += iter
 	

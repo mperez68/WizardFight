@@ -197,7 +197,7 @@ func select_item(click_position):
 	
 	
 	# Scrolls
-	if items[item_pointer].spell and ((grid_loc == target_grid_loc and items[item_pointer].spell.self_cast) or tilemap.is_visible_target(z_index, click_position, z_index, global_position, items[item_pointer].spell.range)) and select_mode == Select.ITEM:
+	if item_pointer > items.size() and items[item_pointer].spell and ((grid_loc == target_grid_loc and items[item_pointer].spell.self_cast) or tilemap.is_visible_target(z_index, click_position, z_index, global_position, items[item_pointer].spell.range)) and select_mode == Select.ITEM:
 		select_mode = Select.NONE
 		set_highlight(false)
 		level.set_hud(false)

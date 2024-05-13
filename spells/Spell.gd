@@ -52,7 +52,7 @@ class Spell:
 				self_cast = true
 				status = Effect.StatusEffect.new(Effect.EffectNames.SPELLSHIELD)
 			SpellNames.TELEPORT:
-				populate("Teleport", preload("res://spells/teleport.tscn"), preload("res://assets/spells/Teleport/tile004.png"), 2, 0, 5)
+				populate("Teleport", preload("res://spells/teleport.tscn"), preload("res://assets/spells/Teleport/tile004.png"), 1, 0, 5)
 				tooltip = "For when you need to be over there instead of over here."
 				no_target = true
 			SpellNames.SWAP:
@@ -72,8 +72,8 @@ class Spell:
 				no_target = true
 				tooltip = "Well he's not using it anymore. Raises target as a much worse version of themselves."
 			SpellNames.ESPRESSO:
-				populate("Espresso Expresso", preload("res://spells/espresso.tscn"), preload("res://assets/spells/Expresso_Expresso/tile.png"), 1)
-				tooltip = "Cranks up the heartrate. Increases move speed by 2 for 3 turns, but you burn out when it expires."
+				populate("Espresso Expresso", preload("res://spells/espresso.tscn"), preload("res://assets/spells/Expresso_Expresso/tile.png"), 0)
+				tooltip = "Cranks up the heartrate. Increases move speed by 2 for 3 turns."
 				self_cast = true
 				status = Effect.StatusEffect.new(Effect.EffectNames.RUSH)
 			SpellNames.SHART:

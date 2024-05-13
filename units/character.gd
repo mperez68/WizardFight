@@ -50,8 +50,8 @@ var active_missiles = 0
 
 # Overrides
 func _ready():
-	var vec_x = tilemap.tile_set.tile_size.x / 2
-	var vec_y = tilemap.tile_set.tile_size.y / 2
+	var vec_x = tilemap.tile_size.x / 2
+	var vec_y = tilemap.tile_size.y / 2
 	_adj_vectors = [Vector2(vec_x, vec_y), Vector2(-vec_x, vec_y),
 	Vector2(vec_x, -vec_y), Vector2(-vec_x, -vec_y)]
 	
@@ -80,19 +80,13 @@ func _ready():
 	$Info/ManaBar.max_value = mana
 
 func _physics_process(delta):
-	if is_dead:
-		anim.play("dead")
-		
-		# Set camera focus
-		focus = global_position
+	if is_dead or ((anim.animation == "cast" or anim.animation == "damage") and anim.is_playing()) or active_missiles > 0:
 		return
 	
-	if (anim.animation == "cast" and anim.is_playing()) or active_missiles > 0:
-		return
-	
-	if current_path.is_empty():
+	if anim.animation == "damage" and anim.is_playing() == false:
 		anim.play("stand")
 	
+	if current_path.is_empty():
 		# Set camera focus
 		focus = global_position
 		return
@@ -102,16 +96,20 @@ func _physics_process(delta):
 	global_position = global_position.move_toward(target_position, ANIM_SPEED)
 	
 	# Update animation when walking
+	var ex = ""
+	if global_position.angle_to_point(target_position) < 0:
+		ex = "_up"
 	if global_position.angle_to(target_position) < 0:
-		anim.play("walk_right")
+		anim.play("walk_right" + ex)
 	else:
-		anim.play("walk_left")
+		anim.play("walk_left" + ex)
 	
 	# update path when location is reached
 	if global_position == target_position:
 		var temp = current_path.pop_front()
 		speed -= tilemap.astar[z_index].get_point_weight_scale(temp)
 		if current_path.is_empty():
+			anim.play("stand")
 			# Set camera focus
 			focus = global_position
 			level.camera.position = focus
@@ -128,10 +126,14 @@ func set_hp(value):
 		die()
 
 func die():
+	anim.play("dead")
+	
+	# Set camera focus
+	focus = global_position
 	is_dead = true
 	$Info.visible = false
-	var vec_x = tilemap.tile_set.tile_size.x / 12
-	var vec_y = tilemap.tile_set.tile_size.y / 12
+	var vec_x = tilemap.tile_size.x / 12
+	var vec_y = tilemap.tile_size.y / 12
 	global_position += Vector2(-vec_x, vec_y)
 	tilemap.astar[z_index].set_point_solid(get_grid_position(), false)
 	for i in level.characters.size():
@@ -141,6 +143,8 @@ func die():
 			return
 
 func add_hp(value):
+	if value < 0:
+		anim.play("damage")
 	set_hp(min(hp + value, _max_hp))
 
 func set_mana(value):
@@ -196,7 +200,7 @@ func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int 
 				if is_line:
 					var line_loc = temp_loc
 					var line_loc_global = tilemap.map_to_local(temp_loc)
-					var iter = Vector2(tilemap.tile_set.tile_size.y / 2, 0).rotated(line_loc_global.angle_to_point(global_position))
+					var iter = Vector2(tilemap.tile_size.y / 2, 0).rotated(line_loc_global.angle_to_point(global_position))
 					var iterating = true
 					while iterating:
 						# if line_loc == origin, break loop
@@ -215,6 +219,7 @@ func get_radius(radius: int, origin: Vector2i = get_grid_position(), layer: int 
 func _on_hit():
 	active_missiles -= 1
 	if active_missiles <= 0:
+		anim.play("stand")
 		focus = global_position
 		level.camera.position = focus
 	
