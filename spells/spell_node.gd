@@ -27,6 +27,7 @@ func _physics_process(_delta):
 		
 		if current_path.is_empty():
 			anim.play("hit")
+			$"../Hit".play()
 			visible = true
 
 func start(target_body: TacticsCharacter, origin: Vector2, origin_height = 64):
@@ -61,6 +62,7 @@ func _on_animation_finished():
 				target.effects.remove_at(a)
 				damage_indicator.start(target.global_position + Vector2(0, -64), "NO", true)
 				hit.emit()
+				$"../Miss".play()
 				queue_free()
 				return
 		
@@ -77,9 +79,11 @@ func _on_animation_finished():
 				damage_indicator.start(target.global_position + Vector2(0, -64), str(spell.damage), is_crit)
 			if spell.status:
 				target.effects.push_front(spell.status)
+				$"../Effect".play()
 		else:
 			#Damage Indicator (miss)
 			damage_indicator.start(target.global_position + Vector2(0, -64), "MISS!", false)
+			$"../Miss".play()
 		
 		hit.emit()
 		queue_free()

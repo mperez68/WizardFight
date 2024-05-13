@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccnd06f2g635t"]
+[gd_scene load_steps=20 format=3 uid="uid://ccnd06f2g635t"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_i8qan"]
 [ext_resource type="PackedScene" uid="uid://bqq3h0x7dpwsn" path="res://levels/spell_select.tscn" id="2_4bm8o"]
@@ -14,6 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="12_vo36x"]
 [ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="13_l14n4"]
 [ext_resource type="Script" path="res://levels/PauseScreen.gd" id="14_4dsbs"]
+[ext_resource type="AudioStream" uid="uid://6asp3llqdeev" path="res://audio/level_theme_1.wav" id="15_obraj"]
+[ext_resource type="AudioStream" uid="uid://csjpvddly4x0p" path="res://audio/level_theme_1_start.wav" id="16_sqm76"]
+[ext_resource type="AudioStream" uid="uid://dguxef27wsk6f" path="res://audio/click.wav" id="17_ssqya"]
+[ext_resource type="AudioStream" uid="uid://bv0hnqdspelcg" path="res://audio/double_click.wav" id="18_qorvi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
 font_size = 128
@@ -973,6 +977,23 @@ position = Vector2(-189, 813)
 position = Vector2(328, 419)
 team = 2
 
+[node name="theme" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_obraj")
+volume_db = -80.0
+autoplay = true
+
+[node name="theme_start" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("16_sqm76")
+autoplay = true
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_ssqya")
+
+[node name="DoubleClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_qorvi")
+
 [connection signal="pressed" from="HUD/ScreenSize/ButtonMove" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]
 [connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_exited"]
@@ -1012,3 +1033,5 @@ team = 2
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Full Screen" to="HUD/ScreenSize/PauseScreen" method="_on_full_screen_pressed"]
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Borderless" to="HUD/ScreenSize/PauseScreen" method="_on_borderless_pressed"]
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Back" to="HUD/ScreenSize/PauseScreen" method="_on_back_pressed"]
+[connection signal="finished" from="theme" to="." method="_on_theme_finished"]
+[connection signal="finished" from="theme_start" to="." method="_on_theme_start_finished"]

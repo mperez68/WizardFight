@@ -1,7 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://dc024yahh3u6"]
+[gd_scene load_steps=33 format=3 uid="uid://dc024yahh3u6"]
 
 [ext_resource type="Script" path="res://units/orc.gd" id="1_hi776"]
 [ext_resource type="Texture2D" uid="uid://brgaf1sxfynf5" path="res://assets/Wizards/Orc.png" id="2_7od44"]
+[ext_resource type="AudioStream" uid="uid://5e6i4yli45p2" path="res://audio/damage.wav" id="3_2rf8j"]
+[ext_resource type="AudioStream" uid="uid://dvtpbx6grqt7i" path="res://audio/death.wav" id="4_bmeat"]
+[ext_resource type="AudioStream" uid="uid://cv1h4h76ncmfq" path="res://audio/effect.wav" id="5_t02kh"]
+[ext_resource type="AudioStream" uid="uid://lg804h8dhrmt" path="res://audio/heal.wav" id="6_pd31y"]
+[ext_resource type="AudioStream" uid="uid://biro7r8wcse7c" path="res://audio/hit.wav" id="7_74jsf"]
+[ext_resource type="AudioStream" uid="uid://0pulce4a5xpi" path="res://audio/miss.wav" id="8_4el8p"]
+[ext_resource type="AudioStream" uid="uid://bc1ikgwhgf1sp" path="res://audio/shoot.wav" id="9_dbdug"]
+[ext_resource type="AudioStream" uid="uid://dx1ck16myuxe8" path="res://audio/move.wav" id="10_0i8dv"]
+[ext_resource type="AudioStream" uid="uid://b6g72u8wataur" path="res://audio/turn.wav" id="11_ebfia"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mmltf"]
 
@@ -311,6 +320,34 @@ y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_oo7nr")
 animation = &"stand"
 offset = Vector2(0, -29)
+
+[node name="Damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2rf8j")
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_bmeat")
+
+[node name="Effect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_t02kh")
+
+[node name="Heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pd31y")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_74jsf")
+
+[node name="Miss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4el8p")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_dbdug")
+
+[node name="Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_0i8dv")
+
+[node name="Turn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ebfia")
+volume_db = -10.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqq3h0x7dpwsn"]
+[gd_scene load_steps=9 format=3 uid="uid://bqq3h0x7dpwsn"]
 
 [ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="1_3ujud"]
 [ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="1_l3yxh"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="2_auhx6"]
 [ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="3_fg8xw"]
 [ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="4_qhlga"]
+[ext_resource type="AudioStream" uid="uid://dguxef27wsk6f" path="res://audio/click.wav" id="7_fpk5u"]
+[ext_resource type="AudioStream" uid="uid://bv0hnqdspelcg" path="res://audio/double_click.wav" id="8_0c2fw"]
 
 [node name="SpellSelectScreen" type="CanvasLayer"]
 script = ExtResource("1_pq2dr")
@@ -1468,6 +1470,12 @@ text = "VIEW MAP"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fpk5u")
+
+[node name="DoubleClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_0c2fw")
 
 [connection signal="mouse_entered" from="BG/Selection1" to="." method="_on_selection_mouse_entered" binds= [0]]
 [connection signal="mouse_exited" from="BG/Selection1" to="." method="_on_selection_mouse_exited"]

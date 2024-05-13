@@ -4,8 +4,21 @@ class_name TacticsCharacter
 ## Abstract class for all units in the game. This includes player and NPC units.
 ##
 ## Extending from this class is required to create units. To create an NPC unit,
-## extend fron NPC instead because it contains AI profiles and other automatic turn
-## passing methods.
+## extend fron NPC instead because it contains AI profiles.
+##
+## MUST be child of a Level node
+## MUST be sibling of BaseTileMap node
+## MUST have child nodes:
+##     - AnimatedSprite2D
+##     - AudioStreamPlayers with the following names:
+##         - Damage
+##         - Death
+##         - Effect
+##         - Heal
+##         - Hit
+##         - Miss
+##         - Shoot
+##         - Turn
 
 const TEAM_COLORS = [ Color(1, 1, 1, 0), Color(0, 0, 1), Color(1, 0, 0), Color(0, 1, 0), Color(1, 1, 0) ]
 
@@ -91,6 +104,9 @@ func _physics_process(delta):
 		focus = global_position
 		return
 	
+	if !$Move.playing:
+		$Move.play()
+	
 	# Move towards next tile
 	var target_position = tilemap.map_to_local(current_path.front())
 	global_position = global_position.move_toward(target_position, ANIM_SPEED)
@@ -144,7 +160,13 @@ func die():
 
 func add_hp(value):
 	if value < 0:
-		anim.play("damage")
+		if (hp + value > 0):
+			anim.play("damage")
+			$Damage.play()
+		else:
+			$Death.play()
+	elif value > 0 and hp != _max_hp:
+		$Heal.play()
 	set_hp(min(hp + value, _max_hp))
 
 func set_mana(value):
@@ -254,6 +276,7 @@ func shoot(spell: Spell.Spell, location: Vector2i, layer = z_index):
 		missile.hit.connect(_on_hit)
 		add_child(missile)
 	
+	$Shoot.play()
 	focus_targets(targets)
 	return true
 
@@ -330,6 +353,7 @@ func start_turn():
 	if is_dead:
 		return
 	
+	$Turn.play()
 	focus = global_position
 	level.camera.position = focus
 	level.camera.zoom = Vector2(1, 1)

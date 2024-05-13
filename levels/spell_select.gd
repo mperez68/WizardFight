@@ -72,6 +72,8 @@ func _on_go_button_pressed():
 	
 	visible = false
 	$"../HUD".visible = true
+	$"..".is_playing_full_song = true
+	$DoubleClick.play()
 	
 	for i in wizards.size():
 		for j in wizards[i].chosen_spells.size():
@@ -82,9 +84,11 @@ func _on_go_button_pressed():
 	level.inc_turn()
 
 func _on_view_map_button_pressed():
+	$Click.play()
 	$BG.visible = !$BG.visible
 
 func _on_selection_pressed(key):
+	$Click.play()
 	var sel
 	
 	if select_type == select.SPELLS:
@@ -102,6 +106,7 @@ func _on_selection_pressed(key):
 	update_selections()
 
 func _on_selected_wizard_pressed(wizard_key):
+	$DoubleClick.play()
 	if wizards.size() > wizard_key:
 		wizard_buttons[active_wizard_pointer].find_children("*", "Label")[0].uppercase = false
 		active_wizard_pointer = wizard_key
@@ -109,11 +114,13 @@ func _on_selected_wizard_pressed(wizard_key):
 	update_selections()
 
 func _on_selected_option_pressed(button_key):
+	$Click.play()
 	if button_key < get_arr().size():
 		get_arr().remove_at(button_key)
 	update_selections()
 
 func _on_sp_it_switch_pressed():
+	$DoubleClick.play()
 	select_type = (select_type + 1) % 2
 	update_selections()
 	update_options()

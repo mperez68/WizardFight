@@ -6,10 +6,12 @@ var pending_removal_pointers = []
 var turn_pointer = -1
 var dragging = false
 var pan_vector = Vector2(0, 0)
+var is_playing_full_song = false
 
 const Spell = preload("res://spells/Spell.gd")
 const Item = preload("res://items/item.gd")
 const PAN_SPEED = 1024
+const VOL_CHANGE_SPEED = 0.5
 
 @onready var tilemap = $TileMap
 @onready var camera = $Camera2D
@@ -32,6 +34,22 @@ func _process(delta):
 		pan_vector.y = 0
 	
 	camera.position += pan_vector * delta
+	
+	# Music
+	if is_playing_full_song:
+		if $theme.volume_db < -40:
+			$theme.volume_db = -20
+		elif $theme.volume_db != 0:
+			$theme.volume_db += VOL_CHANGE_SPEED
+			
+		if $theme_start.volume_db != -80:
+			$theme_start.volume_db -= VOL_CHANGE_SPEED
+	else:
+		if $theme_start.volume_db != 0:
+			$theme_start.volume_db += VOL_CHANGE_SPEED
+			
+		if $theme.volume_db != -80:
+			$theme.volume_db -= VOL_CHANGE_SPEED
 
 func _ready():
 	# Setup
@@ -164,14 +182,17 @@ func _on_pass_turn_pressed():
 
 func _on_move_pressed():
 	if turn_pointer >= 0 and characters[turn_pointer].name.contains("Player"):
+		$Click.play()
 		characters[turn_pointer].button_move()
 
 func _on_spell_pressed(selected_spell):
 	if turn_pointer >= 0 and characters[turn_pointer].name.contains("Player"):
+		$Click.play()
 		characters[turn_pointer].button_shoot(selected_spell)
 
 func _on_item_pressed(selected_item):
 	if turn_pointer >= 0 and characters[turn_pointer].name.contains("Player"):
+		$Click.play()
 		characters[turn_pointer].button_item(selected_item)
 
 func _input(event):
@@ -220,4 +241,19 @@ func _on_button_mouse_exited():
 		tilemap.clear_target()
 
 func _on_return_button_pressed():
+	$DoubleClick.play()
+	is_playing_full_song = false
+	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://main_menu.tscn")
+
+
+func _on_theme_start_finished():
+	if $SpellSelectScreen.visible:
+		$theme_start.play()
+		$theme.play()
+
+
+func _on_theme_finished():
+	$theme_start.play()
+	$theme.play()
+

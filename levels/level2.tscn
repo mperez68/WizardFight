@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b32tl4m5fks12"]
+[gd_scene load_steps=20 format=3 uid="uid://b32tl4m5fks12"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_7srdy"]
 [ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="2_vw0sp"]
@@ -14,6 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="12_216k5"]
 [ext_resource type="PackedScene" uid="uid://dc024yahh3u6" path="res://units/orc.tscn" id="13_syuoy"]
 [ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="14_1sdul"]
+[ext_resource type="AudioStream" uid="uid://c62fnmq4dnv7j" path="res://audio/level_theme_2.wav" id="15_c2icl"]
+[ext_resource type="AudioStream" uid="uid://dkhen5jhauqui" path="res://audio/level_theme_2_start.wav" id="16_o54kw"]
+[ext_resource type="AudioStream" uid="uid://dguxef27wsk6f" path="res://audio/click.wav" id="17_rk1t2"]
+[ext_resource type="AudioStream" uid="uid://bv0hnqdspelcg" path="res://audio/double_click.wav" id="18_g2nfu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
 font_size = 128
@@ -981,6 +985,23 @@ position = Vector2(320, 292)
 [node name="Acolyte4" parent="." instance=ExtResource("14_1sdul")]
 position = Vector2(73, 162)
 
+[node name="theme" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("15_c2icl")
+volume_db = -80.0
+autoplay = true
+
+[node name="theme_start" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("16_o54kw")
+autoplay = true
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_rk1t2")
+
+[node name="DoubleClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_g2nfu")
+
 [connection signal="pressed" from="HUD/ScreenSize/ButtonMove" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]
 [connection signal="mouse_exited" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_exited"]
@@ -1020,3 +1041,5 @@ position = Vector2(73, 162)
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Full Screen" to="HUD/ScreenSize/PauseScreen" method="_on_full_screen_pressed"]
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Borderless" to="HUD/ScreenSize/PauseScreen" method="_on_borderless_pressed"]
 [connection signal="pressed" from="HUD/ScreenSize/PauseScreen/Settings/Back" to="HUD/ScreenSize/PauseScreen" method="_on_back_pressed"]
+[connection signal="finished" from="theme" to="." method="_on_theme_finished"]
+[connection signal="finished" from="theme_start" to="." method="_on_theme_start_finished"]

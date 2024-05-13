@@ -1,7 +1,16 @@
-[gd_scene load_steps=24 format=3 uid="uid://ietisnuvh0ck"]
+[gd_scene load_steps=33 format=3 uid="uid://ietisnuvh0ck"]
 
 [ext_resource type="Script" path="res://units/player.gd" id="1_3sh2i"]
 [ext_resource type="Texture2D" uid="uid://do3q3m0numxbr" path="res://assets/Wizards/Wiz1.png" id="2_s58bk"]
+[ext_resource type="AudioStream" uid="uid://5e6i4yli45p2" path="res://audio/damage.wav" id="3_3om2g"]
+[ext_resource type="AudioStream" uid="uid://dvtpbx6grqt7i" path="res://audio/death.wav" id="4_fxifk"]
+[ext_resource type="AudioStream" uid="uid://cv1h4h76ncmfq" path="res://audio/effect.wav" id="5_8rdii"]
+[ext_resource type="AudioStream" uid="uid://lg804h8dhrmt" path="res://audio/heal.wav" id="6_b6wqb"]
+[ext_resource type="AudioStream" uid="uid://biro7r8wcse7c" path="res://audio/hit.wav" id="7_6iyv5"]
+[ext_resource type="AudioStream" uid="uid://0pulce4a5xpi" path="res://audio/miss.wav" id="8_85n2o"]
+[ext_resource type="AudioStream" uid="uid://bc1ikgwhgf1sp" path="res://audio/shoot.wav" id="9_0ts0u"]
+[ext_resource type="AudioStream" uid="uid://dx1ck16myuxe8" path="res://audio/move.wav" id="10_b11o8"]
+[ext_resource type="AudioStream" uid="uid://bbe8acnfjin44" path="res://audio/player_turn.wav" id="11_k27xm"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_u1lnm"]
 
@@ -311,3 +320,31 @@ sprite_frames = SubResource("SpriteFrames_lmagl")
 animation = &"stand"
 autoplay = "stand"
 offset = Vector2(0, -29)
+
+[node name="Damage" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_3om2g")
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_fxifk")
+
+[node name="Effect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8rdii")
+
+[node name="Heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_b6wqb")
+
+[node name="Hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_6iyv5")
+
+[node name="Miss" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_85n2o")
+
+[node name="Shoot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_0ts0u")
+
+[node name="Move" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_b11o8")
+
+[node name="Turn" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_k27xm")
+volume_db = -5.0
