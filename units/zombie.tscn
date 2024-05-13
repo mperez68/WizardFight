@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dy0vt1msb48t6"]
+[gd_scene load_steps=33 format=3 uid="uid://dy0vt1msb48t6"]
 
 [ext_resource type="Script" path="res://units/zombie.gd" id="1_mt1at"]
 [ext_resource type="Texture2D" uid="uid://d0g60em28mxfo" path="res://assets/Wizards/Zombo.png" id="2_i60sm"]
@@ -36,6 +36,10 @@ region = Rect2(64, 64, 64, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_evib7"]
 atlas = ExtResource("2_i60sm")
 region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6murg"]
+atlas = ExtResource("2_i60sm")
+region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q84ov"]
 atlas = ExtResource("2_i60sm")
@@ -105,6 +109,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"cast",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6murg")
+}],
+"loop": false,
+"name": &"damage",
 "speed": 5.0
 }, {
 "frames": [{

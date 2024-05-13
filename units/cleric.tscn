@@ -115,7 +115,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_45guo")
 }],
-"loop": true,
+"loop": false,
 "name": &"damage",
 "speed": 5.0
 }, {
@@ -312,7 +312,7 @@ shape = SubResource("RectangleShape2D_evbtd")
 z_index = 1
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_oo7nr")
-animation = &"walk_right_up"
+animation = &"stand"
 offset = Vector2(0, -29)
 
 [node name="Damage" type="AudioStreamPlayer" parent="."]

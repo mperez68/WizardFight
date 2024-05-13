@@ -39,13 +39,15 @@ func _process(delta):
 	if is_playing_full_song:
 		if $theme.volume_db < -40:
 			$theme.volume_db = -20
-		elif $theme.volume_db != 0:
+		elif $theme.volume_db <= 0:
 			$theme.volume_db += VOL_CHANGE_SPEED
 			
 		if $theme_start.volume_db != -80:
 			$theme_start.volume_db -= VOL_CHANGE_SPEED
 	else:
-		if $theme_start.volume_db != 0:
+		if $theme_start.volume_db < -40:
+			$theme_start.volume_db = -20
+		if $theme_start.volume_db <= 0:
 			$theme_start.volume_db += VOL_CHANGE_SPEED
 			
 		if $theme.volume_db != -80:
@@ -100,6 +102,7 @@ func state_check():
 	
 	if living_teams.size() == 1:
 		set_hud(false)
+		is_playing_full_song = false
 		$HUD/ScreenSize/EndGameScreen/MainTextRect/Label.text = "TEAM %s WINS" % [living_teams.keys()[0]]
 		$HUD/ScreenSize/EndGameScreen.visible = true
 
@@ -199,6 +202,9 @@ func _input(event):
 	# Pause Menu
 	if event.is_action_pressed("ui_cancel"):
 		if !$HUD/ScreenSize/PauseScreen.visible:
+			is_playing_full_song = false
+			$theme.volume_db = -80
+			$theme_start.volume_db = 0
 			get_tree().paused = true
 			$HUD/ScreenSize/PauseScreen.visible = true
 	
@@ -248,8 +254,8 @@ func _on_return_button_pressed():
 
 
 func _on_theme_start_finished():
-	if $SpellSelectScreen.visible:
-		$theme_start.play()
+	$theme_start.play()
+	if !is_playing_full_song:
 		$theme.play()
 
 

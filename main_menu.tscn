@@ -612,9 +612,11 @@ autoplay = true
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lp6o8")
+volume_db = -10.0
 
 [node name="DoubleClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ceq66")
+volume_db = -10.0
 
 [connection signal="pressed" from="TitleScreen/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="TitleScreen/SettingsButton" to="." method="_on_settings_button_pressed"]

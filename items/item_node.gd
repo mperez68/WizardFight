@@ -24,6 +24,7 @@ func _physics_process(_delta):
 		current_path.pop_front()
 		
 		if current_path.is_empty():
+			$"../Hit".play()
 			anim.play("hit")
 
 func start(target_body: CharacterBody2D, origin: Vector2, origin_height = 64):
@@ -47,8 +48,10 @@ func _on_animation_finished():
 			damage_indicator.start(target.global_position + Vector2(0, -64), str(item.damage), false)
 			if item.status:
 				target.effects.push_front(item.status)
+				$"../Effect".play()
 		else:
 			#Damage Indicator (miss)
+			$"../Miss".play()
 			damage_indicator.start(target.global_position + Vector2(0, -64), "MISS!", false)
 		
 		hit.emit()

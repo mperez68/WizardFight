@@ -100,6 +100,7 @@ func _physics_process(delta):
 		anim.play("stand")
 	
 	if current_path.is_empty():
+		$Move.stop()
 		# Set camera focus
 		focus = global_position
 		return
@@ -320,6 +321,7 @@ func use_item(pointer = item_pointer, location = get_grid_position(), layer = z_
 		focus_targets(targets)
 	
 	# Expend item
+	$Shoot.play()
 	items[pointer].quantity -= 1
 	if items[pointer].quantity <= 0:
 		items.remove_at(pointer)

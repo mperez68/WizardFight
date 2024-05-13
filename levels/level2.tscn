@@ -998,9 +998,11 @@ autoplay = true
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_rk1t2")
+volume_db = -10.0
 
 [node name="DoubleClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_g2nfu")
+volume_db = -10.0
 
 [connection signal="pressed" from="HUD/ScreenSize/ButtonMove" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]

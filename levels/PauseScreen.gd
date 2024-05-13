@@ -3,6 +3,8 @@ extends Control
 @onready var FULL_SIZE = DisplayServer.screen_get_size()
 const WINDOW_SIZE = Vector2i(1440, 900)
 
+@onready var level = $"../../.."
+
 var sure_displayed = false
 
 func _ready():
@@ -31,6 +33,7 @@ func reset_return():
 
 func _on_resume_pressed():
 	reset_return()
+	level.is_playing_full_song = true
 	get_tree().paused = false
 	visible = false
 
