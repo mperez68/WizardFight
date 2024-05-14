@@ -8,10 +8,13 @@ var dragging = false
 var pan_vector = Vector2(0, 0)
 var is_playing_full_song = false
 
+@export var level = 0
+
 const Spell = preload("res://spells/Spell.gd")
 const Item = preload("res://items/item.gd")
 const PAN_SPEED = 1024
 const VOL_CHANGE_SPEED = 0.5
+const SAVE_PATH = preload("res://main_menu.gd").SAVE_PATH
 
 @onready var tilemap = $TileMap
 @onready var camera = $Camera2D
@@ -105,6 +108,9 @@ func state_check():
 		is_playing_full_song = false
 		$HUD/ScreenSize/EndGameScreen/MainTextRect/Label.text = "TEAM %s WINS" % [living_teams.keys()[0]]
 		$HUD/ScreenSize/EndGameScreen.visible = true
+		if living_teams.keys()[0] == 1:
+			var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+			file.store_8(level + 1)
 
 func update_characters():
 	characters = find_children("*", "CharacterBody2D")
@@ -252,6 +258,8 @@ func _on_return_button_pressed():
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
+func _on_next_level_pressed():
+		get_tree().change_scene_to_file("res://levels/level%s.tscn" % [level + 1]) 
 
 func _on_theme_start_finished():
 	$theme_start.play()
@@ -262,4 +270,3 @@ func _on_theme_start_finished():
 func _on_theme_finished():
 	$theme_start.play()
 	$theme.play()
-
