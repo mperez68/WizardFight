@@ -13,8 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://levels/BaseTileMap.tscn" id="11_h0f02"]
 [ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="12_wn44q"]
 [ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="13_7yn3l"]
-[ext_resource type="AudioStream" uid="uid://6asp3llqdeev" path="res://audio/level_theme_1.wav" id="14_c8ydv"]
-[ext_resource type="AudioStream" uid="uid://csjpvddly4x0p" path="res://audio/level_theme_1_start.wav" id="15_vmjmw"]
+[ext_resource type="AudioStream" uid="uid://d03tpyoka3pe2" path="res://audio/level_theme_6.wav" id="14_baj4m"]
+[ext_resource type="AudioStream" uid="uid://b8qkgmqieqlc2" path="res://audio/level_theme_6_start.wav" id="15_7h50x"]
 [ext_resource type="AudioStream" uid="uid://dguxef27wsk6f" path="res://audio/click.wav" id="16_rqfnw"]
 [ext_resource type="AudioStream" uid="uid://bv0hnqdspelcg" path="res://audio/double_click.wav" id="17_vq7h8"]
 
@@ -991,13 +991,13 @@ team = 1
 
 [node name="theme" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("14_c8ydv")
+stream = ExtResource("14_baj4m")
 volume_db = -80.0
 autoplay = true
 
 [node name="theme_start" type="AudioStreamPlayer" parent="."]
 process_mode = 3
-stream = ExtResource("15_vmjmw")
+stream = ExtResource("15_7h50x")
 autoplay = true
 
 [node name="Click" type="AudioStreamPlayer" parent="."]

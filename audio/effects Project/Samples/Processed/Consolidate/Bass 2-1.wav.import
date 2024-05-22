@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://coh0cm0p2taks"
+path="res://.godot/imported/Bass 2-1.wav-2f8c79cd824baf6aa5ba8faa8a3a07ee.sample"
+
+[deps]
+
+source_file="res://audio/effects Project/Samples/Processed/Consolidate/Bass 2-1.wav"
+dest_files=["res://.godot/imported/Bass 2-1.wav-2f8c79cd824baf6aa5ba8faa8a3a07ee.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
