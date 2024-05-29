@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://pqi0kk4r2bps"]
+[gd_scene load_steps=22 format=3 uid="uid://pqi0kk4r2bps"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_0ntxe"]
 [ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="2_38ysg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="6_031qq"]
 [ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="7_3xt73"]
 [ext_resource type="Script" path="res://levels/PauseScreen.gd" id="8_rhg6a"]
+[ext_resource type="Script" path="res://Slider.gd" id="9_g1ivk"]
 [ext_resource type="PackedScene" uid="uid://bqq3h0x7dpwsn" path="res://levels/spell_select.tscn" id="9_sjido"]
 [ext_resource type="Texture2D" uid="uid://bgek84jsv3okh" path="res://1-Background_scene 0@2x.jpg" id="10_ejb3t"]
 [ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://levels/BaseTileMap.tscn" id="11_2mwg4"]
@@ -847,33 +848,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Volume" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = 5.0
-offset_right = -20.0
-offset_bottom = 55.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("2_38ysg")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/Volume"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "VOLUME"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Full Screen" type="TextureButton" parent="HUD/ScreenSize/PauseScreen/Settings"]
 layout_mode = 1
 anchors_preset = 8
@@ -881,10 +855,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 155.0
-offset_top = 5.0
-offset_right = 230.0
-offset_bottom = 55.0
+offset_left = 30.0
+offset_top = -2.0
+offset_right = 105.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_38ysg")
@@ -910,10 +884,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 30.0
-offset_top = 5.0
-offset_right = 105.0
-offset_bottom = 55.0
+offset_left = -95.0
+offset_top = -2.0
+offset_right = -20.0
+offset_bottom = 48.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_38ysg")
@@ -940,9 +914,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -95.0
-offset_top = 80.0
+offset_top = 260.0
 offset_right = 105.0
-offset_bottom = 130.0
+offset_bottom = 310.0
 grow_horizontal = 2
 grow_vertical = 2
 texture_normal = ExtResource("2_38ysg")
@@ -958,6 +932,73 @@ grow_vertical = 2
 text = "BACK"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/ScreenSize/PauseScreen/Settings"]
+offset_left = -102.0
+offset_top = 80.0
+offset_right = 148.0
+offset_bottom = 280.0
+alignment = 1
+
+[node name="MasterLabel" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="HUD/ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("9_g1ivk")
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="HUD/ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("9_g1ivk")
+bus_name = "Music"
+
+[node name="SfxLabel" type="Label" parent="HUD/ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "SFX VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SfxSlider" type="HSlider" parent="HUD/ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("9_g1ivk")
+bus_name = "Sfx"
 
 [node name="SpellSelectScreen" parent="." instance=ExtResource("9_sjido")]
 visible = false
@@ -1028,19 +1069,23 @@ process_mode = 3
 stream = ExtResource("15_cy88a")
 volume_db = -80.0
 autoplay = true
+bus = &"Music"
 
 [node name="theme_start" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("16_vwwnc")
 autoplay = true
+bus = &"Music"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_c0uy5")
 volume_db = -10.0
+bus = &"Sfx"
 
 [node name="DoubleClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_syroy")
 volume_db = -10.0
+bus = &"Sfx"
 
 [connection signal="pressed" from="HUD/ScreenSize/ButtonMove" to="." method="_on_move_pressed"]
 [connection signal="mouse_entered" from="HUD/ScreenSize/ButtonSpell1" to="." method="_on_button_mouse_entered" binds= [0, "spell"]]

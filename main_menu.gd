@@ -81,3 +81,7 @@ func _on_back_button_pressed():
 
 func _on_audio_finished():
 	$intro.play()
+
+
+func _on_volume_button_pressed():
+	pass # Replace with function body.

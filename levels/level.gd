@@ -270,3 +270,7 @@ func _on_theme_start_finished():
 func _on_theme_finished():
 	$theme_start.play()
 	$theme.play()
+
+
+func _on_full_screen_pressed():
+	pass # Replace with function body.

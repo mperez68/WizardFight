@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://colr5daibln1y"]
+[gd_scene load_steps=9 format=3 uid="uid://colr5daibln1y"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_txcqa"]
 [ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://levels/BaseTileMap.tscn" id="1_v2dho"]
 [ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="2_up7me"]
 [ext_resource type="AudioStream" uid="uid://bcdlby5vvpu7l" path="res://audio/intro.wav" id="4_2ewls"]
+[ext_resource type="Script" path="res://Slider.gd" id="4_3qf38"]
 [ext_resource type="AudioStream" uid="uid://dbb1js1do6501" path="res://audio/intro_start.wav" id="5_7gg3k"]
 [ext_resource type="AudioStream" uid="uid://dguxef27wsk6f" path="res://audio/click.wav" id="6_lp6o8"]
 [ext_resource type="AudioStream" uid="uid://bv0hnqdspelcg" path="res://audio/double_click.wav" id="7_ceq66"]
@@ -283,40 +284,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="VolumeButton" type="TextureButton" parent="SettingsScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = 60.0
-offset_right = 150.0
-offset_bottom = 185.0
-grow_horizontal = 2
-grow_vertical = 2
-texture_normal = ExtResource("2_up7me")
-stretch_mode = 0
-
-[node name="Label" type="Label" parent="SettingsScreen/VolumeButton"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/shadow_offset_x = 10
-theme_override_constants/shadow_offset_y = 5
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 42
-text = "VOLUME"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
 [node name="BackButton" type="TextureButton" parent="SettingsScreen"]
 layout_mode = 1
 anchors_preset = 8
@@ -350,6 +317,74 @@ text = "BACK"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsScreen"]
+layout_mode = 0
+offset_left = 836.0
+offset_top = 600.0
+offset_right = 1086.0
+offset_bottom = 800.0
+alignment = 1
+
+[node name="MasterLabel" type="Label" parent="SettingsScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="SettingsScreen/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("4_3qf38")
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="SettingsScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="SettingsScreen/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("4_3qf38")
+bus_name = "Music"
+
+[node name="SfxLabel" type="Label" parent="SettingsScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "SFX VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SfxSlider" type="HSlider" parent="SettingsScreen/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("4_3qf38")
+bus_name = "Sfx"
 
 [node name="NewGameScreen" type="Control" parent="."]
 visible = false
@@ -610,25 +645,28 @@ autowrap_mode = 2
 
 [node name="intro" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_2ewls")
+bus = &"Music"
 
 [node name="intro_start" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_7gg3k")
 autoplay = true
+bus = &"Music"
 
 [node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lp6o8")
 volume_db = -10.0
+bus = &"Sfx"
 
 [node name="DoubleClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_ceq66")
 volume_db = -10.0
+bus = &"Sfx"
 
 [connection signal="pressed" from="TitleScreen/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="TitleScreen/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="TitleScreen/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/FullScreenButton" to="." method="_on_full_screen_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/BorderlessButton" to="." method="_on_borderless_button_pressed"]
-[connection signal="pressed" from="SettingsScreen/VolumeButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="SettingsScreen/BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="NewGameScreen/Level1Button" to="." method="_on_level_button_pressed" binds= [0]]
 [connection signal="pressed" from="NewGameScreen/Level2Button" to="." method="_on_level_button_pressed" binds= [1]]

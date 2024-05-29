@@ -323,31 +323,40 @@ offset = Vector2(0, -29)
 
 [node name="Damage" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_kg6xo")
+bus = &"Sfx"
 
 [node name="Death" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_rxs1f")
+bus = &"Sfx"
 
 [node name="Effect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_gbetc")
+bus = &"Sfx"
 
 [node name="Heal" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_7hvvg")
+bus = &"Sfx"
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_xuqrc")
+bus = &"Sfx"
 
 [node name="Miss" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_6cxbt")
+bus = &"Sfx"
 
 [node name="Shoot" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_ta3o7")
+bus = &"Sfx"
 
 [node name="Move" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_olkv5")
+bus = &"Sfx"
 
 [node name="Turn" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_ok4wb")
 volume_db = -10.0
+bus = &"Sfx"
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
