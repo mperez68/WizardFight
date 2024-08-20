@@ -66,8 +66,8 @@ func _ready():
 # Button press methods
 func _on_go_button_pressed():
 	for i in wizards.size():
-		if !wizards[i].chosen_spells.size():
-			print("Empty spells list")
+		if !wizards[i].chosen_spells.size() or (!wizards[i].chosen_items.size() and items_end > 0):
+			print("Empty spells and/or items list")
 			return
 	
 	visible = false

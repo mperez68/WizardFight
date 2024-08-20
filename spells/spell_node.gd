@@ -87,4 +87,3 @@ func _on_animation_finished():
 		
 		hit.emit()
 		queue_free()
-

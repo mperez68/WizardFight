@@ -28,8 +28,8 @@ class Item:
 				populate("Health Potions", preload("res://items/health_potion.tscn"), 0, 2, -2)
 				tooltip = "Restores 2 HP.\nHey, I get it. Sometimes you make mistakes. Consider this an oopsie button."
 			ItemNames.MANA_POTION:
-				populate("Mana Potions", preload("res://items/mana_potion.tscn"), -2, 2)
-				tooltip = "Restores 2 Mana.\nMore Mana, More Dakka."
+				populate("Mana Potions", preload("res://items/mana_potion.tscn"), -1, 2)
+				tooltip = "Restores 1 Mana.\nMore Mana, More Dakka."
 			ItemNames.FIRE_BOMB:
 				populate("Fire Bombs", preload("res://items/thrown_item.tscn"), 0, 3, 1, 5, 0.8, 1)
 				tooltip = "Counterspell this, casual. Smaller boom than a fireball but still effective."

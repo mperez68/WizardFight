@@ -1,0 +1,992 @@
+[gd_scene load_steps=10 format=3 uid="uid://dwvkndd7dar6q"]
+
+[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="1_m5lwr"]
+[ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="2_j60nu"]
+[ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="3_ddq8b"]
+[ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="4_l4t6o"]
+[ext_resource type="Texture2D" uid="uid://b3uv7qsk5abd6" path="res://assets/spells/Explosion/tile005.png" id="5_p4s86"]
+[ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="6_aor1q"]
+[ext_resource type="Script" path="res://levels/PauseScreen.gd" id="7_l35c8"]
+[ext_resource type="Script" path="res://Slider.gd" id="8_0013n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nxx1c"]
+font_size = 128
+
+[node name="HUD" type="CanvasLayer"]
+visible = false
+
+[node name="ScreenSize" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TurnText" type="Label" parent="ScreenSize"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -540.0
+offset_right = 25.0
+offset_bottom = -515.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Turn"
+horizontal_alignment = 1
+
+[node name="TurnCounter" type="Label" parent="ScreenSize"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -25.0
+offset_top = -515.0
+offset_right = 25.0
+offset_bottom = -475.0
+grow_horizontal = 2
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonMove" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -935.0
+offset_top = 415.0
+offset_right = -835.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonMove"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonMove/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Move"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell1" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -815.0
+offset_top = 415.0
+offset_right = -715.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("2_j60nu")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonSpell1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonSpell1/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell2" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -690.0
+offset_top = 415.0
+offset_right = -590.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("3_ddq8b")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonSpell2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonSpell2/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell3" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -565.0
+offset_top = 415.0
+offset_right = -465.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("4_l4t6o")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonSpell3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonSpell3/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell4" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -440.0
+offset_top = 415.0
+offset_right = -340.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("5_p4s86")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonSpell4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonSpell4/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 4
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonSpell5" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -315.0
+offset_top = 415.0
+offset_right = -215.0
+offset_bottom = 515.0
+grow_vertical = 0
+texture_normal = ExtResource("6_aor1q")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonSpell5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonSpell5/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Spell 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem1" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 635.0
+offset_top = 415.0
+offset_right = 735.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonItem1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonItem1/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem2" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 510.0
+offset_top = 415.0
+offset_right = 610.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonItem2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonItem2/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem3" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 385.0
+offset_top = 415.0
+offset_right = 485.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonItem3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonItem3/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem4" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 260.0
+offset_top = 415.0
+offset_right = 360.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonItem4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonItem4/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 4"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonItem5" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 415.0
+offset_right = 240.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonItem5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonItem5/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Item 5"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ButtonPassTurn" type="TextureButton" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 760.0
+offset_top = 340.0
+offset_right = 935.0
+offset_bottom = 515.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ButtonPassTurn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ScreenSize/ButtonPassTurn/VBoxContainer"]
+custom_minimum_size = Vector2(1, 1)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 3
+text = "Pass Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="ToolTip" type="ColorRect" parent="ScreenSize"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -935.0
+offset_top = 200.0
+offset_right = -535.0
+offset_bottom = 400.0
+grow_vertical = 0
+color = Color(0, 0, 0, 0.403922)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/ToolTip"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = 25.0
+offset_right = -25.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="ScreenSize/ToolTip/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+autowrap_mode = 2
+
+[node name="TooltipSpell1" type="TextureRect" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -940.0
+offset_top = 150.0
+offset_right = -890.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("2_j60nu")
+
+[node name="TooltipSpell2" type="TextureRect" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -890.0
+offset_top = 150.0
+offset_right = -840.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("3_ddq8b")
+
+[node name="TooltipSpell3" type="TextureRect" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -840.0
+offset_top = 150.0
+offset_right = -790.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("4_l4t6o")
+
+[node name="TooltipSpell4" type="TextureRect" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -790.0
+offset_top = 150.0
+offset_right = -740.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("5_p4s86")
+
+[node name="TooltipSpell5" type="TextureRect" parent="ScreenSize"]
+self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -740.0
+offset_top = 150.0
+offset_right = -690.0
+offset_bottom = 200.0
+grow_vertical = 0
+texture = ExtResource("6_aor1q")
+
+[node name="EndGameScreen" type="Control" parent="ScreenSize"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainTextRect" type="TextureRect" parent="ScreenSize/EndGameScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -295.0
+offset_right = 405.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m5lwr")
+
+[node name="Label" type="Label" parent="ScreenSize/EndGameScreen/MainTextRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU WIN"
+label_settings = SubResource("LabelSettings_nxx1c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="TextureButton" parent="ScreenSize/EndGameScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = 155.0
+offset_right = 55.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/EndGameScreen/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RETURN"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NextLevel" type="TextureButton" parent="ScreenSize/EndGameScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = 55.0
+offset_right = 80.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/EndGameScreen/NextLevel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "NEXT LEVEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseScreen" type="Control" parent="ScreenSize"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_l35c8")
+
+[node name="MainTextRect" type="TextureRect" parent="ScreenSize/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.0
+offset_top = -295.0
+offset_right = 405.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_m5lwr")
+
+[node name="Label" type="Label" parent="ScreenSize/PauseScreen/MainTextRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -295.5
+offset_top = -97.5
+offset_right = 269.5
+offset_bottom = 77.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PAUSE"
+label_settings = SubResource("LabelSettings_nxx1c")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Control" parent="ScreenSize/PauseScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="TextureButton" parent="ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 80.0
+offset_right = 105.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/PauseScreen/Menu/Resume"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESUME GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="TextureButton" parent="ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = 5.0
+offset_right = -20.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/PauseScreen/Menu/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "SETTINGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Return" type="TextureButton" parent="ScreenSize/PauseScreen/Menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 230.0
+offset_bottom = 55.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/PauseScreen/Menu/Return"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "EXIT TO MENU"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Settings" type="Control" parent="ScreenSize/PauseScreen"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Full Screen" type="TextureButton" parent="ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 30.0
+offset_top = -2.0
+offset_right = 105.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/PauseScreen/Settings/Full Screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FULL SCREEN
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Borderless" type="TextureButton" parent="ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -2.0
+offset_right = -20.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/PauseScreen/Settings/Borderless"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BORDER-
+LESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Back" type="TextureButton" parent="ScreenSize/PauseScreen/Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 260.0
+offset_right = 105.0
+offset_bottom = 310.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("1_m5lwr")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="ScreenSize/PauseScreen/Settings/Back"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BACK"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenSize/PauseScreen/Settings"]
+layout_mode = 0
+offset_left = -102.0
+offset_top = 80.0
+offset_right = 148.0
+offset_bottom = 280.0
+alignment = 1
+
+[node name="MasterLabel" type="Label" parent="ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MasterSlider" type="HSlider" parent="ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("8_0013n")
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("8_0013n")
+bus_name = "Music"
+
+[node name="SfxLabel" type="Label" parent="ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0.384314, 0.384314, 0.384314, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 24
+text = "SFX VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="SfxSlider" type="HSlider" parent="ScreenSize/PauseScreen/Settings/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("8_0013n")
+bus_name = "Sfx"
+
+[connection signal="pressed" from="ScreenSize/PauseScreen/Menu/Resume" to="ScreenSize/PauseScreen" method="_on_resume_pressed"]
+[connection signal="pressed" from="ScreenSize/PauseScreen/Menu/Settings" to="ScreenSize/PauseScreen" method="_on_settings_pressed"]
+[connection signal="pressed" from="ScreenSize/PauseScreen/Menu/Return" to="ScreenSize/PauseScreen" method="_on_return_pressed"]
+[connection signal="pressed" from="ScreenSize/PauseScreen/Settings/Full Screen" to="ScreenSize/PauseScreen" method="_on_full_screen_pressed"]
+[connection signal="pressed" from="ScreenSize/PauseScreen/Settings/Borderless" to="ScreenSize/PauseScreen" method="_on_borderless_pressed"]
+[connection signal="pressed" from="ScreenSize/PauseScreen/Settings/Back" to="ScreenSize/PauseScreen" method="_on_back_pressed"]

@@ -11,6 +11,7 @@ class Set:
 
 const ATLAS_WATER = Vector2i(1, 3)
 const ATLAS_LIGHT_WATER = Vector2i(1, 3)
+const ATLAS_HIDDEN = Vector2i(0, 3)
 const TERRAIN_ID = 8
 const ATLAS_HIGHLIGHT = Vector2i(0, 2)
 const ATLAS_TARGET = Vector2i(1, 2)
@@ -19,6 +20,7 @@ var map_rect: Array[Rect2i]
 var astar: Array[AStarGrid2D]
 var highlighted_tiles: Array[Set]
 var targeted_tiles: Array[Set]
+var hidden_tiles = {}
 
 var tile_size: Vector2
 
@@ -40,6 +42,28 @@ func _ready():
 	
 	#start animation
 	$WaterTileMap/AnimationPlayer.play("float")
+	
+func _physics_process(_delta):
+	var mouse_pos = get_global_mouse_position()
+	var mouse_tile_pos = local_to_map(mouse_pos)
+	var all_tiles = []
+	
+	for i in range(-1, 1):
+		for j in range(-1, 1):
+			all_tiles.push_front(mouse_tile_pos + Vector2i(i, j))
+	
+	# reset non-hidden tiles
+	for tile in hidden_tiles:
+		if !(tile in all_tiles):
+			set_cell(1, tile, 8, hidden_tiles[tile])
+			
+	# hide tiles
+	for tile_pos in all_tiles:
+		var tile_data = get_cell_tile_data(1, tile_pos)
+		if tile_data and tile_data.get_custom_data("type") == "block":
+			hidden_tiles[tile_pos] = get_cell_atlas_coords(1, tile_pos)
+			set_cell(1, tile_pos, 8, ATLAS_HIDDEN)
+			print(str(tile_pos.x) + ", " + str(tile_pos.y) + " == " + tile_data.get_custom_data("type")) 
 
 func populate_layer(layer):
 	# instantiate grid

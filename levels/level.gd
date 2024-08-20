@@ -245,6 +245,9 @@ func _on_button_mouse_entered(num, type):
 	if (type == "item"):
 		var item = characters[turn_pointer].items[num]
 		tooltip.append_text("[b]%s: [/b]\n%s" % [item.name, item.tooltip])
+		if characters[turn_pointer].name.contains("Player"):
+			tilemap.draw_range(characters[turn_pointer].z_index, characters[turn_pointer].global_position, item.range, false)
+			tilemap.draw_target(characters[turn_pointer].z_index, characters[turn_pointer].global_position, item.radius, false)
 
 func _on_button_mouse_exited():
 	tooltip.clear()
