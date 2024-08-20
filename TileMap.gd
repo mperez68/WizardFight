@@ -48,8 +48,8 @@ func _physics_process(_delta):
 	var mouse_tile_pos = local_to_map(mouse_pos)
 	var all_tiles = []
 	
-	for i in range(-1, 1):
-		for j in range(-1, 1):
+	for i in range(-1, 2):
+		for j in range(-1, 2):
 			all_tiles.push_front(mouse_tile_pos + Vector2i(i, j))
 	
 	# reset non-hidden tiles
@@ -63,7 +63,6 @@ func _physics_process(_delta):
 		if tile_data and tile_data.get_custom_data("type") == "block":
 			hidden_tiles[tile_pos] = get_cell_atlas_coords(1, tile_pos)
 			set_cell(1, tile_pos, 8, ATLAS_HIDDEN)
-			print(str(tile_pos.x) + ", " + str(tile_pos.y) + " == " + tile_data.get_custom_data("type")) 
 
 func populate_layer(layer):
 	# instantiate grid
