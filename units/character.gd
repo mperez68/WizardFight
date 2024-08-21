@@ -110,7 +110,10 @@ func _physics_process(delta):
 	
 	# Move towards next tile
 	var target_position = tilemap.map_to_local(current_path.front())
-	global_position = global_position.move_toward(target_position, ANIM_SPEED)
+	var anim_speed_multiplier = max(1, level.characters.size() * 0.1)
+	if get_script().resource_path.get_file() == "player.gd":
+		anim_speed_multiplier = 1
+	global_position = global_position.move_toward(target_position, ANIM_SPEED * anim_speed_multiplier)
 	
 	# Update animation when walking
 	var ex = ""
@@ -355,7 +358,9 @@ func start_turn():
 	if is_dead:
 		return
 	
-	$Turn.play()
+	if (level.characters.size() <= 15) || get_script().resource_path.get_file() == "player.gd":
+		$Turn.play()
+	
 	focus = global_position
 	level.camera.position = focus
 	level.camera.zoom = Vector2(1, 1)

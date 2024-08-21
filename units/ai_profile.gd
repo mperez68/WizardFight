@@ -164,8 +164,15 @@ class AiProfile:
 				break
 		
 		# spin lock until finished
+		var wait_time = 1
+		if (level.characters.size() > 5):
+			wait_time = 0.8
+		if (level.characters.size() > 10):
+			wait_time = 0.5
+		if (level.characters.size() > 15):
+			wait_time = 0
 		while !_char.current_path.is_empty() or _char.active_missiles > 0:
-			await _char.get_tree().create_timer(2).timeout
+			await _char.get_tree().create_timer(wait_time).timeout
 		
 		# if no actions possible, end turn
 		if took_action:

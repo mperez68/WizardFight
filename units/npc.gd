@@ -22,8 +22,14 @@ func start_turn():
 	if is_dead:
 		level.inc_turn()
 		return
-	
-	await get_tree().create_timer(1).timeout
+	var wait_time = 1
+	if (level.characters.size() > 5):
+		wait_time = 0.8
+	if (level.characters.size() > 10):
+		wait_time = 0.5
+	if (level.characters.size() > 15):
+		wait_time = 0
+	await get_tree().create_timer(wait_time).timeout
 	ai_profile.turn_process()
 
 # Tooltip fill/clear
