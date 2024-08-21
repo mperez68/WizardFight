@@ -47,12 +47,12 @@ class Spell:
 				status = Effect.StatusEffect.new(Effect.EffectNames.SLOW)
 				tooltip = "Jesus fucking Christ, you monster. Slows target for two turns."
 			SpellNames.COUNTERSPELL:
-				populate("Spellshield", preload("res://spells/spellshield.tscn"), preload("res://assets/spells/Counterspell/tile.png"), 2)
+				populate("Spellshield", preload("res://spells/spellshield.tscn"), preload("res://assets/spells/Counterspell/tile.png"), 1)
 				tooltip = "Just say no to malicious sorcery."
 				self_cast = true
 				status = Effect.StatusEffect.new(Effect.EffectNames.SPELLSHIELD)
 			SpellNames.TELEPORT:
-				populate("Teleport", preload("res://spells/teleport.tscn"), preload("res://assets/spells/Teleport/tile004.png"), 1, 0, 5)
+				populate("Teleport", preload("res://spells/teleport.tscn"), preload("res://assets/spells/Teleport/tile004.png"), 0, 0, 5)
 				tooltip = "For when you need to be over there instead of over here."
 				no_target = true
 			SpellNames.SWAP:
