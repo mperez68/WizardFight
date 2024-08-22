@@ -77,6 +77,7 @@ vertical_alignment = 1
 
 [node name="ButtonMenu" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 0
 offset_left = -935.0
 offset_top = -525.0
 offset_right = -860.0
@@ -1033,6 +1034,9 @@ bus_name = "Sfx"
 visible = false
 spells_end = 4
 items_end = 2
+briefing_text = "[b]Queen Bee[/b]
+
+Now you can select items! Each wizard can select items in the Items tab. If items are available, you have to select at least one to start the battle."
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

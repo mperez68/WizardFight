@@ -79,6 +79,7 @@ vertical_alignment = 1
 
 [node name="ButtonMenu" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 0
 offset_left = -935.0
 offset_top = -525.0
 offset_right = -860.0
@@ -1035,6 +1036,9 @@ bus_name = "Sfx"
 visible = false
 spells_end = 9
 items_end = 3
+briefing_text = "[b]Tilting Plates[/b]
+
+You're not the only team of wizards, here. Teams are displayed by the colors next to a units health bar."
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

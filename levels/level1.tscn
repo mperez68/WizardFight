@@ -1034,6 +1034,9 @@ bus_name = "Sfx"
 [node name="SpellSelectScreen" parent="." instance=ExtResource("2_4bm8o")]
 visible = false
 spells_end = 2
+briefing_text = "[b]Fool's Errand[/b]
+
+Select spells above to add them to your spellbook. When you're ready, click on \"GO\"."
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

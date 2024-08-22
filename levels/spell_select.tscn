@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bqq3h0x7dpwsn"]
 
-[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="1_3ujud"]
+[ext_resource type="Texture2D" uid="uid://cldrkugs0udxn" path="res://assets/item.png" id="1_3ujud"]
 [ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="1_l3yxh"]
 [ext_resource type="Script" path="res://levels/spell_select.gd" id="1_pq2dr"]
 [ext_resource type="Texture2D" uid="uid://bmyp7yluerb0k" path="res://assets/spells/Water_Geyser/tile008.png" id="2_auhx6"]
@@ -1394,6 +1394,7 @@ grow_vertical = 2
 
 [node name="Label" type="RichTextLabel" parent="BG/Tooltip/VBoxContainer"]
 layout_mode = 2
+bbcode_enabled = true
 fit_content = true
 autowrap_mode = 2
 

@@ -79,6 +79,7 @@ vertical_alignment = 1
 
 [node name="ButtonMenu" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 0
 offset_left = -935.0
 offset_top = -525.0
 offset_right = -860.0
@@ -1034,6 +1035,9 @@ bus_name = "Sfx"
 [node name="SpellSelectScreen" parent="." instance=ExtResource("9_sjido")]
 visible = false
 spells_end = 3
+briefing_text = "[b]Priestly Duties[/b]
+
+You can switch between multiple wizards' spellbooks by clicking their name directly above. Be sure to pick spells for everyone before starting."
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

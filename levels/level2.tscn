@@ -78,6 +78,7 @@ vertical_alignment = 1
 
 [node name="ButtonMenu" type="TextureButton" parent="HUD/ScreenSize"]
 self_modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 0
 offset_left = -935.0
 offset_top = -525.0
 offset_right = -860.0
@@ -1033,6 +1034,9 @@ bus_name = "Sfx"
 [node name="SpellSelectScreen" parent="." instance=ExtResource("9_703v0")]
 visible = false
 spells_end = 3
+briefing_text = "[b]Pondering Orbs[/b]
+
+Be careful of Orcs, they throw rocks (small problem) and stab with spears if they get next to you (BIG problem)."
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

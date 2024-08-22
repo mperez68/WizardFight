@@ -14,6 +14,7 @@ enum select { SPELLS, ITEMS }
 @export var spells_end = 0
 @export var items_start = 0
 @export var items_end = 0
+@export var briefing_text = "[b]TITLE[/b]\n\ntext"
 
 const sp = preload("res://spells/Spell.gd")
 const it = preload("res://items/item.gd")
@@ -62,6 +63,7 @@ func _ready():
 			selected_option_buttons.push_back(temp[i])
 			
 	update_options()
+	$BG/Tooltip/VBoxContainer/Label.append_text(briefing_text)
 
 # Button press methods
 func _on_go_button_pressed():
@@ -189,6 +191,7 @@ func _on_selection_mouse_entered(key):
 		option = it.Item.new(key)
 	
 	$BG/LargeIcon.texture = option.icon
+	$BG/Tooltip/VBoxContainer/Label.clear()
 	$BG/Tooltip/VBoxContainer/Label.append_text("[b]%s: [/b]\n%s mana, %s range, %s damage" % [option.name, option.cost, option.range, option.damage])
 	if option.crit_chance:
 		$BG/Tooltip/VBoxContainer/Label.append_text(", %s crit" % [option.crit_chance])
@@ -199,3 +202,4 @@ func _on_selection_mouse_entered(key):
 func _on_selection_mouse_exited():
 	$BG/LargeIcon.texture = generic_icon
 	$BG/Tooltip/VBoxContainer/Label.clear()
+	$BG/Tooltip/VBoxContainer/Label.append_text(briefing_text)
