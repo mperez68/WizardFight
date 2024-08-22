@@ -173,6 +173,9 @@ class AiProfile:
 			wait_time = 0
 		while !_char.current_path.is_empty() or _char.active_missiles > 0:
 			await _char.get_tree().create_timer(wait_time).timeout
+			# if scene changes, this timeout thread will continue and try to call freed resources.
+			if not is_instance_valid(_char):	
+				return
 		
 		# if no actions possible, end turn
 		if took_action:
