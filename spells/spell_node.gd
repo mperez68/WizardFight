@@ -87,3 +87,8 @@ func _on_animation_finished():
 		
 		hit.emit()
 		queue_free()
+
+func _on_timer_timeout():
+	print("timeout missile")
+	hit.emit()
+	queue_free()
