@@ -130,15 +130,15 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonMove/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="HUD/ScreenSize/ButtonMove/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
-size_flags_vertical = 1
+mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-text = "Move"
-horizontal_alignment = 1
-vertical_alignment = 1
+bbcode_enabled = true
+text = "[center]Mov[u]e[/u][/center]"
+fit_content = true
 autowrap_mode = 2
 
 [node name="ButtonSpell1" type="TextureButton" parent="HUD/ScreenSize"]
@@ -526,15 +526,15 @@ grow_vertical = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HUD/ScreenSize/ButtonPassTurn/VBoxContainer"]
+[node name="Label" type="RichTextLabel" parent="HUD/ScreenSize/ButtonPassTurn/VBoxContainer"]
 custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
-size_flags_vertical = 1
+mouse_filter = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
-text = "Pass Turn"
-horizontal_alignment = 1
-vertical_alignment = 1
+bbcode_enabled = true
+text = "[center]Pass [u]T[/u]urn[/center]"
+fit_content = true
 autowrap_mode = 2
 
 [node name="ToolTip" type="ColorRect" parent="HUD/ScreenSize"]

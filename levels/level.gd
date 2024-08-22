@@ -205,7 +205,8 @@ func pause_game():
 	$HUD/ScreenSize/PauseScreen.visible = true
 
 func _on_pass_turn_pressed():
-	inc_turn()
+	if turn_pointer >= 0 and characters[turn_pointer].name.contains("Player"):
+		inc_turn()
 
 func _on_move_pressed():
 	if turn_pointer >= 0 and characters[turn_pointer].name.contains("Player"):
@@ -213,6 +214,8 @@ func _on_move_pressed():
 		characters[turn_pointer].button_move()
 
 func _on_spell_pressed(selected_spell):
+	if characters[turn_pointer].spells.size() <= selected_spell or characters[turn_pointer].mana < characters[turn_pointer].spells[selected_spell].cost:
+		return
 	if turn_pointer >= 0 and characters[turn_pointer].name.contains("Player"):
 		$Click.play()
 		characters[turn_pointer].button_shoot(selected_spell)
@@ -223,11 +226,45 @@ func _on_item_pressed(selected_item):
 		characters[turn_pointer].button_item(selected_item)
 
 func _input(event):
-	await get_tree().create_timer(0.01).timeout
-	# Pause Menu
-	if event.is_action_pressed("ui_cancel") and get_tree().paused == false:
-		if !$HUD/ScreenSize/PauseScreen.visible:
-			pause_game()
+	if event is InputEventKey and event.is_pressed() and !event.is_echo():
+		# I fucking hate this but GDScript doesn't let you retrieve the event key for a match statement
+		# Godot, get your shit together, this isn't a language for fucking toddlers.
+		if event.is_action_pressed("Spell_1"):
+			_on_spell_pressed(0)
+		elif event.is_action_pressed("Spell_2"):
+			_on_spell_pressed(1)
+		elif event.is_action_pressed("Spell_3"):
+			_on_spell_pressed(2)
+		elif event.is_action_pressed("Spell_4"):
+			_on_spell_pressed(3)
+		elif event.is_action_pressed("Spell_5"):
+			_on_spell_pressed(4)
+		elif event.is_action_pressed("item_1"):
+			_on_item_pressed(0)
+		elif event.is_action_pressed("item_2"):
+			_on_item_pressed(1)
+		elif event.is_action_pressed("item_3"):
+			_on_item_pressed(2)
+		elif event.is_action_pressed("item_4"):
+			_on_item_pressed(3)
+		elif event.is_action_pressed("item_5"):
+			_on_item_pressed(4)
+		elif event.is_action_pressed("pass_turn"):
+			_on_pass_turn_pressed()
+		elif event.is_action_pressed("Move"):
+			_on_move_pressed()
+		elif event.is_action_pressed("ui_cancel") and characters[turn_pointer] is Player and characters[turn_pointer].select_mode != Player.Select.NONE:
+			# Only if current character is a player selecting target
+			characters[turn_pointer].clear_selection()
+			return
+			
+		
+		# Pause Menu
+		await get_tree().create_timer(0.01).timeout
+		if event.is_action_pressed("ui_cancel") and get_tree().paused == false and !$SpellSelectScreen.visible:
+			if !$HUD/ScreenSize/PauseScreen.visible:
+				pause_game()
+		return
 	
 	# Break if not active
 	if !characters[turn_pointer].name.contains("Player") or $SpellSelectScreen.visible:

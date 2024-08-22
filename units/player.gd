@@ -1,5 +1,7 @@
 extends TacticsCharacter
 
+class_name Player
+
 enum Select{ NONE, MOVE, SHOOT, ITEM }
 
 var select_mode = Select.NONE
@@ -55,17 +57,16 @@ func reset_hud():
 	if item_uses <= 0:
 		level.set_hud(false, "Item")
 
+func clear_selection():
+	select_mode = Select.NONE
+	set_highlight()
+	tilemap.clear_target()
+
 # IO Events
 func _unhandled_input(event):
 	# Break if clicking at the wrong time
 	if !current_path.size() == 0 or !is_active:
 		return
-	
-	# Break current selection
-	if event.is_action_pressed("ui_cancel") and select_mode != Select.NONE:
-		select_mode = Select.NONE
-		set_highlight()
-		tilemap.clear_target()
 	
 	# Collect position
 	var click_position = get_global_mouse_position()
