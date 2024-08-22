@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b54mb5mc22ncp" path="res://levels/BaseTileMap.tscn" id="3_2ent8"]
 [ext_resource type="PackedScene" uid="uid://ietisnuvh0ck" path="res://units/player.tscn" id="4_3rm8y"]
 [ext_resource type="PackedScene" uid="uid://b0p1dexvoe7et" path="res://units/acolyte.tscn" id="5_10yby"]
-[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="8_1bjbd"]
+[ext_resource type="Texture2D" uid="uid://cldrkugs0udxn" path="res://assets/item.png" id="8_1bjbd"]
 [ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="9_qpeuh"]
 [ext_resource type="Script" path="res://Slider.gd" id="9_up4e3"]
 [ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="10_obtjx"]

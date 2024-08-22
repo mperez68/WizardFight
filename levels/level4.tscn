@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://dg0ero300ul55"]
 
 [ext_resource type="Script" path="res://levels/level.gd" id="1_i2gq3"]
-[ext_resource type="Texture2D" uid="uid://vh415hqmwaui" path="res://assets/item.png" id="2_u8jhf"]
+[ext_resource type="Texture2D" uid="uid://cldrkugs0udxn" path="res://assets/item.png" id="2_u8jhf"]
 [ext_resource type="Texture2D" uid="uid://bf5j67bs1unri" path="res://assets/spells/Wind/tile003.png" id="3_owqd7"]
 [ext_resource type="Texture2D" uid="uid://b45gsn7m8aaqy" path="res://assets/spells/Fire_Ball/tile000.png" id="4_b60bb"]
 [ext_resource type="Texture2D" uid="uid://devjf3krpc4ir" path="res://assets/spells/Tornado/tile009.png" id="5_xdj1x"]
