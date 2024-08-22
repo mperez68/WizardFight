@@ -12,6 +12,13 @@ var sure_displayed = false
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
+func resume_game():
+	click.play()
+	reset_return()
+	level.is_playing_full_song = true
+	get_tree().paused = false
+	visible = false
+
 func _on_back_pressed():
 	click.play()
 	reset_return()
@@ -39,11 +46,7 @@ func reset_return():
 	$Menu/Return/Label.text = "RETURN TO MENU"
 
 func _on_resume_pressed():
-	click.play()
-	reset_return()
-	level.is_playing_full_song = true
-	get_tree().paused = false
-	visible = false
+	resume_game()
 
 func _on_full_screen_pressed():
 	click.play()
@@ -52,3 +55,9 @@ func _on_full_screen_pressed():
 func _on_borderless_pressed():
 	click.play()
 	get_tree().root.borderless = !get_tree().root.borderless
+
+func _input(event):
+	await get_tree().create_timer(0.01).timeout
+	# Pause Menu
+	if event.is_action_pressed("ui_cancel") and get_tree().paused == true:
+		resume_game()

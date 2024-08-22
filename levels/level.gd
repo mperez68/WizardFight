@@ -197,6 +197,13 @@ func get_tooltip_icons(filter: String):
 			filter_icons.push_back(icons[i])
 	return filter_icons
 
+func pause_game():
+	is_playing_full_song = false
+	$theme.volume_db = -80
+	$theme_start.volume_db = 0
+	get_tree().paused = true
+	$HUD/ScreenSize/PauseScreen.visible = true
+
 func _on_pass_turn_pressed():
 	inc_turn()
 
@@ -216,14 +223,11 @@ func _on_item_pressed(selected_item):
 		characters[turn_pointer].button_item(selected_item)
 
 func _input(event):
+	await get_tree().create_timer(0.01).timeout
 	# Pause Menu
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("ui_cancel") and get_tree().paused == false:
 		if !$HUD/ScreenSize/PauseScreen.visible:
-			is_playing_full_song = false
-			$theme.volume_db = -80
-			$theme_start.volume_db = 0
-			get_tree().paused = true
-			$HUD/ScreenSize/PauseScreen.visible = true
+			pause_game()
 	
 	# Break if not active
 	if !characters[turn_pointer].name.contains("Player") or $SpellSelectScreen.visible:
@@ -286,5 +290,5 @@ func _on_theme_finished():
 	$theme.play()
 
 
-func _on_full_screen_pressed():
-	pass # Replace with function body.
+func _on_menu_pressed():
+	pause_game()
