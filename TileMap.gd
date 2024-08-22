@@ -34,8 +34,12 @@ var tile_size: Vector2
 @onready var highlight_map = $HighlightTileMap
 @onready var water_map = $WaterTileMap
 
+var hide_terrain = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if $".." is Level:
+		hide_terrain = true
 	# Populate astar map
 	for i in get_layers_count() - 1:
 		populate_layer(i)
@@ -44,6 +48,8 @@ func _ready():
 	$WaterTileMap/AnimationPlayer.play("float")
 	
 func _physics_process(_delta):
+	if !hide_terrain or !$"..".characters[$"..".turn_pointer].name.contains("Player"):
+		return
 	var mouse_pos = get_global_mouse_position()
 	var mouse_tile_pos = local_to_map(mouse_pos)
 	var all_tiles = []

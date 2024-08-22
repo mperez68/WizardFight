@@ -1,5 +1,14 @@
 extends Node2D
 
+class_name Level
+
+const Spell = preload("res://spells/Spell.gd")
+const Item = preload("res://items/item.gd")
+const PAN_SPEED = 1024
+const VOL_CHANGE_SPEED = 0.5
+const SAVE_PATH = preload("res://main_menu.gd").SAVE_PATH
+const REFRESH = 100
+
 var turn_counter = 1
 var characters = []
 var pending_removal_pointers = []
@@ -7,20 +16,22 @@ var turn_pointer = -1
 var dragging = false
 var pan_vector = Vector2(0, 0)
 var is_playing_full_song = false
+var debug_counter = 0
 
 @export var level = 0
-
-const Spell = preload("res://spells/Spell.gd")
-const Item = preload("res://items/item.gd")
-const PAN_SPEED = 1024
-const VOL_CHANGE_SPEED = 0.5
-const SAVE_PATH = preload("res://main_menu.gd").SAVE_PATH
+@export var debug = false
 
 @onready var tilemap = $TileMap
 @onready var camera = $Camera2D
 @onready var tooltip = $HUD/ScreenSize/ToolTip/VBoxContainer/Label
 
 func _process(delta):
+	debug_counter += 1
+	var fps = Engine.get_frames_per_second()
+	if debug_counter >= REFRESH and (debug or fps < 30):
+		print("FPS: ", fps)
+		debug_counter = 0
+	
 	# Scroll with keyboard
 	if Input.is_action_pressed("ui_left"):
 		pan_vector.x = -PAN_SPEED
