@@ -1074,26 +1074,38 @@ position = Vector2(66, 94)
 
 [node name="Acolyte1" parent="." instance=ExtResource("13_3pqhd")]
 position = Vector2(1159, 758)
-team = 1
+team = 4
+
+[node name="Acolyte4" parent="." instance=ExtResource("13_3pqhd")]
+position = Vector2(1150, 833)
+team = 4
 
 [node name="Cleric1" parent="." instance=ExtResource("15_8njek")]
-position = Vector2(1155, 842)
-team = 1
+position = Vector2(1219, 793)
+team = 4
 
 [node name="Acolyte2" parent="." instance=ExtResource("13_3pqhd")]
-position = Vector2(22, 1227)
+position = Vector2(62, 1244)
+team = 2
+
+[node name="Acolyte5" parent="." instance=ExtResource("13_3pqhd")]
+position = Vector2(186, 1242)
 team = 2
 
 [node name="Cleric2" parent="." instance=ExtResource("15_8njek")]
-position = Vector2(248, 1229)
+position = Vector2(137, 1278)
 team = 2
 
 [node name="Acolyte3" parent="." instance=ExtResource("13_3pqhd")]
 position = Vector2(-956, 806)
 team = 3
 
+[node name="Acolyte6" parent="." instance=ExtResource("13_3pqhd")]
+position = Vector2(-958, 870)
+team = 3
+
 [node name="Cleric3" parent="." instance=ExtResource("15_8njek")]
-position = Vector2(-952, 862)
+position = Vector2(-1035, 836)
 team = 3
 
 [node name="Orc" parent="." instance=ExtResource("16_olwbl")]

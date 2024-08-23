@@ -5,6 +5,7 @@ func _ready():
 	_max_mana = 10
 	_hp_regen = 1
 	_mana_regen = 2
+	_max_attacks = 2
 	
 	super()
 	
@@ -15,4 +16,6 @@ func _ready():
 	
 	spells = [Spell.Spell.new(Spell.SpellNames.SHOCKING_GRASP),
 		Spell.Spell.new(Spell.SpellNames.LIGHTNING_BOLT),
+		Spell.Spell.new(Spell.SpellNames.MAGIC_MISSILE),
+		Spell.Spell.new(Spell.SpellNames.FIRE_BLAST),
 		Spell.Spell.new(Spell.SpellNames.HEALING_TOUCH)]

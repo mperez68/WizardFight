@@ -1,4 +1,4 @@
-enum ProfileNames{ MINION, SUPPORT, ORC }
+enum ProfileNames{ MINION, SUPPORT, ORC, POPE }
 
 class AiProfile:
 	var _char: TacticsCharacter
@@ -18,6 +18,10 @@ class AiProfile:
 		_profile = profile
 		
 		match profile:
+			ProfileNames.POPE:
+				priority.push_back(shoot)
+				priority.push_back(heal_self_boss)
+				priority.push_back(approach_enemy)
 			ProfileNames.SUPPORT:
 				priority.push_back(heal_ally)
 				priority.push_back(approach_ally)
@@ -166,7 +170,17 @@ class AiProfile:
 			return true
 		else:
 			return false
-		
+	
+	var heal_self_boss = func():
+		if _char.hp == _char._max_hp or _char.is_dead:
+			return false
+			
+		set_spell_to_ally()
+		if _char.attacks == 2 and _char.mana >= _char.spells[_char.spell_pointer].cost:
+			_char.shoot(_char.spells[_char.spell_pointer], _char.get_grid_position(), _char.z_index)
+			return true
+		else:
+			return false
 		
 	
 	func turn_process():
