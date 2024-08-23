@@ -1039,6 +1039,8 @@ items_end = 3
 briefing_text = "[b]Tilting Plates[/b]
 
 You're not the only team of wizards, here. Teams are displayed by the colors next to a units health bar."
+auto_spells = [0, 1, 2, 5, 6]
+auto_items = [0, 0, 1, 1, 2]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

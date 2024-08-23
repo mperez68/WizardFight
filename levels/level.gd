@@ -119,9 +119,11 @@ func state_check():
 		is_playing_full_song = false
 		$HUD/ScreenSize/EndGameScreen/MainTextRect/Label.text = "TEAM %s WINS" % [living_teams.keys()[0]]
 		$HUD/ScreenSize/EndGameScreen.visible = true
+		if FileAccess.file_exists(SAVE_PATH) and FileAccess.open(SAVE_PATH, FileAccess.READ).get_8() > level + 1:
+			return
 		if living_teams.keys()[0] == 1:
-			var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
-			file.store_8(level + 1)
+			var fileSave = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+			fileSave.store_8(level + 1)
 
 func update_characters():
 	characters = find_children("*", "CharacterBody2D")
@@ -239,15 +241,15 @@ func _input(event):
 			_on_spell_pressed(3)
 		elif event.is_action_pressed("Spell_5"):
 			_on_spell_pressed(4)
-		elif event.is_action_pressed("item_1"):
+		elif event.is_action_pressed("Item_1"):
 			_on_item_pressed(0)
-		elif event.is_action_pressed("item_2"):
+		elif event.is_action_pressed("Item_2"):
 			_on_item_pressed(1)
-		elif event.is_action_pressed("item_3"):
+		elif event.is_action_pressed("Item_3"):
 			_on_item_pressed(2)
-		elif event.is_action_pressed("item_4"):
+		elif event.is_action_pressed("Item_4"):
 			_on_item_pressed(3)
-		elif event.is_action_pressed("item_5"):
+		elif event.is_action_pressed("Item_5"):
 			_on_item_pressed(4)
 		elif event.is_action_pressed("pass_turn"):
 			_on_pass_turn_pressed()

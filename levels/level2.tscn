@@ -1037,6 +1037,7 @@ spells_end = 3
 briefing_text = "[b]Pondering Orbs[/b]
 
 Be careful of Orcs, they throw rocks (small problem) and stab with spears if they get next to you (BIG problem)."
+auto_spells = [0, 1, 2]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

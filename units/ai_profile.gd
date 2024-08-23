@@ -19,8 +19,9 @@ class AiProfile:
 		
 		match profile:
 			ProfileNames.SUPPORT:
-				priority.push_back(shoot_ally)
+				priority.push_back(heal_ally)
 				priority.push_back(approach_ally)
+				priority.push_back(heal_self)
 				priority.push_back(shoot)
 				priority.push_back(approach_enemy)
 			ProfileNames.ORC:
@@ -39,7 +40,7 @@ class AiProfile:
 		
 		for i in level.characters.size():
 			# Only proceed if they're the correct team we're looking for and not dead or self
-			if is_team == (level.characters[i].team == team) and !level.characters[i].is_dead and self != level.characters[i]:
+			if  !level.characters[i].is_dead and self != level.characters[i] and is_enemy(i, team) != is_team:
 				temp_manhattan = tilemap.distance_to(level.characters[i].z_index, level.characters[i].global_position, _char.z_index, _char.global_position)
 				# Adjacent, break and assume this is best
 				if temp_manhattan == 1:
@@ -50,6 +51,9 @@ class AiProfile:
 						best_distance = temp_distance
 						best_target = level.characters[i]
 		return best_target
+	
+	func is_enemy(i, team):
+		return team != level.characters[i].team
 	
 	func set_spell_to_enemy():
 		# set spell pointer to damaging spell
@@ -141,7 +145,7 @@ class AiProfile:
 		else:
 			return false
 	
-	var shoot_ally = func():
+	var heal_ally = func():
 		if ally and (ally.hp == ally._max_hp or ally.is_dead):
 			return false
 		
@@ -151,12 +155,33 @@ class AiProfile:
 			return true
 		else:
 			return false
+			
+	var heal_self = func():
+		if _char.hp == _char._max_hp or _char.is_dead:
+			return false
+			
+		set_spell_to_ally()
+		if _char.attacks > 0 and _char.mana >= _char.spells[_char.spell_pointer].cost:
+			_char.shoot(_char.spells[_char.spell_pointer], _char.get_grid_position(), _char.z_index)
+			return true
+		else:
+			return false
+		
+		
 	
 	func turn_process():
 		var took_action = false
 		# Find targets
 		target = find_closest_target(_char.team, false)
+		if target:
+			print(_char.name, "'s target == ", target.name)
+		else:
+			print(_char.name, " has no target")
 		ally = find_closest_target(_char.team)
+		if ally:
+			print(_char.name, "'s ally == ", ally.name)
+		else:
+			print(_char.name, " has no ally")
 		
 		for i in priority.size():
 			took_action = priority[i].call()

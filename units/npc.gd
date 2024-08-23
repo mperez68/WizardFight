@@ -13,7 +13,6 @@ var ai_profile
 func _ready():
 	super()
 	ai_profile = Ai.AiProfile.new(self, Ai.ProfileNames.MINION)
-	
 	set_team()
 
 func start_turn():

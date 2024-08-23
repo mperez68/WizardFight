@@ -21,6 +21,9 @@ const it = preload("res://items/item.gd")
 
 const generic_icon = preload("res://assets/item.png")
 
+@export var auto_spells: Array = [sp.SpellNames.MAGIC_MISSILE, sp.SpellNames.FIRE_BLAST]
+@export var auto_items: Array = [it.ItemNames.HEALTH_POTION, it.ItemNames.HEALTH_POTION, it.ItemNames.HEALTH_POTION, it.ItemNames.HEALTH_POTION, it.ItemNames.HEALTH_POTION]
+
 # Buttons
 var selection_buttons = []
 var selected_option_buttons = []
@@ -100,7 +103,7 @@ func _on_selection_pressed(key):
 	
 	if get_arr().size() < selected_option_buttons.size():
 		for i in get_arr().size():
-			if get_arr()[i].name == sel.name:
+			if select_type == select.SPELLS and get_arr()[i].name == sel.name:
 				return
 		get_arr().push_back(sel)
 	else:
@@ -203,3 +206,19 @@ func _on_selection_mouse_exited():
 	$BG/LargeIcon.texture = generic_icon
 	$BG/Tooltip/VBoxContainer/Label.clear()
 	$BG/Tooltip/VBoxContainer/Label.append_text(briefing_text)
+
+
+func _on_auto_select_button_pressed():
+	$Click.play()
+	
+	for i in wizards.size():
+		wizards[i].chosen_spells = []
+		for j in auto_spells.size():
+			if auto_spells[j] < spells_end:
+				wizards[i].chosen_spells.push_back(sp.Spell.new(auto_spells[j]))
+		wizards[i].chosen_items = []
+		for j in auto_items.size():
+			if auto_items[j] < items_end:
+				wizards[i].chosen_items.push_back(it.Item.new(auto_items[j]))
+	
+	update_selections()

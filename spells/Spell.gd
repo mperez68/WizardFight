@@ -43,7 +43,7 @@ class Spell:
 				radius = 2
 				tooltip = "You had a personality until you put this spell in your tome. Go ahead, free-thinker."
 			SpellNames.TESTICULAR_TORSION:
-				populate("Testicular Torsion", preload("res://spells/testicular_torsion.tscn"), preload("res://assets/spells/Torsion/tile.png"), 3, 1, 4, 0.8, 0.2)
+				populate("Testicular Torsion", preload("res://spells/testicular_torsion.tscn"), preload("res://assets/spells/Torsion/tile.png"), 2, 1, 4, 0.8, 0.2)
 				status = Effect.StatusEffect.new(Effect.EffectNames.SLOW)
 				tooltip = "Jesus fucking Christ, you monster. Slows target for two turns."
 			SpellNames.COUNTERSPELL:

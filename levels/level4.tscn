@@ -1037,6 +1037,8 @@ items_end = 2
 briefing_text = "[b]Queen Bee[/b]
 
 Now you can select items! Each wizard can select items in the Items tab. If items are available, you have to select at least one to start the battle."
+auto_spells = [0, 1, 2, 3, 4]
+auto_items = [0, 0, 0, 1, 1]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

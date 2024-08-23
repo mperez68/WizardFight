@@ -1038,6 +1038,7 @@ spells_end = 3
 briefing_text = "[b]Priestly Duties[/b]
 
 You can switch between multiple wizards' spellbooks by clicking their name directly above. Be sure to pick spells for everyone before starting."
+auto_spells = [0, 1, 2]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1076,15 +1077,15 @@ position = Vector2(451, 358)
 team = 4
 
 [node name="Acolyte2" parent="." instance=ExtResource("13_5qs4c")]
-position = Vector2(581, 419)
+position = Vector2(194, 551)
 team = 4
 
-[node name="Acolyte4" parent="." instance=ExtResource("13_5qs4c")]
+[node name="Acolyte3" parent="." instance=ExtResource("13_5qs4c")]
 position = Vector2(830, 614)
 team = 4
 
 [node name="Cleric" parent="." instance=ExtResource("19_ylhnx")]
-position = Vector2(698, 476)
+position = Vector2(311, 608)
 team = 4
 
 [node name="Orc1" parent="." instance=ExtResource("14_k8217")]

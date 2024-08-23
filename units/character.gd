@@ -9,6 +9,7 @@ class_name TacticsCharacter
 ## MUST be child of a Level node
 ## MUST be sibling of BaseTileMap node
 ## MUST have child nodes:
+##	   - Info with hp and mana bars
 ##     - AnimatedSprite2D
 ##     - AudioStreamPlayers with the following names:
 ##         - Damage
@@ -84,13 +85,13 @@ func _ready():
 	
 	$Info/HPTextLevel.text = str(hp)
 	$Info/HPTextMax.text = str(hp)
-	$Info/HPBar.value = hp
 	$Info/HPBar.max_value = hp
+	$Info/HPBar.value = hp
 	
 	$Info/ManaTextLevel.text = str(mana)
 	$Info/ManaTextMax.text = str(mana)
-	$Info/ManaBar.value = mana
 	$Info/ManaBar.max_value = mana
+	$Info/ManaBar.value = mana
 
 func _physics_process(delta):
 	if is_dead or ((anim.animation == "cast" or anim.animation == "damage") and anim.is_playing()) or active_missiles > 0:

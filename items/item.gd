@@ -25,20 +25,20 @@ class Item:
 		
 		match item:
 			ItemNames.HEALTH_POTION:
-				populate("Health Potions", preload("res://items/health_potion.tscn"), preload("res://assets/items/healthpotion/tile.png"), 0, 2, -2)
+				populate("Health Potions", preload("res://items/health_potion.tscn"), preload("res://assets/items/healthpotion/tile.png"), 0, 1, -2)
 				tooltip = "Restores 2 HP.\nHey, I get it. Sometimes you make mistakes. Consider this an oopsie button."
 			ItemNames.MANA_POTION:
-				populate("Mana Potions", preload("res://items/mana_potion.tscn"), preload("res://assets/items/manapotion/tile.png"), -1, 2)
+				populate("Mana Potions", preload("res://items/mana_potion.tscn"), preload("res://assets/items/manapotion/tile.png"), -1)
 				tooltip = "Restores 1 Mana.\nMore Mana, More Dakka."
 			ItemNames.FIRE_BOMB:
-				populate("Fire Bombs", preload("res://items/thrown_item.tscn"), preload("res://assets/items/firebomb/tile.png"), 0, 3, 1, 5, 0.8, 1)
+				populate("Fire Bombs", preload("res://items/thrown_item.tscn"), preload("res://assets/items/firebomb/tile.png"), 0, 1, 1, 5, 0.8, 1)
 				tooltip = "Counterspell this, casual. Smaller boom than a fireball but still effective."
 			ItemNames.SCROLL:
 				spell = Spell.Spell.new(spell_in)
 				populate(spell.name, spell.spell_node, preload("res://assets/items/mysteryspell/tile.png"), spell.cost - 1, 1, spell.damage, spell.range, spell.hit_chance, spell.radius)
 				tooltip = "the Cheat-code of wizard fights. Catch them off guard with this little bonus."
 	
-	func populate(new_name, new_item_node, new_icon, new_cost, new_quantity, new_damage = 0, new_range = 0, new_hit_chance = 1, new_radius = 0):
+	func populate(new_name, new_item_node, new_icon, new_cost, new_quantity = 1, new_damage = 0, new_range = 0, new_hit_chance = 1, new_radius = 0):
 		name = new_name
 		item_node = new_item_node
 		icon = new_icon
