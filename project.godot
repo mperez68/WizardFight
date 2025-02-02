@@ -15,7 +15,7 @@ config/tags=PackedStringArray("proof_of_concept")
 run/main_scene="res://main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/image="res://assets/spells/Fire_Ball/tile000.png"
-config/icon="res://icon.svg"
+config/icon="res://assets/spells/Fire_Ball/tile000.png"
 
 [display]
 
